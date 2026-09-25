@@ -1,0 +1,50 @@
+{
+  "id": "demo",
+  "name": "Compte Démo (Exemple)",
+  "icon": "✨",
+  "color": "#0284c7",
+  "account_type": "Courant",
+  "currency": "EUR",
+  "created_at": "2026-09-01",
+  "profile": {
+    "account_holder_keywords": [
+      "ALEX DUPONT"
+    ],
+    "salary_employer_name": "ACME Technologies",
+    "salary_keywords": [
+      "ACME TECH",
+      "ACME",
+      "SALAIRE"
+    ],
+    "family_keywords": [
+      "JEAN DUPONT"
+    ],
+    "rent_keywords": [
+      "AGENCE IMMOBILIERE",
+      "LOYER"
+    ],
+    "investment_accounts": [
+      {
+        "id": "livret_a",
+        "name": "Livret A",
+        "keywords": [
+          "LIVRET A",
+          "ALEX DUPONT"
+        ],
+        "type": "savings",
+        "color": "#2C4A6F"
+      },
+      {
+        "id": "pea",
+        "name": "PEA (Trade Republic)",
+        "keywords": [
+          "TRADE REPUBLIC",
+          "PEA",
+          "BOURSE"
+        ],
+        "type": "brokerage",
+        "color": "#7C3AED"
+      }
+    ]
+  }
+}

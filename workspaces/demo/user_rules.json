@@ -1,0 +1,14 @@
+{
+  "rules": [
+    {
+      "pattern": "BOULANGERIE",
+      "category": "Alimentation & Supermarchés",
+      "merchant": "Boulangerie Artisanale"
+    },
+    {
+      "pattern": "SALLE DE ESCALADE",
+      "category": "Sports & Fitness",
+      "merchant": "Arkose Escalade"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Logs and temporary files
+*.log
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# IDE and Editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sensitive Financial Data & Private Bank Statements (CRITICAL PRIVACY)
+# Real PDF statements, parsed JSON caches, and exported CSVs must never be committed
+workspaces/*
+!workspaces/demo/
+!workspaces/demo/**
+
+statements_data/
+sg_clean_transactions.csv
+transactions_data.json
+/user_rules.json
+*.pdf
+*.csv
