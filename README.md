@@ -5,7 +5,6 @@
   <img src="https://img.shields.io/badge/Interface-TailwindCSS%20%2B%20Chart.js-38B2AC?logo=tailwindcss&logoColor=white" alt="TailwindCSS">
   <img src="https://img.shields.io/badge/Confidentialité-100%25%20Local-22c55e?logo=shield&logoColor=white" alt="100% Local">
   <img src="https://img.shields.io/badge/IA%20Locale-Ollama%20(Optionnel)-purple?logo=ollama&logoColor=white" alt="Ollama">
-  <img src="https://img.shields.io/badge/Licence-MIT-green" alt="MIT License">
 </p>
 
 **Century Finance** est une application web moderne et élégante conçue pour transformer vos relevés bancaires PDF en un tableau de bord financier interactif et esthétique (inspiré du design *Mid-Century Modern* et des standards éditoriaux de *Monarch Money*), **sans qu'aucun octet ni aucune donnée financière ne quitte votre machine**.
