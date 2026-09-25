@@ -11,7 +11,7 @@
 
 > 🌐 **Démonstration en Ligne Interactive (Sans Installation)** :  
 > Vous pouvez tester l'ensemble du tableau de bord directement dans votre navigateur avec les données synthétiques du compte démo :  
-> **👉 [Explorer la Démo GitHub Pages](https://votre-nom.github.io/century-finance/)** *(Remplacez par l'URL de votre dépôt)*
+> **👉 [Explorer la Démo GitHub Pages](https://rsmali.github.io/century-finance/)** 
 
 **Century Finance** est une application web moderne et élégante conçue pour transformer vos relevés bancaires PDF en un tableau de bord financier interactif et esthétique (inspiré du design *Mid-Century Modern* et des standards éditoriaux de *Monarch Money*), **sans qu'aucun octet ni aucune donnée financière ne quitte votre machine**.
 
