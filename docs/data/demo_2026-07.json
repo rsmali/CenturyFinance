@@ -1,0 +1,1971 @@
+{
+  "budget_baseline": {
+    "categories": {
+      "Alimentation & Supermarchés": 248.8,
+      "Autre": 0.0,
+      "Chèques Émis": 0.0,
+      "Frais Bancaires": 4.5,
+      "High-Tech & Équipement": 114.75,
+      "Livres": 24.9,
+      "Logement & Énergie": 717.5,
+      "Restaurants & Sorties": 134.2,
+      "Retraits Espèces (DAB)": 0.0,
+      "Santé & Pharmacie": 0.0,
+      "Shopping & Soins": 39.95,
+      "Sports & Fitness": 29.99,
+      "Tabac & Presse": 0.0,
+      "Transports & Péages": 86.4,
+      "Télécom & Abonnements": 0.0
+    },
+    "income": 3225.0,
+    "income_salary": 3225.0,
+    "investment_accounts": [
+      {
+        "color": "#2C4A6F",
+        "id": "livret_a",
+        "keywords": [
+          "LIVRET A",
+          "ALEX DUPONT"
+        ],
+        "name": "Livret A",
+        "type": "savings"
+      },
+      {
+        "color": "#7C3AED",
+        "id": "pea",
+        "keywords": [
+          "TRADE REPUBLIC",
+          "PEA",
+          "BOURSE"
+        ],
+        "name": "PEA (Trade Republic)",
+        "type": "brokerage"
+      }
+    ],
+    "investments": 800.0,
+    "investments_by_account": {
+      "livret_a": 425.0,
+      "pea": 375.0
+    },
+    "investments_cto": 375.0,
+    "investments_livret_a": 425.0,
+    "money_left_over": 1024.01,
+    "months_considered": [
+      "Mai 2026",
+      "Juin 2026",
+      "Juillet 2026",
+      "Août 2026"
+    ],
+    "months_count": 4,
+    "savings_rate": 56.6,
+    "total_expenses": 1400.99
+  },
+  "categories": [
+    "Alimentation & Supermarchés",
+    "Restaurants & Sorties",
+    "Sports & Fitness",
+    "Investissements & Épargne",
+    "High-Tech & Équipement",
+    "Logement & Énergie",
+    "Télécom & Abonnements",
+    "Transports & Péages",
+    "Santé & Pharmacie",
+    "Shopping & Soins",
+    "Livres",
+    "Tabac & Presse",
+    "Frais Bancaires",
+    "Retraits Espèces (DAB)",
+    "Chèques Émis",
+    "Salaires & Revenus",
+    "Cadeaux & Dons",
+    "Remboursements & Avoirs",
+    "Autre"
+  ],
+  "category_colors": {
+    "Alimentation & Supermarchés": "#10b981",
+    "Autre": "#94a3b8",
+    "Cadeaux & Dons": "#ec4899",
+    "Chèques Émis": "#64748b",
+    "Frais Bancaires": "#ef4444",
+    "High-Tech & Équipement": "#0ea5e9",
+    "Investissements & Épargne": "#8b5cf6",
+    "Livres": "#d97706",
+    "Logement & Énergie": "#6366f1",
+    "Remboursements & Avoirs": "#14b8a6",
+    "Restaurants & Sorties": "#f59e0b",
+    "Retraits Espèces (DAB)": "#f97316",
+    "Salaires & Revenus": "#22c55e",
+    "Santé & Pharmacie": "#ec4899",
+    "Shopping & Soins": "#d946ef",
+    "Sports & Fitness": "#0284c7",
+    "Tabac & Presse": "#78716c",
+    "Transports & Péages": "#06b6d4",
+    "Télécom & Abonnements": "#a855f7"
+  },
+  "category_icons": {
+    "Alimentation & Supermarchés": "🛒",
+    "Autre": "📦",
+    "Cadeaux & Dons": "🎁",
+    "Chèques Émis": "📝",
+    "Frais Bancaires": "🏦",
+    "High-Tech & Équipement": "💻",
+    "Investissements & Épargne": "📈",
+    "Livres": "📚",
+    "Logement & Énergie": "⚡",
+    "Remboursements & Avoirs": "🔄",
+    "Restaurants & Sorties": "🍽️",
+    "Retraits Espèces (DAB)": "🏧",
+    "Salaires & Revenus": "💰",
+    "Santé & Pharmacie": "💊",
+    "Shopping & Soins": "🛍️",
+    "Sports & Fitness": "🏋️",
+    "Tabac & Presse": "📰",
+    "Transports & Péages": "🚗",
+    "Télécom & Abonnements": "📱"
+  },
+  "category_totals": {
+    "Alimentation & Supermarchés": {
+      "color": "#10b981",
+      "count": 7,
+      "icon": "🛒",
+      "total": 242.8
+    },
+    "Frais Bancaires": {
+      "color": "#ef4444",
+      "count": 1,
+      "icon": "🏦",
+      "total": 4.5
+    },
+    "Investissements & Épargne": {
+      "color": "#8b5cf6",
+      "count": 2,
+      "icon": "📈",
+      "total": 850.0
+    },
+    "Livres": {
+      "color": "#d97706",
+      "count": 1,
+      "icon": "📚",
+      "total": 24.9
+    },
+    "Logement & Énergie": {
+      "color": "#6366f1",
+      "count": 2,
+      "icon": "⚡",
+      "total": 410.0
+    },
+    "Restaurants & Sorties": {
+      "color": "#f59e0b",
+      "count": 4,
+      "icon": "🍽️",
+      "total": 134.2
+    },
+    "Santé & Prévoyance": {
+      "color": "#94a3b8",
+      "count": 1,
+      "icon": "📦",
+      "total": 19.4
+    },
+    "Shopping & Soins": {
+      "color": "#d946ef",
+      "count": 1,
+      "icon": "🛍️",
+      "total": 79.9
+    },
+    "Sports & Fitness": {
+      "color": "#0284c7",
+      "count": 1,
+      "icon": "🏋️",
+      "total": 29.99
+    },
+    "Transports & Péages": {
+      "color": "#06b6d4",
+      "count": 1,
+      "icon": "🚗",
+      "total": 86.4
+    },
+    "Télécom, Forfaits & Abonnements": {
+      "color": "#94a3b8",
+      "count": 3,
+      "icon": "📦",
+      "total": 44.47
+    },
+    "Voyages & Vacances": {
+      "color": "#94a3b8",
+      "count": 1,
+      "icon": "📦",
+      "total": 142.5
+    }
+  },
+  "date_range_label": "Mars 2026 - Août 2026",
+  "insights": {
+    "breakdown_pct": {
+      "cash_cheques": 0.0,
+      "discretionary": 8.63633796681,
+      "essentials": 9.794034835784531,
+      "fixed": 36.74376578219164
+    },
+    "cash_cheques_total": 0,
+    "delivery_count": 2,
+    "delivery_total": 57.7,
+    "discretionary_total": 214.1,
+    "essential_total": 242.79999999999998,
+    "fixed_total": 910.9,
+    "investments_total": 850.0,
+    "potential_savings": 74.93499999999999,
+    "recommendations": [
+      {
+        "message": "Vous avez placé 850.00 € en investissements / épargne. Cet argent constitue votre patrimoine et n'est pas une dépense perdue !",
+        "title": "Investissements & Épargne",
+        "type": "info"
+      },
+      {
+        "message": "Vous avez dépensé 57.70 € en livraisons ce mois-ci (2 commandes). Préparer vos repas pourrait vous faire économiser ~40 €/mois.",
+        "title": "Livraisons de repas (Uber Eats / Deliveroo)",
+        "type": "warning"
+      },
+      {
+        "message": "Dépenses sport / abonnements sportifs : 29.99 €/mois.",
+        "title": "Sport & Fitness",
+        "type": "neutral"
+      },
+      {
+        "message": "Ce poste représente 134.20 € (5.4% de vos dépenses). Réduire les sorties de moitié libérerait ~67 €.",
+        "title": "Restaurants & Sorties",
+        "type": "info"
+      },
+      {
+        "message": "Vos charges fixes récurrentes s'élèvent à 910.90 €/mois (Télécom, Énergie, Banque, Transports).",
+        "title": "Charges fixes & Abonnements",
+        "type": "neutral"
+      }
+    ],
+    "restaurants_bars_total": 134.2,
+    "sports_total": 29.99,
+    "total_credits": 3560.0,
+    "total_debits": 2479.06
+  },
+  "major_expenditures": [
+    {
+      "amount": -820.0,
+      "category": "Logement & Énergie",
+      "color": "#6366f1",
+      "date": "03/07/2026",
+      "description": "PRELEVEMENT SEPA DE: AGENCE IMMOBILIERE REF: LOYER RESIDENCE JUILLET",
+      "icon": "⚡",
+      "id": "demo_07_2",
+      "merchant": "Loyer Résidence Horizon",
+      "raw_amount": 820.0,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "03/07/2026"
+    }
+  ],
+  "ollama_available": false,
+  "patterns": [
+    {
+      "badge": "+35%",
+      "badge_color": "rose",
+      "description": "Vos dépenses en restaurants et repas commandés totalisent 191,90 € dont 57,70 € en livraisons (2 commandes).",
+      "details": "Privilégier les repas faits maison et limiter les plateformes de livraison pourrait vous faire économiser environ 76,76 €/mois.",
+      "icon": "🍽️",
+      "id": "dining",
+      "title": "Restaurants, Bars & Livraisons de repas",
+      "type": "Seasonal"
+    },
+    {
+      "badge": "Épargne",
+      "badge_color": "purple",
+      "description": "Vous avez placé 850,00 € en investissements et épargne de précaution.",
+      "details": "Ces flux financiers augmentent directement votre valeur patrimoniale et ne constituent pas des dépenses consommées.",
+      "icon": "📈",
+      "id": "investments",
+      "title": "Constitution de Patrimoine & Épargne",
+      "type": "Trend"
+    },
+    {
+      "badge": "Charges Fixes",
+      "badge_color": "amber",
+      "description": "Vos prélèvements récurrents mensuels s'élèvent à environ 910,90 € (abonnements, forfaits, assurances).",
+      "details": "Charges fixes régulières identifiées sur l'ensemble de vos relevés bancaires.",
+      "icon": "🔄",
+      "id": "recurring",
+      "title": "Abonnements et Charges Fixes",
+      "type": "Recurring"
+    },
+    {
+      "badge": "Santé",
+      "badge_color": "pink",
+      "description": "Abonnement constant dédié à la santé et aux activités sportives (29,99 €/mois).",
+      "details": "Dépense saine et régulière identifiée sur l'ensemble des relevés analysés.",
+      "icon": "⚡",
+      "id": "lifestyle",
+      "title": "Discipline Sport & Bien-être",
+      "type": "Lifestyle"
+    },
+    {
+      "badge": "+0%",
+      "badge_color": "amber",
+      "description": "Dépense inhabituelle en Août 2026 : 820.00 € (+9% vs moyenne).",
+      "details": "Dépense passée de 0,00 € à 0,00 €.",
+      "icon": "⚠️",
+      "id": "anomaly_Logement & Énergie",
+      "title": "Variation notable : Logement & Énergie",
+      "type": "Anomaly"
+    },
+    {
+      "badge": "+0%",
+      "badge_color": "amber",
+      "description": "Dépense inhabituelle en Mars 2026 : 262.80 € (+5% vs moyenne).",
+      "details": "Dépense passée de 0,00 € à 0,00 €.",
+      "icon": "⚠️",
+      "id": "anomaly_Alimentation & Supermarchés",
+      "title": "Variation notable : Alimentation & Supermarchés",
+      "type": "Anomaly"
+    }
+  ],
+  "recurring": [
+    {
+      "amount": 86.4,
+      "category": "Transports & Péages",
+      "date": "01/08/2026",
+      "name": "Pass Transport Navigo / Imagine R",
+      "periodicity": "Mensuel"
+    },
+    {
+      "amount": 29.99,
+      "category": "Sports & Fitness",
+      "date": "05/08/2026",
+      "name": "Abonnement Sport / Salle",
+      "periodicity": "Mensuel"
+    },
+    {
+      "amount": 19.99,
+      "category": "Télécom, Forfaits & Abonnements",
+      "date": "10/08/2026",
+      "name": "Forfait Télécom / Internet",
+      "periodicity": "Mensuel"
+    },
+    {
+      "amount": 13.49,
+      "category": "Télécom, Forfaits & Abonnements",
+      "date": "16/08/2026",
+      "name": "Abonnement Streaming / Services",
+      "periodicity": "Mensuel"
+    }
+  ],
+  "selected_month": "2026-07",
+  "selected_month_label": "Juillet 2026",
+  "statements": [
+    "releve_demo_202603.pdf",
+    "releve_demo_202604.pdf",
+    "releve_demo_202605.pdf",
+    "releve_demo_202606.pdf",
+    "releve_demo_202607.pdf",
+    "releve_demo_202608.pdf"
+  ],
+  "statements_detailed": [
+    {
+      "filename": "releve_demo_202603.pdf",
+      "mtime": 1790349087.4862597,
+      "size_formatted": "10.1 KB",
+      "size_kb": 10.1,
+      "status": "Completed",
+      "tx_count": 24,
+      "uploaded_date": "25 Sep 2026, 17:11"
+    },
+    {
+      "filename": "releve_demo_202604.pdf",
+      "mtime": 1790349087.486721,
+      "size_formatted": "9.7 KB",
+      "size_kb": 9.71,
+      "status": "Completed",
+      "tx_count": 23,
+      "uploaded_date": "25 Sep 2026, 17:11"
+    },
+    {
+      "filename": "releve_demo_202605.pdf",
+      "mtime": 1790349087.4871588,
+      "size_formatted": "10.5 KB",
+      "size_kb": 10.53,
+      "status": "Completed",
+      "tx_count": 25,
+      "uploaded_date": "25 Sep 2026, 17:11"
+    },
+    {
+      "filename": "releve_demo_202606.pdf",
+      "mtime": 1790349087.487571,
+      "size_formatted": "10.1 KB",
+      "size_kb": 10.11,
+      "status": "Completed",
+      "tx_count": 24,
+      "uploaded_date": "25 Sep 2026, 17:11"
+    },
+    {
+      "filename": "releve_demo_202607.pdf",
+      "mtime": 1790349087.48799,
+      "size_formatted": "10.9 KB",
+      "size_kb": 10.95,
+      "status": "Completed",
+      "tx_count": 26,
+      "uploaded_date": "25 Sep 2026, 17:11"
+    },
+    {
+      "filename": "releve_demo_202608.pdf",
+      "mtime": 1790349087.4884024,
+      "size_formatted": "10.1 KB",
+      "size_kb": 10.12,
+      "status": "Completed",
+      "tx_count": 24,
+      "uploaded_date": "25 Sep 2026, 17:11"
+    }
+  ],
+  "statements_meta": {
+    "processed": 6,
+    "processing": 0,
+    "total_files": 6,
+    "total_size_formatted": "61.5 KB",
+    "total_size_kb": 61.52
+  },
+  "status": "ok",
+  "summary": {
+    "count_credits": 2,
+    "count_debits": 24,
+    "count_major_expenditures": 1,
+    "investment_accounts": [
+      {
+        "color": "#2C4A6F",
+        "id": "livret_a",
+        "keywords": [
+          "LIVRET A",
+          "ALEX DUPONT"
+        ],
+        "name": "Livret A",
+        "type": "savings"
+      },
+      {
+        "color": "#7C3AED",
+        "id": "pea",
+        "keywords": [
+          "TRADE REPUBLIC",
+          "PEA",
+          "BOURSE"
+        ],
+        "name": "PEA (Trade Republic)",
+        "type": "brokerage"
+      }
+    ],
+    "investments_by_account": {
+      "livret_a": {
+        "color": "#2C4A6F",
+        "deposits": 500.0,
+        "id": "livret_a",
+        "name": "Livret A",
+        "net": 500.0,
+        "type": "savings",
+        "withdrawals": 0.0
+      },
+      "pea": {
+        "color": "#7C3AED",
+        "deposits": 350.0,
+        "id": "pea",
+        "name": "PEA (Trade Republic)",
+        "net": 350.0,
+        "type": "brokerage",
+        "withdrawals": 0.0
+      }
+    },
+    "investments_cto": 350.0,
+    "investments_livret_a": 500.0,
+    "investments_livret_a_deposits": 500.0,
+    "investments_livret_a_withdrawals": 0.0,
+    "max_expense": 820.0,
+    "max_expense_desc": "Loyer Résidence Horizon",
+    "monthly_avg_savings": 1930.94,
+    "net": 1930.94,
+    "net_real": 1930.94,
+    "net_real_with_reimb": 1930.94,
+    "potential_savings": 74.93,
+    "potential_savings_monthly": 74.93,
+    "potential_savings_total": 74.93499999999999,
+    "savings_rate": 61.3,
+    "savings_rate_gross": 21.3,
+    "savings_rate_net": 61.3,
+    "total_count": 26,
+    "total_credits": 3150.0,
+    "total_debits": -2479.06,
+    "total_gifts": 0,
+    "total_investments": 850.0,
+    "total_living_debits": -1219.06,
+    "total_living_debits_gross": -1219.06,
+    "total_living_debits_net": -1219.06,
+    "total_living_debits_raw": -1629.06,
+    "total_major_expenditures": 820.0,
+    "total_reimbursements": 410.0,
+    "total_rent_reimbursements": 410.0,
+    "total_salary": 3150.0
+  },
+  "transactions": [
+    {
+      "amount": 3150.0,
+      "category": "Salaires & Revenus",
+      "color": "#22c55e",
+      "date": "28/07/2026",
+      "description": "VIR RECU 918237410 DE: ACME TECH MOTIF: SALAIRE JUILLET 2026",
+      "icon": "💰",
+      "id": "demo_07_1",
+      "merchant": "ACME Technologies (Salaire)",
+      "raw_amount": 3150.0,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Credit",
+      "valeur_date": "28/07/2026"
+    },
+    {
+      "amount": -4.5,
+      "category": "Frais Bancaires",
+      "color": "#ef4444",
+      "date": "26/07/2026",
+      "description": "COTISATION MENSUELLE FORFAIT BANCAIRE FORMULE ESSENTIELLE",
+      "icon": "🏦",
+      "id": "demo_07_10",
+      "merchant": "Frais bancaires & Tenue de compte",
+      "raw_amount": 4.5,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "26/07/2026"
+    },
+    {
+      "amount": -70.6,
+      "category": "Alimentation & Supermarchés",
+      "color": "#10b981",
+      "date": "25/07/2026",
+      "description": "CARTE X1234 25/07 MONOPRIX SAINT GERMAIN",
+      "icon": "🛒",
+      "id": "demo_07_14",
+      "merchant": "Monoprix",
+      "raw_amount": 70.6,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "25/07/2026"
+    },
+    {
+      "amount": -11.5,
+      "category": "Alimentation & Supermarchés",
+      "color": "#10b981",
+      "date": "22/07/2026",
+      "description": "CARTE X1234 22/07 BOULANGERIE ARTISANALE DU COIN",
+      "icon": "🛒",
+      "id": "demo_07_17",
+      "merchant": "Boulangerie Artisanale",
+      "raw_amount": 11.5,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "22/07/2026"
+    },
+    {
+      "amount": -31.2,
+      "category": "Restaurants & Sorties",
+      "color": "#f59e0b",
+      "date": "21/07/2026",
+      "description": "CARTE X1234 21/07 UBER *EATS COMMERCE ELECTRONIQUE",
+      "icon": "🍽️",
+      "id": "demo_07_19",
+      "merchant": "Uber Eats",
+      "raw_amount": 31.2,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "21/07/2026"
+    },
+    {
+      "amount": 410.0,
+      "category": "Logement & Énergie",
+      "color": "#6366f1",
+      "date": "20/07/2026",
+      "description": "VIR RECU 912830198 DE: JEAN DUPONT MOTIF: REMBOURSEMENT LOYER",
+      "icon": "⚡",
+      "id": "demo_07_25",
+      "merchant": "Remboursement Loyer",
+      "raw_amount": 410.0,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Credit",
+      "valeur_date": "20/07/2026"
+    },
+    {
+      "amount": -18.5,
+      "category": "Restaurants & Sorties",
+      "color": "#f59e0b",
+      "date": "19/07/2026",
+      "description": "CARTE X1234 19/07 CAFE LE MARAIS PARIS",
+      "icon": "🍽️",
+      "id": "demo_07_21",
+      "merchant": "Café Le Marais",
+      "raw_amount": 18.5,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "19/07/2026"
+    },
+    {
+      "amount": -46.1,
+      "category": "Alimentation & Supermarchés",
+      "color": "#10b981",
+      "date": "18/07/2026",
+      "description": "CARTE X1234 18/07 BIOCOOP LES HALLES",
+      "icon": "🛒",
+      "id": "demo_07_13",
+      "merchant": "Biocoop",
+      "raw_amount": 46.1,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "18/07/2026"
+    },
+    {
+      "amount": -79.9,
+      "category": "Shopping & Soins",
+      "color": "#d946ef",
+      "date": "17/07/2026",
+      "description": "CARTE X1234 17/07 UNIQLO PARIS OPERA",
+      "icon": "🛍️",
+      "id": "demo_07_24",
+      "merchant": "Uniqlo",
+      "raw_amount": 79.9,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "17/07/2026"
+    },
+    {
+      "amount": -13.49,
+      "category": "Télécom, Forfaits & Abonnements",
+      "color": "#94a3b8",
+      "date": "16/07/2026",
+      "description": "CARTE X1234 16/07 NETFLIX FRANCE MENSUEL",
+      "icon": "📦",
+      "id": "demo_07_9",
+      "merchant": "Netflix",
+      "raw_amount": 13.49,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "16/07/2026"
+    },
+    {
+      "amount": -24.9,
+      "category": "Livres",
+      "color": "#d97706",
+      "date": "15/07/2026",
+      "description": "CARTE X1234 15/07 LIBRAIRIE GIBERT JOSEPH",
+      "icon": "📚",
+      "id": "demo_07_22",
+      "merchant": "Librairie Gibert",
+      "raw_amount": 24.9,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "15/07/2026"
+    },
+    {
+      "amount": -8.2,
+      "category": "Alimentation & Supermarchés",
+      "color": "#10b981",
+      "date": "14/07/2026",
+      "description": "CARTE X1234 14/07 BOULANGERIE ARTISANALE DU COIN",
+      "icon": "🛒",
+      "id": "demo_07_16",
+      "merchant": "Boulangerie Artisanale",
+      "raw_amount": 8.2,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "14/07/2026"
+    },
+    {
+      "amount": -58.0,
+      "category": "Restaurants & Sorties",
+      "color": "#f59e0b",
+      "date": "13/07/2026",
+      "description": "CARTE X1234 13/07 RESTAURANT LE COMPTOIR DU MARCHE",
+      "icon": "🍽️",
+      "id": "demo_07_20",
+      "merchant": "Restaurant Le Comptoir",
+      "raw_amount": 58.0,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "13/07/2026"
+    },
+    {
+      "amount": -10.99,
+      "category": "Télécom, Forfaits & Abonnements",
+      "color": "#94a3b8",
+      "date": "12/07/2026",
+      "description": "CARTE X1234 12/07 SPOTIFY PREMIUM ABONNEMENT",
+      "icon": "📦",
+      "id": "demo_07_8",
+      "merchant": "Spotify",
+      "raw_amount": 10.99,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "12/07/2026"
+    },
+    {
+      "amount": -142.5,
+      "category": "Voyages & Vacances",
+      "color": "#94a3b8",
+      "date": "12/07/2026",
+      "description": "CARTE X1234 12/07 SNCF CONNECT BILLETS DE TRAIN TGV",
+      "icon": "📦",
+      "id": "demo_07_26",
+      "merchant": "SNCF Connect",
+      "raw_amount": 142.5,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "12/07/2026"
+    },
+    {
+      "amount": -36.7,
+      "category": "Alimentation & Supermarchés",
+      "color": "#10b981",
+      "date": "11/07/2026",
+      "description": "CARTE X1234 11/07 CARREFOUR CITY PARIS",
+      "icon": "🛒",
+      "id": "demo_07_12",
+      "merchant": "Carrefour City",
+      "raw_amount": 36.7,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "11/07/2026"
+    },
+    {
+      "amount": -19.99,
+      "category": "Télécom, Forfaits & Abonnements",
+      "color": "#94a3b8",
+      "date": "10/07/2026",
+      "description": "PRELEVEMENT SEPA FREE MOBILE FORFAIT 5G ILLIMITE",
+      "icon": "📦",
+      "id": "demo_07_7",
+      "merchant": "Free Mobile",
+      "raw_amount": 19.99,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "10/07/2026"
+    },
+    {
+      "amount": -19.4,
+      "category": "Santé & Prévoyance",
+      "color": "#94a3b8",
+      "date": "09/07/2026",
+      "description": "CARTE X1234 09/07 PHARMACIE PRINCIPALE SOINS",
+      "icon": "📦",
+      "id": "demo_07_23",
+      "merchant": "Pharmacie Centrale",
+      "raw_amount": 19.4,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "09/07/2026"
+    },
+    {
+      "amount": -26.5,
+      "category": "Restaurants & Sorties",
+      "color": "#f59e0b",
+      "date": "08/07/2026",
+      "description": "CARTE X1234 08/07 UBER *EATS COMMERCE ELECTRONIQUE",
+      "icon": "🍽️",
+      "id": "demo_07_18",
+      "merchant": "Uber Eats",
+      "raw_amount": 26.5,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "08/07/2026"
+    },
+    {
+      "amount": -350.0,
+      "category": "Investissements & Épargne",
+      "color": "#8b5cf6",
+      "date": "07/07/2026",
+      "description": "VIR SEPA EMIS POUR: TRADE REPUBLIC MOTIF: VERSEMENT MENSUEL PEA BOURSE",
+      "icon": "📈",
+      "id": "demo_07_4",
+      "merchant": "PEA / Bourse (Trade Republic)",
+      "raw_amount": 350.0,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "07/07/2026"
+    },
+    {
+      "amount": -6.4,
+      "category": "Alimentation & Supermarchés",
+      "color": "#10b981",
+      "date": "06/07/2026",
+      "description": "CARTE X1234 06/07 BOULANGERIE ARTISANALE DU COIN",
+      "icon": "🛒",
+      "id": "demo_07_15",
+      "merchant": "Boulangerie Artisanale",
+      "raw_amount": 6.4,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "06/07/2026"
+    },
+    {
+      "amount": -500.0,
+      "category": "Investissements & Épargne",
+      "color": "#8b5cf6",
+      "date": "05/07/2026",
+      "description": "VIR EUROPEEN EMIS LOGITEL POUR: ALEX DUPONT MOTIF: EPARGNE LIVRET A",
+      "icon": "📈",
+      "id": "demo_07_3",
+      "merchant": "Épargne Livret A",
+      "raw_amount": 500.0,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "05/07/2026"
+    },
+    {
+      "amount": -29.99,
+      "category": "Sports & Fitness",
+      "color": "#0284c7",
+      "date": "05/07/2026",
+      "description": "PRELEVEMENT SEPA DE: BASIC-FIT ABONNEMENT FITNESS CLUB",
+      "icon": "🏋️",
+      "id": "demo_07_6",
+      "merchant": "Basic-Fit",
+      "raw_amount": 29.99,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "05/07/2026"
+    },
+    {
+      "amount": -63.3,
+      "category": "Alimentation & Supermarchés",
+      "color": "#10b981",
+      "date": "04/07/2026",
+      "description": "CARTE X1234 04/07 MONOPRIX RUE DE RENNES",
+      "icon": "🛒",
+      "id": "demo_07_11",
+      "merchant": "Monoprix",
+      "raw_amount": 63.3,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "04/07/2026"
+    },
+    {
+      "amount": -820.0,
+      "category": "Logement & Énergie",
+      "color": "#6366f1",
+      "date": "03/07/2026",
+      "description": "PRELEVEMENT SEPA DE: AGENCE IMMOBILIERE REF: LOYER RESIDENCE JUILLET",
+      "icon": "⚡",
+      "id": "demo_07_2",
+      "merchant": "Loyer Résidence Horizon",
+      "raw_amount": 820.0,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "03/07/2026"
+    },
+    {
+      "amount": -86.4,
+      "category": "Transports & Péages",
+      "color": "#06b6d4",
+      "date": "01/07/2026",
+      "description": "PRELEVEMENT SEPA DE: FORFAIT NAVIGO RATP MENSUEL",
+      "icon": "🚗",
+      "id": "demo_07_5",
+      "merchant": "Navigo / RATP",
+      "raw_amount": 86.4,
+      "statement_file": "releve_demo_202607.pdf",
+      "type": "Debit",
+      "valeur_date": "01/07/2026"
+    }
+  ],
+  "trends": {
+    "all_categories": [
+      "Alimentation & Supermarchés",
+      "Frais Bancaires",
+      "High-Tech & Équipement",
+      "Investissements & Épargne",
+      "Livres",
+      "Logement & Énergie",
+      "Restaurants & Sorties",
+      "Santé & Prévoyance",
+      "Shopping & Soins",
+      "Sports & Fitness",
+      "Transports & Péages",
+      "Télécom, Forfaits & Abonnements",
+      "Voyages & Vacances"
+    ],
+    "anomalies": [
+      {
+        "amount": 820.0,
+        "avg": 751.67,
+        "category": "Logement & Énergie",
+        "message": "Dépense inhabituelle en Août 2026 : 820.00 € (+9% vs moyenne).",
+        "month": "Août 2026",
+        "pct_diff": 9
+      },
+      {
+        "amount": 262.8,
+        "avg": 251.47,
+        "category": "Alimentation & Supermarchés",
+        "message": "Dépense inhabituelle en Mars 2026 : 262.80 € (+5% vs moyenne).",
+        "month": "Mars 2026",
+        "pct_diff": 5
+      },
+      {
+        "amount": 459.0,
+        "avg": 76.5,
+        "category": "High-Tech & Équipement",
+        "message": "Dépense inhabituelle en Juin 2026 : 459.00 € (+500% vs moyenne).",
+        "month": "Juin 2026",
+        "pct_diff": 500
+      },
+      {
+        "amount": 142.5,
+        "avg": 70.42,
+        "category": "Voyages & Vacances",
+        "message": "Dépense inhabituelle en Juillet 2026 : 142.50 € (+102% vs moyenne).",
+        "month": "Juillet 2026",
+        "pct_diff": 102
+      },
+      {
+        "amount": 280.0,
+        "avg": 70.42,
+        "category": "Voyages & Vacances",
+        "message": "Dépense inhabituelle en Août 2026 : 280.00 € (+298% vs moyenne).",
+        "month": "Août 2026",
+        "pct_diff": 298
+      },
+      {
+        "amount": 79.9,
+        "avg": 39.95,
+        "category": "Shopping & Soins",
+        "message": "Dépense inhabituelle en Mars 2026 : 79.90 € (+100% vs moyenne).",
+        "month": "Mars 2026",
+        "pct_diff": 100
+      },
+      {
+        "amount": 79.9,
+        "avg": 39.95,
+        "category": "Shopping & Soins",
+        "message": "Dépense inhabituelle en Mai 2026 : 79.90 € (+100% vs moyenne).",
+        "month": "Mai 2026",
+        "pct_diff": 100
+      },
+      {
+        "amount": 79.9,
+        "avg": 39.95,
+        "category": "Shopping & Soins",
+        "message": "Dépense inhabituelle en Juillet 2026 : 79.90 € (+100% vs moyenne).",
+        "month": "Juillet 2026",
+        "pct_diff": 100
+      }
+    ],
+    "category_trends": [
+      {
+        "anomaly_badge": "⚠️ Pic inhabituel (Août 2026)",
+        "avg_monthly": 825.0,
+        "category": "Investissements & Épargne",
+        "color": "#8b5cf6",
+        "current_month": 1050.0,
+        "history": [
+          800.0,
+          950.0,
+          600.0,
+          700.0,
+          850.0,
+          1050.0
+        ],
+        "icon": "📈",
+        "max_amount": 1050.0,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": true,
+        "rent_neutral": false,
+        "total_spent": 4950.0,
+        "unusual_months": [
+          {
+            "amount": 1050.0,
+            "avg": 825.0,
+            "index": 5,
+            "message": "Dépense inhabituelle en Août 2026 : 1050.00 € (+27% vs moyenne).",
+            "month_key": "2026-08",
+            "month_label": "Août 2026",
+            "pct_diff": 27
+          }
+        ]
+      },
+      {
+        "anomaly_badge": "⚠️ Pic inhabituel (Août 2026)",
+        "avg_monthly": 751.67,
+        "category": "Logement & Énergie",
+        "color": "#6366f1",
+        "current_month": 820.0,
+        "history": [
+          820.0,
+          820.0,
+          820.0,
+          820.0,
+          410.0,
+          820.0
+        ],
+        "icon": "⚡",
+        "max_amount": 820.0,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": true,
+        "rent_neutral": false,
+        "total_spent": 4510.0,
+        "unusual_months": [
+          {
+            "amount": 820.0,
+            "avg": 751.67,
+            "index": 5,
+            "message": "Dépense inhabituelle en Août 2026 : 820.00 € (+9% vs moyenne).",
+            "month_key": "2026-08",
+            "month_label": "Août 2026",
+            "pct_diff": 9
+          }
+        ]
+      },
+      {
+        "anomaly_badge": "⚠️ Pic inhabituel (Mars 2026)",
+        "avg_monthly": 251.47,
+        "category": "Alimentation & Supermarchés",
+        "color": "#10b981",
+        "current_month": 258.8,
+        "history": [
+          262.8,
+          250.8,
+          238.8,
+          254.8,
+          242.8,
+          258.8
+        ],
+        "icon": "🛒",
+        "max_amount": 262.8,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": true,
+        "rent_neutral": false,
+        "total_spent": 1508.8,
+        "unusual_months": [
+          {
+            "amount": 262.8,
+            "avg": 251.47,
+            "index": 0,
+            "message": "Dépense inhabituelle en Mars 2026 : 262.80 € (+5% vs moyenne).",
+            "month_key": "2026-03",
+            "month_label": "Mars 2026",
+            "pct_diff": 5
+          }
+        ]
+      },
+      {
+        "anomaly_badge": null,
+        "avg_monthly": 134.2,
+        "category": "Restaurants & Sorties",
+        "color": "#f59e0b",
+        "current_month": 134.2,
+        "history": [
+          134.2,
+          134.2,
+          134.2,
+          134.2,
+          134.2,
+          134.2
+        ],
+        "icon": "🍽️",
+        "max_amount": 134.2,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": false,
+        "rent_neutral": false,
+        "total_spent": 805.2,
+        "unusual_months": []
+      },
+      {
+        "anomaly_badge": null,
+        "avg_monthly": 86.4,
+        "category": "Transports & Péages",
+        "color": "#06b6d4",
+        "current_month": 86.4,
+        "history": [
+          86.4,
+          86.4,
+          86.4,
+          86.4,
+          86.4,
+          86.4
+        ],
+        "icon": "🚗",
+        "max_amount": 86.4,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": false,
+        "rent_neutral": false,
+        "total_spent": 518.4,
+        "unusual_months": []
+      },
+      {
+        "anomaly_badge": "⚠️ Pic inhabituel (Juin 2026)",
+        "avg_monthly": 76.5,
+        "category": "High-Tech & Équipement",
+        "color": "#0ea5e9",
+        "current_month": 0.0,
+        "history": [
+          0.0,
+          0.0,
+          0.0,
+          459.0,
+          0.0,
+          0.0
+        ],
+        "icon": "💻",
+        "max_amount": 459.0,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": true,
+        "rent_neutral": false,
+        "total_spent": 459.0,
+        "unusual_months": [
+          {
+            "amount": 459.0,
+            "avg": 76.5,
+            "index": 3,
+            "message": "Dépense inhabituelle en Juin 2026 : 459.00 € (+500% vs moyenne).",
+            "month_key": "2026-06",
+            "month_label": "Juin 2026",
+            "pct_diff": 500
+          }
+        ]
+      },
+      {
+        "anomaly_badge": "⚠️ Pic inhabituel (Juillet 2026)",
+        "avg_monthly": 70.42,
+        "category": "Voyages & Vacances",
+        "color": "#94a3b8",
+        "current_month": 280.0,
+        "history": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          142.5,
+          280.0
+        ],
+        "icon": "📦",
+        "max_amount": 280.0,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": true,
+        "rent_neutral": false,
+        "total_spent": 422.5,
+        "unusual_months": [
+          {
+            "amount": 142.5,
+            "avg": 70.42,
+            "index": 4,
+            "message": "Dépense inhabituelle en Juillet 2026 : 142.50 € (+102% vs moyenne).",
+            "month_key": "2026-07",
+            "month_label": "Juillet 2026",
+            "pct_diff": 102
+          },
+          {
+            "amount": 280.0,
+            "avg": 70.42,
+            "index": 5,
+            "message": "Dépense inhabituelle en Août 2026 : 280.00 € (+298% vs moyenne).",
+            "month_key": "2026-08",
+            "month_label": "Août 2026",
+            "pct_diff": 298
+          }
+        ]
+      },
+      {
+        "anomaly_badge": null,
+        "avg_monthly": 44.47,
+        "category": "Télécom, Forfaits & Abonnements",
+        "color": "#94a3b8",
+        "current_month": 44.47,
+        "history": [
+          44.47,
+          44.47,
+          44.47,
+          44.47,
+          44.47,
+          44.47
+        ],
+        "icon": "📦",
+        "max_amount": 44.47,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": false,
+        "rent_neutral": false,
+        "total_spent": 266.82,
+        "unusual_months": []
+      },
+      {
+        "anomaly_badge": "⚠️ Pic inhabituel (Mars 2026)",
+        "avg_monthly": 39.95,
+        "category": "Shopping & Soins",
+        "color": "#d946ef",
+        "current_month": 0.0,
+        "history": [
+          79.9,
+          0.0,
+          79.9,
+          0.0,
+          79.9,
+          0.0
+        ],
+        "icon": "🛍️",
+        "max_amount": 79.9,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": true,
+        "rent_neutral": false,
+        "total_spent": 239.7,
+        "unusual_months": [
+          {
+            "amount": 79.9,
+            "avg": 39.95,
+            "index": 0,
+            "message": "Dépense inhabituelle en Mars 2026 : 79.90 € (+100% vs moyenne).",
+            "month_key": "2026-03",
+            "month_label": "Mars 2026",
+            "pct_diff": 100
+          },
+          {
+            "amount": 79.9,
+            "avg": 39.95,
+            "index": 2,
+            "message": "Dépense inhabituelle en Mai 2026 : 79.90 € (+100% vs moyenne).",
+            "month_key": "2026-05",
+            "month_label": "Mai 2026",
+            "pct_diff": 100
+          },
+          {
+            "amount": 79.9,
+            "avg": 39.95,
+            "index": 4,
+            "message": "Dépense inhabituelle en Juillet 2026 : 79.90 € (+100% vs moyenne).",
+            "month_key": "2026-07",
+            "month_label": "Juillet 2026",
+            "pct_diff": 100
+          }
+        ]
+      },
+      {
+        "anomaly_badge": null,
+        "avg_monthly": 29.99,
+        "category": "Sports & Fitness",
+        "color": "#0284c7",
+        "current_month": 29.99,
+        "history": [
+          29.99,
+          29.99,
+          29.99,
+          29.99,
+          29.99,
+          29.99
+        ],
+        "icon": "🏋️",
+        "max_amount": 29.99,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": false,
+        "rent_neutral": false,
+        "total_spent": 179.94,
+        "unusual_months": []
+      },
+      {
+        "anomaly_badge": null,
+        "avg_monthly": 24.9,
+        "category": "Livres",
+        "color": "#d97706",
+        "current_month": 24.9,
+        "history": [
+          24.9,
+          24.9,
+          24.9,
+          24.9,
+          24.9,
+          24.9
+        ],
+        "icon": "📚",
+        "max_amount": 24.9,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": false,
+        "rent_neutral": false,
+        "total_spent": 149.4,
+        "unusual_months": []
+      },
+      {
+        "anomaly_badge": null,
+        "avg_monthly": 19.4,
+        "category": "Santé & Prévoyance",
+        "color": "#94a3b8",
+        "current_month": 19.4,
+        "history": [
+          19.4,
+          19.4,
+          19.4,
+          19.4,
+          19.4,
+          19.4
+        ],
+        "icon": "📦",
+        "max_amount": 19.4,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": false,
+        "rent_neutral": false,
+        "total_spent": 116.4,
+        "unusual_months": []
+      },
+      {
+        "anomaly_badge": null,
+        "avg_monthly": 4.5,
+        "category": "Frais Bancaires",
+        "color": "#ef4444",
+        "current_month": 4.5,
+        "history": [
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+          4.5
+        ],
+        "icon": "🏦",
+        "max_amount": 4.5,
+        "months": [
+          "Mars 2026",
+          "Avril 2026",
+          "Mai 2026",
+          "Juin 2026",
+          "Juillet 2026",
+          "Août 2026"
+        ],
+        "out_of_ordinary": false,
+        "rent_neutral": false,
+        "total_spent": 27.0,
+        "unusual_months": []
+      }
+    ],
+    "monthly_data": [
+      {
+        "categories": {
+          "Alimentation & Supermarchés": 262.8,
+          "Frais Bancaires": 4.5,
+          "Investissements & Épargne": 800.0,
+          "Livres": 24.9,
+          "Logement & Énergie": 820.0,
+          "Restaurants & Sorties": 134.2,
+          "Santé & Prévoyance": 19.4,
+          "Shopping & Soins": 79.9,
+          "Sports & Fitness": 29.99,
+          "Transports & Péages": 86.4,
+          "Télécom, Forfaits & Abonnements": 44.47
+        },
+        "count": 24,
+        "expenses": 1506.56,
+        "expenses_living": 1506.56,
+        "expenses_living_net": 1506.56,
+        "expenses_total": 2306.56,
+        "gifts": 0.0,
+        "income": 3150.0,
+        "income_salary": 3150.0,
+        "investments": 800.0,
+        "investments_by_account": {
+          "livret_a": {
+            "deposits": 500.0,
+            "net": 500.0,
+            "withdrawals": 0.0
+          },
+          "pea": {
+            "deposits": 300.0,
+            "net": 300.0,
+            "withdrawals": 0.0
+          }
+        },
+        "investments_cto": 300.0,
+        "investments_livret_a": 500.0,
+        "investments_livret_a_deposits": 500.0,
+        "investments_livret_a_withdrawals": 0.0,
+        "label": "Mars 2026",
+        "month_key": "2026-03",
+        "reimbursements": 0.0,
+        "savings": 1643.44,
+        "savings_rate": 52.2,
+        "savings_rate_real": 52.2,
+        "savings_real": 1643.44,
+        "top_merchants": [
+          {
+            "amount": 820.0,
+            "name": "Loyer Résidence Horizon"
+          },
+          {
+            "amount": 500.0,
+            "name": "Épargne Livret A"
+          },
+          {
+            "amount": 300.0,
+            "name": "PEA / Bourse (Trade Republic)"
+          }
+        ]
+      },
+      {
+        "categories": {
+          "Alimentation & Supermarchés": 250.8,
+          "Frais Bancaires": 4.5,
+          "Investissements & Épargne": 950.0,
+          "Livres": 24.9,
+          "Logement & Énergie": 820.0,
+          "Restaurants & Sorties": 134.2,
+          "Santé & Prévoyance": 19.4,
+          "Sports & Fitness": 29.99,
+          "Transports & Péages": 86.4,
+          "Télécom, Forfaits & Abonnements": 44.47
+        },
+        "count": 23,
+        "expenses": 1414.66,
+        "expenses_living": 1414.66,
+        "expenses_living_net": 1414.66,
+        "expenses_total": 2364.66,
+        "gifts": 0.0,
+        "income": 3150.0,
+        "income_salary": 3150.0,
+        "investments": 950.0,
+        "investments_by_account": {
+          "livret_a": {
+            "deposits": 600.0,
+            "net": 600.0,
+            "withdrawals": 0.0
+          },
+          "pea": {
+            "deposits": 350.0,
+            "net": 350.0,
+            "withdrawals": 0.0
+          }
+        },
+        "investments_cto": 350.0,
+        "investments_livret_a": 600.0,
+        "investments_livret_a_deposits": 600.0,
+        "investments_livret_a_withdrawals": 0.0,
+        "label": "Avril 2026",
+        "month_key": "2026-04",
+        "reimbursements": 0.0,
+        "savings": 1735.34,
+        "savings_rate": 55.1,
+        "savings_rate_real": 55.1,
+        "savings_real": 1735.34,
+        "top_merchants": [
+          {
+            "amount": 820.0,
+            "name": "Loyer Résidence Horizon"
+          },
+          {
+            "amount": 600.0,
+            "name": "Épargne Livret A"
+          },
+          {
+            "amount": 350.0,
+            "name": "PEA / Bourse (Trade Republic)"
+          }
+        ]
+      },
+      {
+        "categories": {
+          "Alimentation & Supermarchés": 238.8,
+          "Frais Bancaires": 4.5,
+          "Investissements & Épargne": 600.0,
+          "Livres": 24.9,
+          "Logement & Énergie": 820.0,
+          "Restaurants & Sorties": 134.2,
+          "Santé & Prévoyance": 19.4,
+          "Shopping & Soins": 79.9,
+          "Sports & Fitness": 29.99,
+          "Transports & Péages": 86.4,
+          "Télécom, Forfaits & Abonnements": 44.47
+        },
+        "count": 25,
+        "expenses": 1482.56,
+        "expenses_living": 1482.56,
+        "expenses_living_net": 1482.56,
+        "expenses_total": 2582.56,
+        "gifts": 0.0,
+        "income": 3450.0,
+        "income_salary": 3450.0,
+        "investments": 600.0,
+        "investments_by_account": {
+          "livret_a": {
+            "deposits": 700.0,
+            "net": 200.0,
+            "withdrawals": 500.0
+          },
+          "pea": {
+            "deposits": 400.0,
+            "net": 400.0,
+            "withdrawals": 0.0
+          }
+        },
+        "investments_cto": 400.0,
+        "investments_livret_a": 200.0,
+        "investments_livret_a_deposits": 700.0,
+        "investments_livret_a_withdrawals": 500.0,
+        "label": "Mai 2026",
+        "month_key": "2026-05",
+        "reimbursements": 0.0,
+        "savings": 1967.44,
+        "savings_rate": 57.0,
+        "savings_rate_real": 57.0,
+        "savings_real": 1967.44,
+        "top_merchants": [
+          {
+            "amount": 820.0,
+            "name": "Loyer Résidence Horizon"
+          },
+          {
+            "amount": 700.0,
+            "name": "Épargne Livret A"
+          },
+          {
+            "amount": 400.0,
+            "name": "PEA / Bourse (Trade Republic)"
+          }
+        ]
+      },
+      {
+        "categories": {
+          "Alimentation & Supermarchés": 254.8,
+          "Frais Bancaires": 4.5,
+          "High-Tech & Équipement": 459.0,
+          "Investissements & Épargne": 700.0,
+          "Livres": 24.9,
+          "Logement & Énergie": 820.0,
+          "Restaurants & Sorties": 134.2,
+          "Santé & Prévoyance": 19.4,
+          "Sports & Fitness": 29.99,
+          "Transports & Péages": 86.4,
+          "Télécom, Forfaits & Abonnements": 44.47
+        },
+        "count": 24,
+        "expenses": 1877.66,
+        "expenses_living": 1877.66,
+        "expenses_living_net": 1877.66,
+        "expenses_total": 2577.66,
+        "gifts": 0.0,
+        "income": 3150.0,
+        "income_salary": 3150.0,
+        "investments": 700.0,
+        "investments_by_account": {
+          "livret_a": {
+            "deposits": 400.0,
+            "net": 400.0,
+            "withdrawals": 0.0
+          },
+          "pea": {
+            "deposits": 300.0,
+            "net": 300.0,
+            "withdrawals": 0.0
+          }
+        },
+        "investments_cto": 300.0,
+        "investments_livret_a": 400.0,
+        "investments_livret_a_deposits": 400.0,
+        "investments_livret_a_withdrawals": 0.0,
+        "label": "Juin 2026",
+        "month_key": "2026-06",
+        "reimbursements": 0.0,
+        "savings": 1272.34,
+        "savings_rate": 40.4,
+        "savings_rate_real": 40.4,
+        "savings_real": 1272.34,
+        "top_merchants": [
+          {
+            "amount": 820.0,
+            "name": "Loyer Résidence Horizon"
+          },
+          {
+            "amount": 459.0,
+            "name": "Apple Store"
+          },
+          {
+            "amount": 400.0,
+            "name": "Épargne Livret A"
+          }
+        ]
+      },
+      {
+        "categories": {
+          "Alimentation & Supermarchés": 242.8,
+          "Frais Bancaires": 4.5,
+          "Investissements & Épargne": 850.0,
+          "Livres": 24.9,
+          "Logement & Énergie": 410.0,
+          "Restaurants & Sorties": 134.2,
+          "Santé & Prévoyance": 19.4,
+          "Shopping & Soins": 79.9,
+          "Sports & Fitness": 29.99,
+          "Transports & Péages": 86.4,
+          "Télécom, Forfaits & Abonnements": 44.47,
+          "Voyages & Vacances": 142.5
+        },
+        "count": 26,
+        "expenses": 1219.06,
+        "expenses_living": 1219.06,
+        "expenses_living_net": 1219.06,
+        "expenses_total": 2479.06,
+        "gifts": 0.0,
+        "income": 3150.0,
+        "income_salary": 3150.0,
+        "investments": 850.0,
+        "investments_by_account": {
+          "livret_a": {
+            "deposits": 500.0,
+            "net": 500.0,
+            "withdrawals": 0.0
+          },
+          "pea": {
+            "deposits": 350.0,
+            "net": 350.0,
+            "withdrawals": 0.0
+          }
+        },
+        "investments_cto": 350.0,
+        "investments_livret_a": 500.0,
+        "investments_livret_a_deposits": 500.0,
+        "investments_livret_a_withdrawals": 0.0,
+        "label": "Juillet 2026",
+        "month_key": "2026-07",
+        "reimbursements": 410.0,
+        "savings": 1930.94,
+        "savings_rate": 61.3,
+        "savings_rate_real": 61.3,
+        "savings_real": 1930.94,
+        "top_merchants": [
+          {
+            "amount": 820.0,
+            "name": "Loyer Résidence Horizon"
+          },
+          {
+            "amount": 500.0,
+            "name": "Épargne Livret A"
+          },
+          {
+            "amount": 350.0,
+            "name": "PEA / Bourse (Trade Republic)"
+          }
+        ]
+      },
+      {
+        "categories": {
+          "Alimentation & Supermarchés": 258.8,
+          "Frais Bancaires": 4.5,
+          "Investissements & Épargne": 1050.0,
+          "Livres": 24.9,
+          "Logement & Énergie": 820.0,
+          "Restaurants & Sorties": 134.2,
+          "Santé & Prévoyance": 19.4,
+          "Sports & Fitness": 29.99,
+          "Transports & Péages": 86.4,
+          "Télécom, Forfaits & Abonnements": 44.47,
+          "Voyages & Vacances": 280.0
+        },
+        "count": 24,
+        "expenses": 1702.66,
+        "expenses_living": 1702.66,
+        "expenses_living_net": 1702.66,
+        "expenses_total": 2752.66,
+        "gifts": 0.0,
+        "income": 3150.0,
+        "income_salary": 3150.0,
+        "investments": 1050.0,
+        "investments_by_account": {
+          "livret_a": {
+            "deposits": 600.0,
+            "net": 600.0,
+            "withdrawals": 0.0
+          },
+          "pea": {
+            "deposits": 450.0,
+            "net": 450.0,
+            "withdrawals": 0.0
+          }
+        },
+        "investments_cto": 450.0,
+        "investments_livret_a": 600.0,
+        "investments_livret_a_deposits": 600.0,
+        "investments_livret_a_withdrawals": 0.0,
+        "label": "Août 2026",
+        "month_key": "2026-08",
+        "reimbursements": 0.0,
+        "savings": 1447.34,
+        "savings_rate": 45.9,
+        "savings_rate_real": 45.9,
+        "savings_real": 1447.34,
+        "top_merchants": [
+          {
+            "amount": 820.0,
+            "name": "Loyer Résidence Horizon"
+          },
+          {
+            "amount": 600.0,
+            "name": "Épargne Livret A"
+          },
+          {
+            "amount": 450.0,
+            "name": "PEA / Bourse (Trade Republic)"
+          }
+        ]
+      }
+    ],
+    "months": [
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08"
+    ]
+  },
+  "user_rules": [
+    {
+      "category": "Alimentation & Supermarchés",
+      "merchant": "Boulangerie Artisanale",
+      "pattern": "BOULANGERIE"
+    },
+    {
+      "category": "Sports & Fitness",
+      "merchant": "Arkose Escalade",
+      "pattern": "SALLE DE ESCALADE"
+    }
+  ],
+  "workspace": {
+    "account_type": "Courant",
+    "color": "#0284c7",
+    "created_at": "2026-09-01",
+    "currency": "EUR",
+    "icon": "✨",
+    "id": "demo",
+    "name": "Compte Démo (Exemple)",
+    "profile": {
+      "account_holder_keywords": [
+        "ALEX DUPONT"
+      ],
+      "family_keywords": [
+        "JEAN DUPONT"
+      ],
+      "investment_accounts": [
+        {
+          "color": "#2C4A6F",
+          "id": "livret_a",
+          "keywords": [
+            "LIVRET A",
+            "ALEX DUPONT"
+          ],
+          "name": "Livret A",
+          "type": "savings"
+        },
+        {
+          "color": "#7C3AED",
+          "id": "pea",
+          "keywords": [
+            "TRADE REPUBLIC",
+            "PEA",
+            "BOURSE"
+          ],
+          "name": "PEA (Trade Republic)",
+          "type": "brokerage"
+        }
+      ],
+      "rent_keywords": [
+        "AGENCE IMMOBILIERE",
+        "LOYER"
+      ],
+      "salary_employer_name": "ACME Technologies",
+      "salary_keywords": [
+        "ACME TECH",
+        "ACME",
+        "SALAIRE"
+      ]
+    }
+  },
+  "workspaces": [
+    {
+      "account_type": "Courant",
+      "color": "#2D5A3C",
+      "created_at": "2026-09-01",
+      "currency": "EUR",
+      "icon": "🏦",
+      "id": "default",
+      "name": "Compte Principal (SG)",
+      "pdf_count": 7,
+      "profile": {
+        "account_holder_keywords": [
+          "RAJ SUNIL MALI",
+          "RAJ MALI"
+        ],
+        "family_keywords": [
+          "SUNIL MALI",
+          "SUNIL YASVANT MALI"
+        ],
+        "investment_accounts": [
+          {
+            "color": "#2C4A6F",
+            "id": "livret_a",
+            "keywords": [
+              "LIVRET",
+              "EPARGNE",
+              "RETRAIT LIVRET"
+            ],
+            "name": "Livret A",
+            "type": "savings"
+          },
+          {
+            "color": "#7C3AED",
+            "id": "cto",
+            "keywords": [
+              "INTERACTIVE",
+              "IBKR",
+              "BROKER",
+              "CTO"
+            ],
+            "name": "CTO (Interactive Brokers)",
+            "type": "brokerage"
+          }
+        ],
+        "rent_keywords": [
+          "OQORO",
+          "LOYER",
+          "RENT"
+        ],
+        "salary_employer_name": "Seize Consulting",
+        "salary_keywords": [
+          "SEIZE CONSULTING",
+          "SEIZE"
+        ]
+      },
+      "tx_count": 237
+    },
+    {
+      "account_type": "Courant",
+      "color": "#0284c7",
+      "created_at": "2026-09-01",
+      "currency": "EUR",
+      "icon": "✨",
+      "id": "demo",
+      "name": "Compte Démo (Exemple)",
+      "pdf_count": 0,
+      "profile": {
+        "account_holder_keywords": [
+          "ALEX DUPONT"
+        ],
+        "family_keywords": [
+          "JEAN DUPONT"
+        ],
+        "investment_accounts": [
+          {
+            "color": "#2C4A6F",
+            "id": "livret_a",
+            "keywords": [
+              "LIVRET A",
+              "ALEX DUPONT"
+            ],
+            "name": "Livret A",
+            "type": "savings"
+          },
+          {
+            "color": "#7C3AED",
+            "id": "pea",
+            "keywords": [
+              "TRADE REPUBLIC",
+              "PEA",
+              "BOURSE"
+            ],
+            "name": "PEA (Trade Republic)",
+            "type": "brokerage"
+          }
+        ],
+        "rent_keywords": [
+          "AGENCE IMMOBILIERE",
+          "LOYER"
+        ],
+        "salary_employer_name": "ACME Technologies",
+        "salary_keywords": [
+          "ACME TECH",
+          "ACME",
+          "SALAIRE"
+        ]
+      },
+      "tx_count": 146
+    }
+  ]
+}

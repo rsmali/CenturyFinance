@@ -1,0 +1,163 @@
+{
+  "active_workspace": {
+    "account_type": "Courant",
+    "color": "#0284c7",
+    "created_at": "2026-09-01",
+    "currency": "EUR",
+    "icon": "✨",
+    "id": "demo",
+    "name": "Compte Démo (Exemple)",
+    "profile": {
+      "account_holder_keywords": [
+        "ALEX DUPONT"
+      ],
+      "family_keywords": [
+        "JEAN DUPONT"
+      ],
+      "investment_accounts": [
+        {
+          "color": "#2C4A6F",
+          "id": "livret_a",
+          "keywords": [
+            "LIVRET A",
+            "ALEX DUPONT"
+          ],
+          "name": "Livret A",
+          "type": "savings"
+        },
+        {
+          "color": "#7C3AED",
+          "id": "pea",
+          "keywords": [
+            "TRADE REPUBLIC",
+            "PEA",
+            "BOURSE"
+          ],
+          "name": "PEA (Trade Republic)",
+          "type": "brokerage"
+        }
+      ],
+      "rent_keywords": [
+        "AGENCE IMMOBILIERE",
+        "LOYER"
+      ],
+      "salary_employer_name": "ACME Technologies",
+      "salary_keywords": [
+        "ACME TECH",
+        "ACME",
+        "SALAIRE"
+      ]
+    }
+  },
+  "status": "ok",
+  "workspaces": [
+    {
+      "account_type": "Courant",
+      "color": "#2D5A3C",
+      "created_at": "2026-09-01",
+      "currency": "EUR",
+      "icon": "🏦",
+      "id": "default",
+      "name": "Compte Principal (SG)",
+      "pdf_count": 7,
+      "profile": {
+        "account_holder_keywords": [
+          "RAJ SUNIL MALI",
+          "RAJ MALI"
+        ],
+        "family_keywords": [
+          "SUNIL MALI",
+          "SUNIL YASVANT MALI"
+        ],
+        "investment_accounts": [
+          {
+            "color": "#2C4A6F",
+            "id": "livret_a",
+            "keywords": [
+              "LIVRET",
+              "EPARGNE",
+              "RETRAIT LIVRET"
+            ],
+            "name": "Livret A",
+            "type": "savings"
+          },
+          {
+            "color": "#7C3AED",
+            "id": "cto",
+            "keywords": [
+              "INTERACTIVE",
+              "IBKR",
+              "BROKER",
+              "CTO"
+            ],
+            "name": "CTO (Interactive Brokers)",
+            "type": "brokerage"
+          }
+        ],
+        "rent_keywords": [
+          "OQORO",
+          "LOYER",
+          "RENT"
+        ],
+        "salary_employer_name": "Seize Consulting",
+        "salary_keywords": [
+          "SEIZE CONSULTING",
+          "SEIZE"
+        ]
+      },
+      "tx_count": 237
+    },
+    {
+      "account_type": "Courant",
+      "color": "#0284c7",
+      "created_at": "2026-09-01",
+      "currency": "EUR",
+      "icon": "✨",
+      "id": "demo",
+      "name": "Compte Démo (Exemple)",
+      "pdf_count": 0,
+      "profile": {
+        "account_holder_keywords": [
+          "ALEX DUPONT"
+        ],
+        "family_keywords": [
+          "JEAN DUPONT"
+        ],
+        "investment_accounts": [
+          {
+            "color": "#2C4A6F",
+            "id": "livret_a",
+            "keywords": [
+              "LIVRET A",
+              "ALEX DUPONT"
+            ],
+            "name": "Livret A",
+            "type": "savings"
+          },
+          {
+            "color": "#7C3AED",
+            "id": "pea",
+            "keywords": [
+              "TRADE REPUBLIC",
+              "PEA",
+              "BOURSE"
+            ],
+            "name": "PEA (Trade Republic)",
+            "type": "brokerage"
+          }
+        ],
+        "rent_keywords": [
+          "AGENCE IMMOBILIERE",
+          "LOYER"
+        ],
+        "salary_employer_name": "ACME Technologies",
+        "salary_keywords": [
+          "ACME TECH",
+          "ACME",
+          "SALAIRE"
+        ]
+      },
+      "tx_count": 146
+    }
+  ]
+}

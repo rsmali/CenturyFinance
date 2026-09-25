@@ -5,7 +5,13 @@
   <img src="https://img.shields.io/badge/Interface-TailwindCSS%20%2B%20Chart.js-38B2AC?logo=tailwindcss&logoColor=white" alt="TailwindCSS">
   <img src="https://img.shields.io/badge/Confidentialité-100%25%20Local-22c55e?logo=shield&logoColor=white" alt="100% Local">
   <img src="https://img.shields.io/badge/IA%20Locale-Ollama%20(Optionnel)-purple?logo=ollama&logoColor=white" alt="Ollama">
+  <img src="https://img.shields.io/badge/Démo%20en%20Ligne-GitHub%20Pages-2D5A3C?logo=github&logoColor=white" alt="Live Demo">
+  <img src="https://img.shields.io/badge/Licence-MIT-green" alt="MIT License">
 </p>
+
+> 🌐 **Démonstration en Ligne Interactive (Sans Installation)** :  
+> Vous pouvez tester l'ensemble du tableau de bord directement dans votre navigateur avec les données synthétiques du compte démo :  
+> **👉 [Explorer la Démo GitHub Pages](https://votre-nom.github.io/century-finance/)** *(Remplacez par l'URL de votre dépôt)*
 
 **Century Finance** est une application web moderne et élégante conçue pour transformer vos relevés bancaires PDF en un tableau de bord financier interactif et esthétique (inspiré du design *Mid-Century Modern* et des standards éditoriaux de *Monarch Money*), **sans qu'aucun octet ni aucune donnée financière ne quitte votre machine**.
 
@@ -165,6 +171,25 @@ Ouvrez ensuite votre navigateur sur **[http://localhost:5001](http://localhost:5
 
 4. **Ajuster vos catégories** :
    Rendez-vous dans **Transaction Review** pour vérifier les libellés. Si une dépense doit changer de catégorie, sélectionnez la nouvelle catégorie : l'apprentissage est immédiat pour tous les relevés passés et futurs.
+
+---
+
+## 🌐 Déployer la Démo sur GitHub Pages
+
+Le dossier `docs/` est déjà préconfiguré avec l'ensemble des fichiers statiques et des données anonymisées du compte démo pour un hébergement gratuit sur GitHub Pages.
+
+Pour l'activer sur votre dépôt :
+1. Poussez votre code sur GitHub : `git push origin main`.
+2. Sur GitHub, ouvrez **Settings** > **Pages** (dans la barre latérale gauche).
+3. Dans la section **Build and deployment** :
+   - **Source** : Sélectionner `Deploy from a branch`
+   - **Branch** : Choisir `main` et le dossier `/docs`
+4. Cliquez sur **Save**. Votre démo sera active en quelques instants à l'adresse `https://<votre-pseudo>.github.io/<votre-depot>/` !
+
+> 💡 **Régénérer les données de démo** : Pour ré-exporter les fichiers statiques après une modification de code, exécutez simplement :
+> ```bash
+> python scripts/export_static_demo.py
+> ```
 
 ---
 
