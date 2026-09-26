@@ -15,7 +15,8 @@
       "Sports & Fitness": 29.99,
       "Tabac & Presse": 0.0,
       "Transports & Péages": 86.4,
-      "Télécom & Abonnements": 0.0
+      "Télécom & Abonnements": 0.0,
+      "Voyages & Vacances": 105.62
     },
     "income": 3225.0,
     "income_salary": 3225.0,
@@ -49,7 +50,7 @@
     },
     "investments_cto": 375.0,
     "investments_livret_a": 425.0,
-    "money_left_over": 1024.01,
+    "money_left_over": 918.38,
     "months_considered": [
       "Mai 2026",
       "Juin 2026",
@@ -57,12 +58,13 @@
       "Août 2026"
     ],
     "months_count": 4,
-    "savings_rate": 56.6,
-    "total_expenses": 1400.99
+    "savings_rate": 53.3,
+    "total_expenses": 1506.62
   },
   "categories": [
     "Alimentation & Supermarchés",
     "Restaurants & Sorties",
+    "Voyages & Vacances",
     "Sports & Fitness",
     "Investissements & Épargne",
     "High-Tech & Équipement",
@@ -87,7 +89,7 @@
     "Cadeaux & Dons": "#ec4899",
     "Chèques Émis": "#64748b",
     "Frais Bancaires": "#ef4444",
-    "High-Tech & Équipement": "#0ea5e9",
+    "High-Tech & Équipement": "#38bdf8",
     "Investissements & Épargne": "#8b5cf6",
     "Livres": "#d97706",
     "Logement & Énergie": "#6366f1",
@@ -100,7 +102,8 @@
     "Sports & Fitness": "#0284c7",
     "Tabac & Presse": "#78716c",
     "Transports & Péages": "#06b6d4",
-    "Télécom & Abonnements": "#a855f7"
+    "Télécom & Abonnements": "#a855f7",
+    "Voyages & Vacances": "#0ea5e9"
   },
   "category_icons": {
     "Alimentation & Supermarchés": "🛒",
@@ -121,7 +124,8 @@
     "Sports & Fitness": "🏋️",
     "Tabac & Presse": "📰",
     "Transports & Péages": "🚗",
-    "Télécom & Abonnements": "📱"
+    "Télécom & Abonnements": "📱",
+    "Voyages & Vacances": "🏖️"
   },
   "category_totals": {
     "Alimentation & Supermarchés": {
@@ -197,13 +201,63 @@
       "total": 266.82
     },
     "Voyages & Vacances": {
-      "color": "#94a3b8",
+      "color": "#0ea5e9",
       "count": 2,
-      "icon": "📦",
+      "icon": "🏖️",
       "total": 422.5
     }
   },
   "date_range_label": "Mars 2026 - Août 2026",
+  "holiday_trips": [
+    {
+      "budget": 600.0,
+      "budget_pct": 56.3,
+      "budget_remaining": 262.0,
+      "categories": {
+        "Restaurants & Sorties": 58.0,
+        "Voyages & Vacances": 280.0
+      },
+      "color": "#0ea5e9",
+      "created_at": "2026-08-01",
+      "date_end": "2026-08-20",
+      "date_start": "2026-08-14",
+      "destination": "Antibes & Nice",
+      "icon": "🏖️",
+      "id": "trip_cote_azur_2026",
+      "name": "Vacances Côte d'Azur — Antibes",
+      "notes": "Séjour Hôtel de la Plage, criques et restaurants en bord de mer.",
+      "total_spent": 338.0,
+      "transaction_ids": [
+        "demo_08_24",
+        "demo_08_20"
+      ],
+      "tx_count": 2
+    },
+    {
+      "budget": 350.0,
+      "budget_pct": 57.3,
+      "budget_remaining": 149.5,
+      "categories": {
+        "Restaurants & Sorties": 58.0,
+        "Voyages & Vacances": 142.5
+      },
+      "color": "#06b6d4",
+      "created_at": "2026-07-01",
+      "date_end": "2026-07-14",
+      "date_start": "2026-07-10",
+      "destination": "Saint-Malo, Bretagne",
+      "icon": "🌊",
+      "id": "trip_bretagne_2026",
+      "name": "Week-end Bretagne — Saint-Malo",
+      "notes": "Billets SNCF Connect, crêperies et balades sur les remparts.",
+      "total_spent": 200.5,
+      "transaction_ids": [
+        "demo_07_20",
+        "demo_07_26"
+      ],
+      "tx_count": 2
+    }
+  ],
   "insights": {
     "breakdown_pct": {
       "cash_cheques": 0.0,
@@ -484,38 +538,38 @@
     },
     {
       "filename": "releve_demo_202606.pdf",
-      "mtime": 1790349087.487571,
+      "mtime": 1790423576.8911896,
       "size_formatted": "10.1 KB",
-      "size_kb": 10.11,
+      "size_kb": 10.14,
       "status": "Completed",
       "tx_count": 24,
-      "uploaded_date": "25 Sep 2026, 17:11"
+      "uploaded_date": "26 Sep 2026, 13:52"
     },
     {
       "filename": "releve_demo_202607.pdf",
-      "mtime": 1790349087.48799,
-      "size_formatted": "10.9 KB",
-      "size_kb": 10.95,
+      "mtime": 1790423151.3235483,
+      "size_formatted": "11.0 KB",
+      "size_kb": 11.04,
       "status": "Completed",
       "tx_count": 26,
-      "uploaded_date": "25 Sep 2026, 17:11"
+      "uploaded_date": "26 Sep 2026, 13:45"
     },
     {
       "filename": "releve_demo_202608.pdf",
-      "mtime": 1790349087.4884024,
-      "size_formatted": "10.1 KB",
-      "size_kb": 10.12,
+      "mtime": 1790423151.3240502,
+      "size_formatted": "10.2 KB",
+      "size_kb": 10.22,
       "status": "Completed",
       "tx_count": 24,
-      "uploaded_date": "25 Sep 2026, 17:11"
+      "uploaded_date": "26 Sep 2026, 13:45"
     }
   ],
   "statements_meta": {
     "processed": 6,
     "processing": 0,
     "total_files": 6,
-    "total_size_formatted": "61.5 KB",
-    "total_size_kb": 61.52
+    "total_size_formatted": "61.7 KB",
+    "total_size_kb": 61.74
   },
   "status": "ok",
   "summary": {
@@ -725,10 +779,14 @@
     {
       "amount": -280.0,
       "category": "Voyages & Vacances",
-      "color": "#94a3b8",
+      "color": "#0ea5e9",
       "date": "15/08/2026",
       "description": "CARTE X1234 15/08 SEJOUR HOTEL DE LA PLAGE VACANCES",
-      "icon": "📦",
+      "holiday_trip_color": "#0ea5e9",
+      "holiday_trip_icon": "🏖️",
+      "holiday_trip_id": "trip_cote_azur_2026",
+      "holiday_trip_name": "Vacances Côte d'Azur — Antibes",
+      "icon": "🏖️",
       "id": "demo_08_24",
       "merchant": "Hôtel & Vacances",
       "raw_amount": 280.0,
@@ -756,6 +814,10 @@
       "color": "#f59e0b",
       "date": "13/08/2026",
       "description": "CARTE X1234 13/08 RESTAURANT LE COMPTOIR DU MARCHE",
+      "holiday_trip_color": "#0ea5e9",
+      "holiday_trip_icon": "🏖️",
+      "holiday_trip_id": "trip_cote_azur_2026",
+      "holiday_trip_name": "Vacances Côte d'Azur — Antibes",
       "icon": "🍽️",
       "id": "demo_08_20",
       "merchant": "Restaurant Le Comptoir",
@@ -1106,6 +1168,10 @@
       "color": "#f59e0b",
       "date": "13/07/2026",
       "description": "CARTE X1234 13/07 RESTAURANT LE COMPTOIR DU MARCHE",
+      "holiday_trip_color": "#06b6d4",
+      "holiday_trip_icon": "🌊",
+      "holiday_trip_id": "trip_bretagne_2026",
+      "holiday_trip_name": "Week-end Bretagne — Saint-Malo",
       "icon": "🍽️",
       "id": "demo_07_20",
       "merchant": "Restaurant Le Comptoir",
@@ -1131,10 +1197,14 @@
     {
       "amount": -142.5,
       "category": "Voyages & Vacances",
-      "color": "#94a3b8",
+      "color": "#0ea5e9",
       "date": "12/07/2026",
       "description": "CARTE X1234 12/07 SNCF CONNECT BILLETS DE TRAIN TGV",
-      "icon": "📦",
+      "holiday_trip_color": "#06b6d4",
+      "holiday_trip_icon": "🌊",
+      "holiday_trip_id": "trip_bretagne_2026",
+      "holiday_trip_name": "Week-end Bretagne — Saint-Malo",
+      "icon": "🏖️",
       "id": "demo_07_26",
       "merchant": "SNCF Connect",
       "raw_amount": 142.5,
@@ -1528,6 +1598,7 @@
       "description": "CARTE X1234 08/06 UBER *EATS COMMERCE ELECTRONIQUE",
       "icon": "🍽️",
       "id": "demo_06_18",
+      "manual_override": true,
       "merchant": "Uber Eats",
       "raw_amount": 26.5,
       "statement_file": "releve_demo_202606.pdf",
@@ -2842,7 +2913,7 @@
         "avg_monthly": 76.5,
         "budget_share_pct": 5.0,
         "category": "High-Tech & Équipement",
-        "color": "#0ea5e9",
+        "color": "#38bdf8",
         "current_month": 0.0,
         "history": [
           0.0,
@@ -2886,7 +2957,7 @@
         "avg_monthly": 70.42,
         "budget_share_pct": 4.6,
         "category": "Voyages & Vacances",
-        "color": "#94a3b8",
+        "color": "#0ea5e9",
         "current_month": 280.0,
         "history": [
           0.0,
@@ -2896,7 +2967,7 @@
           142.5,
           280.0
         ],
-        "icon": "📦",
+        "icon": "🏖️",
         "max_amount": 280.0,
         "months": [
           "Mars 2026",

@@ -23,16 +23,24 @@
         </div>
 
         <!-- Category Dropdown Filter -->
-        <select id="tx-category-filter" onchange="applyTransactionFilters()" class="w-full md:w-56 px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C] transition">
+        <select id="tx-category-filter" onchange="applyTransactionFilters()" class="w-full md:w-52 px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C] transition">
           <option value="ALL">Toutes les catégories</option>
           <!-- Dynamic categories -->
         </select>
 
+        <!-- Holiday Trips Filter -->
+        <select id="tx-holiday-filter" onchange="applyTransactionFilters()" class="w-full md:w-52 px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C] transition">
+          <option value="ALL">Tous les séjours</option>
+          <option value="ANY_TRIP">🌴 Dépenses en séjour</option>
+          <option value="NO_TRIP">Hors séjours</option>
+          <!-- Dynamic holiday trips -->
+        </select>
+
         <!-- Type Filter (Tous / Débits / Crédits) -->
-        <select id="tx-type-filter" onchange="applyTransactionFilters()" class="w-full md:w-36 px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C] transition">
-          <option value="ALL">Tous les types</option>
-          <option value="Debit">Débits seuls</option>
-          <option value="Credit">Crédits seuls</option>
+        <select id="tx-type-filter" onchange="applyTransactionFilters()" class="w-full md:w-32 px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C] transition">
+          <option value="ALL">Tous types</option>
+          <option value="Debit">Débits</option>
+          <option value="Credit">Crédits</option>
         </select>
       </div>
 
@@ -45,6 +53,7 @@
                 <th class="py-3.5 px-4">Date</th>
                 <th class="py-3.5 px-4">Catégorie</th>
                 <th class="py-3.5 px-4">Commerçant / Libellé</th>
+                <th class="py-3.5 px-4">Séjour / Voyage</th>
                 <th class="py-3.5 px-4">Relevé</th>
                 <th class="py-3.5 px-4 text-right">Montant</th>
                 <th class="py-3.5 px-4 text-center">Modifier</th>

@@ -113,6 +113,18 @@
       <span class="font-medium whitespace-nowrap">Analyse des Catégories</span>
     </button>
 
+    <!-- Séjours & Vacances (Holiday Trips) -->
+    <button onclick="switchView('holidays')" id="nav-holidays"
+      class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition">
+      <svg class="w-4 h-4 text-[#4A5550] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+          d="M12 2v2m0 0a9 9 0 019 9H3a9 9 0 019-9zm0 0c-2.5 2.5-3.5 5.5-3.5 9m3.5-9c2.5 2.5 3.5 5.5 3.5 9m-3.5 0v8m-4 0h8" />
+      </svg>
+      <span class="font-medium whitespace-nowrap">Séjours & Vacances</span>
+      <span id="nav-holidays-badge"
+        class="ml-auto text-[11px] px-2 py-0.2 rounded-full bg-[#E0F2FE] text-[#0369A1] font-semibold shrink-0">0</span>
+    </button>
+
     <!-- Import de Relevés (Document Upload) -->
     <button onclick="switchView('upload')" id="nav-upload"
       class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition">

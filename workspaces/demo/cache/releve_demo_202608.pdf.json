@@ -279,7 +279,8 @@
       "merchant": "Restaurant Le Comptoir",
       "color": "#f59e0b",
       "icon": "🍽️",
-      "statement_file": "releve_demo_202608.pdf"
+      "statement_file": "releve_demo_202608.pdf",
+      "holiday_trip_id": "trip_cote_azur_2026"
     },
     {
       "id": "demo_08_21",
@@ -333,9 +334,10 @@
       "raw_amount": 280.0,
       "category": "Voyages & Vacances",
       "merchant": "Hôtel & Vacances",
-      "color": "#94a3b8",
-      "icon": "📦",
-      "statement_file": "releve_demo_202608.pdf"
+      "color": "#0ea5e9",
+      "icon": "🏖️",
+      "statement_file": "releve_demo_202608.pdf",
+      "holiday_trip_id": "trip_cote_azur_2026"
     }
   ]
 }

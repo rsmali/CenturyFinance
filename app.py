@@ -178,13 +178,16 @@ def parse_and_cache_pdf(pdf_path: str, cache_dir: str = None, profile: dict = No
                 for t in data.get("transactions", []):
                     if t.get("manual_override"):
                         sig = (t.get("date"), t.get("amount"), t.get("description"))
-                        existing_overrides[sig] = {
+                        ov = {
                             "category": t.get("category"),
                             "merchant": t.get("merchant"),
                             "manual_override": True,
                             "color": t.get("color"),
                             "icon": t.get("icon")
                         }
+                        if t.get("holiday_trip_id"):
+                            ov["holiday_trip_id"] = t.get("holiday_trip_id")
+                        existing_overrides[sig] = ov
         except Exception:
             pass
 
@@ -577,6 +580,265 @@ def handle_workspace_profile():
         "workspace": meta
     })
 
+# -------------------------------------------------------------
+# HOLIDAY TRIPS & EXPENSE GROUPS
+# -------------------------------------------------------------
+def get_holiday_trips_path(ws_dir: str) -> str:
+    return os.path.join(ws_dir, "holiday_trips.json")
+
+def load_holiday_trips(ws_dir: str) -> list:
+    path = get_holiday_trips_path(ws_dir)
+    if os.path.exists(path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return data.get("trips", [])
+        except Exception as e:
+            print(f"[HolidayTrips] Failed to load {path}: {e}")
+    return []
+
+def save_holiday_trips(ws_dir: str, trips: list):
+    path = get_holiday_trips_path(ws_dir)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump({"trips": trips}, f, ensure_ascii=False, indent=2)
+
+def compute_holiday_trips_summary(ws_dir: str, transactions: list) -> list:
+    trips = load_holiday_trips(ws_dir)
+    if not trips:
+        return []
+
+    trips_map = {}
+    for t in trips:
+        trips_map[t["id"]] = {
+            **t,
+            "total_spent": 0.0,
+            "tx_count": 0,
+            "categories": {},
+            "transaction_ids": []
+        }
+
+    for tx in transactions:
+        trip_id = tx.get("holiday_trip_id")
+        if trip_id and trip_id in trips_map:
+            amt = tx.get("amount", 0.0)
+            tx_type = tx.get("type", "Debit")
+            cat = tx.get("category", "Autre")
+            
+            # Enrich transaction in place so UI knows trip name, icon, color
+            tx["holiday_trip_name"] = trips_map[trip_id].get("name")
+            tx["holiday_trip_icon"] = trips_map[trip_id].get("icon", "🏖️")
+            tx["holiday_trip_color"] = trips_map[trip_id].get("color", "#0ea5e9")
+
+            trips_map[trip_id]["tx_count"] += 1
+            trips_map[trip_id]["transaction_ids"].append(tx.get("id"))
+            
+            cost = abs(amt) if tx_type == "Debit" else -abs(amt)
+            trips_map[trip_id]["total_spent"] += cost
+
+            if cat not in trips_map[trip_id]["categories"]:
+                trips_map[trip_id]["categories"][cat] = 0.0
+            trips_map[trip_id]["categories"][cat] += cost
+
+    result = []
+    for trip_id, t in trips_map.items():
+        t["total_spent"] = round(t["total_spent"], 2)
+        budget = float(t.get("budget") or 0.0)
+        t["budget"] = budget
+        t["budget_remaining"] = round(max(0.0, budget - t["total_spent"]), 2) if budget > 0 else 0.0
+        t["budget_pct"] = round((t["total_spent"] / budget * 100), 1) if budget > 0 else 0.0
+        t["categories"] = {k: round(v, 2) for k, v in t["categories"].items() if v > 0}
+        result.append(t)
+
+    result.sort(key=lambda x: x.get("date_start") or x.get("created_at") or "", reverse=True)
+    return result
+
+@app.route("/api/holiday-trips", methods=["GET"])
+def get_holiday_trips_api():
+    ws_id = request.args.get("workspace")
+    ws_ctx = get_workspace_context(ws_id)
+    ws_profile = ws_ctx["meta"].get("profile") or DEFAULT_WORKSPACE_PROFILE
+    all_txs = get_all_statements_transactions(
+        pdf_dir=ws_ctx["pdf_dir"], 
+        cache_dir=ws_ctx["cache_dir"], 
+        profile=ws_profile, 
+        ws_dir=ws_ctx["ws_dir"]
+    )
+    summary = compute_holiday_trips_summary(ws_ctx["ws_dir"], all_txs)
+    return jsonify({"status": "ok", "trips": summary})
+
+@app.route("/api/holiday-trips/save", methods=["POST"])
+def save_holiday_trip():
+    data = request.get_json() or {}
+    ws_id = data.get("workspace")
+    ws_ctx = get_workspace_context(ws_id)
+    trip_data = data.get("trip") if isinstance(data.get("trip"), dict) else data
+
+    name = (trip_data.get("name") or "").strip()
+    if not name:
+        return jsonify({"status": "error", "error": "Le nom du séjour est requis"}), 400
+
+    trips = load_holiday_trips(ws_ctx["ws_dir"])
+    trip_id = (trip_data.get("id") or "").strip()
+
+    if not trip_id:
+        slug = re.sub(r"[^a-zA-Z0-9]+", "_", name.lower()).strip("_")
+        trip_id = f"trip_{slug}_{int(datetime.now().timestamp())}"
+        trip_record = {
+            "id": trip_id,
+            "name": name,
+            "destination": (trip_data.get("destination") or "").strip(),
+            "date_start": (trip_data.get("date_start") or "").strip(),
+            "date_end": (trip_data.get("date_end") or "").strip(),
+            "budget": float(trip_data.get("budget") or 0.0),
+            "icon": trip_data.get("icon") or "🏖️",
+            "color": trip_data.get("color") or "#0ea5e9",
+            "notes": (trip_data.get("notes") or "").strip(),
+            "created_at": datetime.now().strftime("%Y-%m-%d")
+        }
+        trips.append(trip_record)
+    else:
+        found = False
+        trip_record = None
+        for i, t in enumerate(trips):
+            if t.get("id") == trip_id:
+                trips[i].update({
+                    "name": name,
+                    "destination": (trip_data.get("destination") or "").strip(),
+                    "date_start": (trip_data.get("date_start") or "").strip(),
+                    "date_end": (trip_data.get("date_end") or "").strip(),
+                    "budget": float(trip_data.get("budget") or 0.0),
+                    "icon": trip_data.get("icon") or t.get("icon") or "🏖️",
+                    "color": trip_data.get("color") or t.get("color") or "#0ea5e9",
+                    "notes": (trip_data.get("notes") or "").strip(),
+                })
+                trip_record = trips[i]
+                found = True
+                break
+        if not found:
+            trip_record = {
+                "id": trip_id,
+                "name": name,
+                "destination": (trip_data.get("destination") or "").strip(),
+                "date_start": (trip_data.get("date_start") or "").strip(),
+                "date_end": (trip_data.get("date_end") or "").strip(),
+                "budget": float(trip_data.get("budget") or 0.0),
+                "icon": trip_data.get("icon") or "🏖️",
+                "color": trip_data.get("color") or "#0ea5e9",
+                "notes": (trip_data.get("notes") or "").strip(),
+                "created_at": datetime.now().strftime("%Y-%m-%d")
+            }
+            trips.append(trip_record)
+
+    save_holiday_trips(ws_ctx["ws_dir"], trips)
+
+    # Optional auto-assign by date range
+    auto_assign = data.get("auto_assign_dates", trip_data.get("auto_assign_dates", False))
+    date_start = trip_record.get("date_start")
+    date_end = trip_record.get("date_end")
+
+    if auto_assign and date_start and date_end:
+        cache_files = glob.glob(os.path.join(ws_ctx["cache_dir"], "*.json"))
+        for cache_f in cache_files:
+            try:
+                with open(cache_f, "r", encoding="utf-8") as f:
+                    c = json.load(f)
+                updated = False
+                for t in c.get("transactions", []):
+                    d_parts = (t.get("date") or "").split("/")
+                    if len(d_parts) == 3:
+                        y = d_parts[2] if len(d_parts[2]) == 4 else f"20{d_parts[2]}"
+                        iso_d = f"{y}-{d_parts[1].zfill(2)}-{d_parts[0].zfill(2)}"
+                        if date_start <= iso_d <= date_end:
+                            t["holiday_trip_id"] = trip_id
+                            t["manual_override"] = True
+                            updated = True
+                if updated:
+                    with open(cache_f, "w", encoding="utf-8") as f:
+                        json.dump(c, f, ensure_ascii=False, indent=2)
+            except Exception as e:
+                print(f"[HolidayTrips] Auto-assign error: {e}")
+
+    return jsonify({"status": "ok", "trip": trip_record})
+
+@app.route("/api/holiday-trips/delete", methods=["POST"])
+def delete_holiday_trip():
+    data = request.get_json() or {}
+    ws_id = data.get("workspace")
+    ws_ctx = get_workspace_context(ws_id)
+    trip_id = (data.get("trip_id") or data.get("id") or "").strip()
+
+    if not trip_id:
+        return jsonify({"status": "error", "error": "ID du séjour manquant"}), 400
+
+    trips = load_holiday_trips(ws_ctx["ws_dir"])
+    trips = [t for t in trips if t.get("id") != trip_id]
+    save_holiday_trips(ws_ctx["ws_dir"], trips)
+
+    cache_files = glob.glob(os.path.join(ws_ctx["cache_dir"], "*.json"))
+    for cache_f in cache_files:
+        try:
+            with open(cache_f, "r", encoding="utf-8") as f:
+                c = json.load(f)
+            updated = False
+            for t in c.get("transactions", []):
+                if t.get("holiday_trip_id") == trip_id:
+                    t.pop("holiday_trip_id", None)
+                    t["manual_override"] = True
+                    updated = True
+            if updated:
+                with open(cache_f, "w", encoding="utf-8") as f:
+                    json.dump(c, f, ensure_ascii=False, indent=2)
+        except Exception:
+            pass
+
+    return jsonify({"status": "ok", "message": "Séjour supprimé"})
+
+@app.route("/api/holiday-trips/assign", methods=["POST"])
+def assign_holiday_transactions():
+    data = request.get_json() or {}
+    ws_id = data.get("workspace")
+    ws_ctx = get_workspace_context(ws_id)
+    trip_id = (data.get("trip_id") or data.get("id") or "").strip()
+    raw_tx_ids = data.get("transaction_ids") if data.get("transaction_ids") is not None else data.get("tx_ids")
+    if raw_tx_ids is None:
+        return jsonify({"status": "error", "error": "Aucune opération spécifiée"}), 400
+
+    tx_ids = set(raw_tx_ids)
+
+    if not trip_id:
+        return jsonify({"status": "error", "error": "ID du séjour manquant"}), 400
+
+    cache_files = glob.glob(os.path.join(ws_ctx["cache_dir"], "*.json"))
+    modified_count = 0
+    for cache_f in cache_files:
+        try:
+            with open(cache_f, "r", encoding="utf-8") as f:
+                c = json.load(f)
+            updated = False
+            for t in c.get("transactions", []):
+                t_id = t.get("id")
+                # If transaction should be in this trip
+                if t_id in tx_ids:
+                    if t.get("holiday_trip_id") != trip_id:
+                        t["holiday_trip_id"] = trip_id
+                        t["manual_override"] = True
+                        updated = True
+                        modified_count += 1
+                # If transaction was previously in this trip but was deselected
+                elif t.get("holiday_trip_id") == trip_id:
+                    t.pop("holiday_trip_id", None)
+                    t["manual_override"] = True
+                    updated = True
+                    modified_count += 1
+            if updated:
+                with open(cache_f, "w", encoding="utf-8") as f:
+                    json.dump(c, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print(f"[HolidayTrips] Assign error in {cache_f}: {e}")
+
+    return jsonify({"status": "ok", "modified_count": modified_count})
+
 @app.route("/api/data", methods=["GET"])
 def get_dashboard_data():
     """
@@ -808,12 +1070,14 @@ def get_dashboard_data():
     monthly_pot_savings = round(raw_pot_savings / num_active_months, 2)
 
     time_machine_patterns = generate_financial_time_machine_patterns(all_transactions, trends, insights)
+    holiday_trips_summary = compute_holiday_trips_summary(ws_ctx["ws_dir"], all_transactions)
 
     return jsonify({
         "status": "ok",
         "workspace": ws_ctx["meta"],
         "workspaces": list_workspaces(),
         "budget_baseline": budget_baseline,
+        "holiday_trips": holiday_trips_summary,
         "selected_month": selected_month,
         "selected_month_label": get_month_label(selected_month) if selected_month != "ALL" else "Tous les mois",
         "date_range_label": date_range_label,
@@ -1003,6 +1267,12 @@ def update_category():
                     t["manual_override"] = True
                     if data.get("merchant"):
                         t["merchant"] = data.get("merchant").strip()
+                    if "holiday_trip_id" in data:
+                        h_id = (data.get("holiday_trip_id") or "").strip()
+                        if h_id:
+                            t["holiday_trip_id"] = h_id
+                        else:
+                            t.pop("holiday_trip_id", None)
                     target_statement = cache_f
                     matched_desc = t.get("description", "")
                     found = True
@@ -1031,6 +1301,12 @@ def update_category():
                         t["manual_override"] = True
                         if data.get("merchant"):
                             t["merchant"] = data.get("merchant").strip()
+                        if "holiday_trip_id" in data:
+                            h_id = (data.get("holiday_trip_id") or "").strip()
+                            if h_id:
+                                t["holiday_trip_id"] = h_id
+                            else:
+                                t.pop("holiday_trip_id", None)
                         target_statement = cache_f
                         matched_desc = t.get("description", "")
                         found = True

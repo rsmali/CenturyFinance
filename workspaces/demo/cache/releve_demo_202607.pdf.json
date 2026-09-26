@@ -279,7 +279,8 @@
       "merchant": "Restaurant Le Comptoir",
       "color": "#f59e0b",
       "icon": "🍽️",
-      "statement_file": "releve_demo_202607.pdf"
+      "statement_file": "releve_demo_202607.pdf",
+      "holiday_trip_id": "trip_bretagne_2026"
     },
     {
       "id": "demo_07_21",
@@ -361,9 +362,10 @@
       "raw_amount": 142.5,
       "category": "Voyages & Vacances",
       "merchant": "SNCF Connect",
-      "color": "#94a3b8",
-      "icon": "📦",
-      "statement_file": "releve_demo_202607.pdf"
+      "color": "#0ea5e9",
+      "icon": "🏖️",
+      "statement_file": "releve_demo_202607.pdf",
+      "holiday_trip_id": "trip_bretagne_2026"
     }
   ]
 }

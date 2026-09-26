@@ -6,6 +6,7 @@ Centralized configuration for categories, colors, icons, and universal banking h
 CATEGORIES = [
     "Alimentation & Supermarchés",
     "Restaurants & Sorties",
+    "Voyages & Vacances",
     "Sports & Fitness",
     "Investissements & Épargne",
     "High-Tech & Équipement",
@@ -28,9 +29,10 @@ CATEGORIES = [
 CATEGORY_COLORS = {
     "Alimentation & Supermarchés": "#10b981",    # Emerald
     "Restaurants & Sorties": "#f59e0b",          # Amber
+    "Voyages & Vacances": "#0ea5e9",             # Sky Blue / Lagoon
     "Sports & Fitness": "#0284c7",               # Ocean Blue
     "Investissements & Épargne": "#8b5cf6",      # Purple / Violet
-    "High-Tech & Équipement": "#0ea5e9",         # Sky Blue / Tech Cyan
+    "High-Tech & Équipement": "#38bdf8",         # Sky Blue / Tech Cyan
     "Logement & Énergie": "#6366f1",            # Indigo
     "Télécom & Abonnements": "#a855f7",         # Violet
     "Transports & Péages": "#06b6d4",           # Cyan
@@ -50,6 +52,7 @@ CATEGORY_COLORS = {
 CATEGORY_ICONS = {
     "Alimentation & Supermarchés": "🛒",
     "Restaurants & Sorties": "🍽️",
+    "Voyages & Vacances": "🏖️",
     "Sports & Fitness": "🏋️",
     "Investissements & Épargne": "📈",
     "High-Tech & Équipement": "💻",
@@ -74,6 +77,9 @@ UNIVERSAL_RULES = [
     # Food delivery & Fast Food & Dining
     (r"UBER\s*\*?\s*EATS|DELIVEROO", "Restaurants & Sorties", "Livraison Repas"),
     (r"MAC\s*DONALD|KENTUCKY\s*FRIED|BURGER\s*KING|SUBWAY|CREP\s+|RESTAURANT|PIZZA|BRASSERIE|BISTROT|CAFE|BAR\b|PUB\b", "Restaurants & Sorties", "Restauration & Sorties"),
+    
+    # Travel, Hotels & Vacations
+    (r"AIRBNB|BOOKING(?:\.COM)?|HOTEL|HOSTEL|VOYAGE|EXPEDIA|EASYJET|RYANAIR|TRANSAVIA|AIR\s*FRANCE|VUELING|TRIPADVISOR|GITES\s+DE\s+FRANCE|CAMPING|AGODA|CLUB\s+MED|HILTON|ACCOR|IBIS|NOVOTEL|MERCURE|MARRIOTT|LUFTHANSA|EUROWINGS|VOLOTEA|SEJOUR|SEJOURS|LOCATION\s+VACANCE", "Voyages & Vacances", "Voyage & Vacances"),
     
     # Supermarkets & Groceries
     (r"CARREFOUR|AUCHAN|LECLERC|MONOPRIX|CASINO|LIDL|INTERMARCHE|FRANPRIX|SUPER\s+U|GIE\s+(?:DU\s+)?SECBRON|GRENIER\s+GOURMAND", "Alimentation & Supermarchés", "Supermarché"),

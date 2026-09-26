@@ -1,0 +1,114 @@
+  <!-- Modal: Create / Edit Holiday Trip -->
+  <div id="holiday-trip-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl border border-[#EAEAE5] shadow-2xl max-w-lg w-full p-6 space-y-5 animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-[#EAEAE5] pb-3">
+        <div class="flex items-center space-x-2.5">
+          <span id="holiday-modal-icon-preview" class="text-2xl">🏖️</span>
+          <div>
+            <h3 id="holiday-modal-title" class="font-serif-title text-xl text-century-charcoal">Nouveau Séjour / Voyage</h3>
+            <p class="text-xs text-century-muted mt-0.5">Regroupez vos dépenses pour ce séjour de vacances</p>
+          </div>
+        </div>
+        <button onclick="closeHolidayTripModal()" class="text-century-muted hover:text-century-charcoal">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form onsubmit="handleHolidayTripSubmit(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="holiday-trip-edit-id" value="">
+
+        <!-- Name & Destination -->
+        <div class="space-y-3">
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Nom du Séjour / Voyage *</label>
+            <input type="text" id="holiday-trip-name" required placeholder="ex: Voyage en Italie — Rome, Week-end Bretagne..." class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+          </div>
+
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Destination / Lieu</label>
+            <input type="text" id="holiday-trip-destination" placeholder="ex: Rome & Florence, Italie ou Saint-Malo" class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+          </div>
+        </div>
+
+        <!-- Dates Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Date de début</label>
+            <input type="date" id="holiday-trip-start" class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+          </div>
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Date de fin</label>
+            <input type="date" id="holiday-trip-end" class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+          </div>
+        </div>
+
+        <!-- Budget & Icon & Color Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Budget prévisionnel</label>
+            <div class="relative">
+              <input type="number" id="holiday-trip-budget" min="0" step="50" placeholder="ex: 1000" class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+              <span class="absolute right-2.5 top-2 text-xs text-century-muted pointer-events-none">€</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Icône</label>
+            <select id="holiday-trip-icon" onchange="document.getElementById('holiday-modal-icon-preview').textContent = this.value" class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+              <option value="🏖️">🏖️ Plage & Soleil</option>
+              <option value="✈️">✈️ Vol / Étranger</option>
+              <option value="🌊">🌊 Mer & Côte</option>
+              <option value="🏔️">🏔️ Montagne & Ski</option>
+              <option value="🏛️">🏛️ Ville & Culture</option>
+              <option value="🎒">🎒 Roadtrip</option>
+              <option value="🌴">🌴 Îles & Exotique</option>
+              <option value="🌲">🌲 Nature & Campagne</option>
+              <option value="⛺">⛺ Camping</option>
+              <option value="🎡">🎡 Parcs & Loisirs</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Couleur</label>
+            <select id="holiday-trip-color" class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+              <option value="#0ea5e9">Bleu Azur</option>
+              <option value="#06b6d4">Cyan Mer</option>
+              <option value="#10b981">Vert Lagon</option>
+              <option value="#f59e0b">Ambre Soleil</option>
+              <option value="#f43f5e">Rose Corail</option>
+              <option value="#8b5cf6">Violet Évasion</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div>
+          <label class="block font-medium text-century-charcoal mb-1">Notes & Description (optionnel)</label>
+          <textarea id="holiday-trip-notes" rows="2" placeholder="ex: Billets d'avion, hébergements Airbnb, restaurants et activités sur place..." class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]"></textarea>
+        </div>
+
+        <!-- Auto-assign checkbox -->
+        <div class="p-3 rounded-xl bg-[#F0F9FF] border border-[#BAE6FD]/60 flex items-start space-x-2.5">
+          <input type="checkbox" id="holiday-trip-auto-assign" class="mt-0.5 rounded border-[#CBD5E1] text-[#0ea5e9] focus:ring-[#0ea5e9] w-4 h-4">
+          <label for="holiday-trip-auto-assign" class="cursor-pointer select-none leading-relaxed text-xs text-[#0369A1]">
+            <span class="font-semibold block">Associer automatiquement les opérations comprises entre ces dates</span>
+            <span class="text-[11px] opacity-80 block">Toutes les dépenses existantes dans le compte entre la date de début et de fin seront rattachées à ce voyage.</span>
+          </label>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end space-x-2 pt-3 border-t border-[#EAEAE5]">
+          <button type="button" onclick="closeHolidayTripModal()" class="px-4 py-2 rounded-lg border border-[#EAEAE5] text-xs font-medium text-century-charcoal hover:bg-[#F6F6F2] transition">
+            Annuler
+          </button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-[#2D5A3C] text-white text-xs font-semibold hover:bg-[#234B34] transition shadow-xs">
+            Enregistrer le Séjour
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>

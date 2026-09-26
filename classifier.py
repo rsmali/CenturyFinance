@@ -204,6 +204,7 @@ Choisis EXCLUSIVEMENT parmi ces catégories :
 
 Règles strictes :
 - Toute livraison de nourriture, fast food, bar ou resto (Uber Eats, Deliveroo, McDonald's, etc.) = "Restaurants & Sorties".
+- Billets d'avion, hôtels, hébergements, voyages (Airbnb, Booking, Air France, séjours, etc.) = "Voyages & Vacances".
 - Abonnements bancaires (Sobrio, Sogessur, Jazz, etc.) = "Frais Bancaires".
 - Transports en commun (Imagine R, Navigo, SNCF, RATP) = "Transports & Péages".
 

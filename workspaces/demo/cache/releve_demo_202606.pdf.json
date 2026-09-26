@@ -251,7 +251,8 @@
       "merchant": "Uber Eats",
       "color": "#f59e0b",
       "icon": "🍽️",
-      "statement_file": "releve_demo_202606.pdf"
+      "statement_file": "releve_demo_202606.pdf",
+      "manual_override": true
     },
     {
       "id": "demo_06_19",
