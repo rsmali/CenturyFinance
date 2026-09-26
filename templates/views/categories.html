@@ -9,6 +9,81 @@
         commun. Cliquez sur une catégorie pour explorer les opérations.</p>
     </div>
 
+    <!-- Very First Row: Interactive Spending Distribution by Percentage Graphic -->
+    <div class="c-card p-6 md:p-8 space-y-6 bg-white border border-[#EAEAE5] shadow-xs">
+      
+      <!-- Top Title & Quick Stats -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#EAEAE5] pb-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">📊</span>
+            <h3 class="font-serif-title text-xl md:text-2xl text-century-charcoal">Répartition Moyenne des Dépenses</h3>
+            <span id="cat-distrib-mode-badge" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#E8F0EC] text-[#2D5A3C] border border-[#2D5A3C]/20">Mode Régulier</span>
+          </div>
+          <p class="text-xs text-century-muted mt-0.5">Part en pourcentage et moyenne mensuelle des dépenses réelles de vie courante (hors flux exceptionnels et compensés).</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <!-- Interactive Mode Toggle: Régulier vs Brut -->
+          <div class="inline-flex rounded-lg border border-[#EAEAE5] bg-[#FAF9F5] p-0.5 text-xs font-medium">
+            <button type="button" id="cat-distrib-pill-regular" onclick="setCategoryDistributionMode('regular')" class="px-2.5 py-1 rounded-md text-xs font-semibold bg-white text-[#2D5A3C] shadow-xs transition">
+              Régulier
+            </button>
+            <button type="button" id="cat-distrib-pill-raw" onclick="setCategoryDistributionMode('raw')" class="px-2.5 py-1 rounded-md text-xs font-medium text-century-muted hover:text-century-charcoal transition">
+              Brut (Tout)
+            </button>
+          </div>
+
+          <div class="text-left sm:text-right border-l border-[#EAEAE5] pl-3">
+            <span class="text-[11px] text-century-muted block" id="cat-global-total-label">Moyenne Mensuelle</span>
+            <span id="cat-global-total-amount" class="text-xl font-bold font-mono text-[#6E2D38]">0,00 € / mois</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Intelligence & Adjustment Chips -->
+      <div id="cat-distrib-adjustments-bar" class="flex flex-wrap items-center gap-2 pt-0.5">
+        <!-- Injected dynamically: e.g. "✅ Loyer compensé (0 €)", "⚡ Achat unique Apple (1 339 €) exclu", "📈 Épargne & Investissements exclus" -->
+      </div>
+
+      <!-- Interactive Multi-Segment Proportion Bar (Monarch / Apple Card style) -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between text-[11px] text-century-muted">
+          <span>Proportions relatives du budget</span>
+          <span id="cat-global-cat-count" class="font-medium text-century-charcoal">0 catégories actives</span>
+        </div>
+        <div id="cat-global-proportion-bar" class="w-full h-3 rounded-full bg-[#EAEAE5] overflow-hidden flex shadow-inner">
+          <!-- Dynamically injected proportion slices -->
+        </div>
+      </div>
+
+      <!-- Main Interactive Graphic: Donut Chart on Left, Ranked Category Legend on Right -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-2">
+        
+        <!-- Left: Chart.js Interactive Donut with Centered Live KPI (5 cols) -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+          <div class="relative w-[240px] h-[240px] flex items-center justify-center">
+            <canvas id="categoryGlobalDistributionDonut"></canvas>
+            <!-- Center Text / Hover Feedback -->
+            <div id="cat-donut-center-info" class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none p-4">
+              <span id="cat-donut-center-icon" class="text-2xl mb-0.5">💳</span>
+              <span id="cat-donut-center-title" class="text-xs font-semibold text-century-charcoal truncate max-w-[130px]">Dépenses</span>
+              <span id="cat-donut-center-pct" class="text-xl font-bold font-mono text-[#2D5A3C]">100%</span>
+              <span id="cat-donut-center-amt" class="text-[11px] font-mono text-century-muted">0,00 €</span>
+            </div>
+          </div>
+          <span class="text-[11px] text-century-muted mt-3 text-center">Survolez un segment ou cliquez pour ouvrir le détail</span>
+        </div>
+
+        <!-- Right: Ranked Category List with Percentage Bars (7 cols) -->
+        <div class="lg:col-span-7 space-y-2 max-h-[300px] overflow-y-auto pr-1" id="category-global-ranked-list">
+          <!-- Dynamically injected interactive list items -->
+        </div>
+
+      </div>
+
+    </div>
+
     <!-- Optimization Advice Banner -->
     <div id="category-optimization-banner"
       class="c-card p-6 bg-gradient-to-r from-white via-white to-[#FDF8EE] border-l-4 border-l-[#9A6B22] flex flex-col md:flex-row md:items-center justify-between gap-4">

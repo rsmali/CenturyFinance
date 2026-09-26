@@ -21,6 +21,8 @@
       budgetDonutChart: null,
       categoryZoomChart: null,
       categoryBreakdownPieChart: null,
+      categoryDistributionChart: null,
+      categoryDistributionMode: 'regular',
       activeCategoryDetail: null,
       activeCategoryMerchantFilter: null,
       currentCategoryBreakdownItems: null,

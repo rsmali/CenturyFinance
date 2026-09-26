@@ -61,6 +61,410 @@
       }
     }
 
+    // ─── Interactive Global Spending Distribution by Percentage ─────────────────
+    function setCategoryDistributionMode(mode) {
+      AppState.categoryDistributionMode = mode;
+      if (AppState.data) {
+        renderCategoryGlobalDistribution(AppState.data);
+      }
+    }
+
+    // Dynamic 1-time exceptional purchase detector
+    function isOneTimeExceptionalPurchase(tx, allCategoryDebits) {
+      const amt = Math.abs(tx.amount || 0);
+      const cat = tx.category || '';
+      
+      // 1. High-Tech & Hardware equipment (buying a phone/laptop is durable capital, not recurring monthly consumption)
+      if (cat === 'High-Tech & Équipement' && amt >= 200.0) {
+        return true;
+      }
+      
+      // 2. Infrequent large purchases: category has 3 or fewer transactions across the period and ticket >= 250 €
+      if (allCategoryDebits.length <= 3 && amt >= 250.0) {
+        return true;
+      }
+
+      // 3. Statistical outlier: ticket is >= 250 € and >= 2.5x the median ticket of that category
+      if (allCategoryDebits.length >= 4 && amt >= 250.0) {
+        const sortedAmts = allCategoryDebits.map(t => Math.abs(t.amount || 0)).sort((a, b) => a - b);
+        const mid = Math.floor(sortedAmts.length / 2);
+        const median = sortedAmts.length % 2 !== 0 ? sortedAmts[mid] : (sortedAmts[mid - 1] + sortedAmts[mid]) / 2;
+        if (amt >= 2.5 * median) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    function renderCategoryGlobalDistribution(data) {
+      const canvas = document.getElementById('categoryGlobalDistributionDonut');
+      const barContainer = document.getElementById('cat-global-proportion-bar');
+      const listContainer = document.getElementById('category-global-ranked-list');
+      const totalAmountEl = document.getElementById('cat-global-total-amount');
+      const catCountEl = document.getElementById('cat-global-cat-count');
+      const adjustmentsBar = document.getElementById('cat-distrib-adjustments-bar');
+      const modeBadge = document.getElementById('cat-distrib-mode-badge');
+      const pillRegular = document.getElementById('cat-distrib-pill-regular');
+      const pillRaw = document.getElementById('cat-distrib-pill-raw');
+
+      if (!canvas || !barContainer || !listContainer) return;
+
+      const mode = AppState.categoryDistributionMode || 'regular';
+      const isRegular = mode === 'regular';
+
+      // Update toggle buttons styling
+      if (pillRegular && pillRaw) {
+        if (isRegular) {
+          pillRegular.className = 'px-2.5 py-1 rounded-md text-xs font-semibold bg-white text-[#2D5A3C] shadow-xs transition';
+          pillRaw.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-century-muted hover:text-century-charcoal transition';
+        } else {
+          pillRaw.className = 'px-2.5 py-1 rounded-md text-xs font-semibold bg-white text-[#2D5A3C] shadow-xs transition';
+          pillRegular.className = 'px-2.5 py-1 rounded-md text-xs font-medium text-century-muted hover:text-century-charcoal transition';
+        }
+      }
+      if (modeBadge) {
+        modeBadge.textContent = isRegular ? 'Mode Régulier (Lissé)' : 'Mode Brut (Tout)';
+        modeBadge.className = isRegular 
+          ? 'px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#E8F0EC] text-[#2D5A3C] border border-[#2D5A3C]/20'
+          : 'px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200';
+      }
+
+      // Destroy previous Chart.js instance if it exists
+      if (AppState.categoryDistributionChart) {
+        AppState.categoryDistributionChart.destroy();
+        AppState.categoryDistributionChart = null;
+      }
+
+      const transactions = data.transactions || [];
+      const colorsMap = data.category_colors || {};
+      const iconsMap = data.category_icons || {};
+      const profile = data.workspace?.profile || {};
+      const rentKeywords = (profile.rent_keywords || ['LOYER', 'RENT']).map(k => k.toUpperCase());
+
+      // Derive active number of months to calculate realistic average monthly spending
+      const isSingleMonth = AppState.selectedMonth && AppState.selectedMonth !== 'ALL';
+      let numMonths = 1;
+      if (!isSingleMonth) {
+        const trendMonths = (data.trends && data.trends.months) ? data.trends.months : [];
+        if (trendMonths.length > 0) {
+          numMonths = trendMonths.length;
+        } else {
+          const distinctMonths = new Set((transactions || []).map(t => (t.date || '').substring(3, 10)).filter(Boolean));
+          numMonths = Math.max(1, distinctMonths.size);
+        }
+      }
+
+      // First pass: group all transactions into debits and credits per category
+      const rawCatMap = {};
+      transactions.forEach(t => {
+        const cat = t.category || 'Autre';
+        if (!rawCatMap[cat]) {
+          rawCatMap[cat] = { debits: [], credits: [] };
+        }
+        if (t.type === 'Debit' || (t.amount && t.amount < 0)) {
+          rawCatMap[cat].debits.push(t);
+        } else {
+          rawCatMap[cat].credits.push(t);
+        }
+      });
+
+      // Track adjustments made for transparent user feedback
+      const adjustments = [];
+      let totalExcluded1TimeAmt = 0;
+      let totalExcluded1TimeCount = 0;
+      let rentCompensatedAmt = 0;
+      let investmentsExcludedAmt = 0;
+
+      // Second pass: compute net and regular spending per category
+      const categoriesMap = {};
+      let totalDebitSpend = 0;
+
+      Object.entries(rawCatMap).forEach(([cat, group]) => {
+        // In regular mode, skip pure savings/inflow categories
+        if (isRegular && ['Salaires & Revenus', 'Cadeaux & Dons', 'Remboursements & Avoirs'].includes(cat)) {
+          return;
+        }
+        if (isRegular && cat === 'Investissements & Épargne') {
+          const invDebits = group.debits.reduce((s, t) => s + Math.abs(t.amount || 0), 0);
+          investmentsExcludedAmt += invDebits;
+          return;
+        }
+
+        let eligibleDebits = group.debits;
+        let eligibleCredits = group.credits;
+
+        // If regular mode: dynamically detect 1-time exceptional purchases
+        let excludedForThisCat = [];
+        if (isRegular) {
+          eligibleDebits = [];
+          group.debits.forEach(t => {
+            if (isOneTimeExceptionalPurchase(t, group.debits)) {
+              excludedForThisCat.push(t);
+              totalExcluded1TimeAmt += Math.abs(t.amount || 0);
+              totalExcluded1TimeCount += 1;
+            } else {
+              eligibleDebits.push(t);
+            }
+          });
+        }
+
+        const debitSum = eligibleDebits.reduce((s, t) => s + Math.abs(t.amount || 0), 0);
+        let creditSum = eligibleCredits.reduce((s, t) => s + Math.abs(t.amount || 0), 0);
+
+        // For Logement & Énergie: also check any rent reimbursement credits matching rent keywords
+        if (cat === 'Logement & Énergie') {
+          transactions.forEach(t => {
+            if (t.type === 'Credit' && t.category !== 'Logement & Énergie') {
+              const desc = (t.description || '').toUpperCase();
+              const merch = (t.merchant || '').toUpperCase();
+              if (rentKeywords.some(k => desc.includes(k) || merch.includes(k))) {
+                creditSum += Math.abs(t.amount || 0);
+              }
+            }
+          });
+        }
+
+        // Net spend calculation: reimbursements offset debits
+        let netSpend = debitSum;
+        if (isRegular) {
+          netSpend = Math.max(0.0, debitSum - creditSum);
+        }
+
+        if (cat === 'Logement & Énergie' && creditSum >= debitSum && debitSum > 0) {
+          rentCompensatedAmt = debitSum;
+        }
+
+        if (netSpend > 0 || (!isRegular && (debitSum > 0 || creditSum > 0))) {
+          categoriesMap[cat] = {
+            name: cat,
+            amount: netSpend,
+            count: eligibleDebits.length,
+            color: colorsMap[cat] || '#94a3b8',
+            icon: iconsMap[cat] || '📦',
+            excludedCount: excludedForThisCat.length,
+            excludedAmount: excludedForThisCat.reduce((s, t) => s + Math.abs(t.amount || 0), 0)
+          };
+          totalDebitSpend += netSpend;
+        }
+      });
+
+      // Build adjustments chips for transparency
+      if (adjustmentsBar) {
+        adjustmentsBar.innerHTML = '';
+        if (isRegular) {
+          if (rentCompensatedAmt > 0) {
+            adjustments.push({
+              icon: '✅',
+              text: `Loyer 100% compensé par virements reçus (0 € net)`,
+              bg: 'bg-emerald-50 text-emerald-800 border-emerald-200'
+            });
+          }
+          if (totalExcluded1TimeCount > 0) {
+            adjustments.push({
+              icon: '⚡',
+              text: `${totalExcluded1TimeCount} achat(s) unique(s) lissé(s) (${formatFR(totalExcluded1TimeAmt)})`,
+              bg: 'bg-amber-50 text-amber-800 border-amber-200'
+            });
+          }
+          if (investmentsExcludedAmt > 0) {
+            adjustments.push({
+              icon: '📈',
+              text: `Épargne & investissements exclus (${formatFR(investmentsExcludedAmt)})`,
+              bg: 'bg-purple-50 text-purple-800 border-purple-200'
+            });
+          }
+          adjustments.forEach(adj => {
+            const chip = document.createElement('span');
+            chip.className = `inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium border ${adj.bg}`;
+            chip.innerHTML = `<span>${adj.icon}</span><span>${adj.text}</span>`;
+            adjustmentsBar.appendChild(chip);
+          });
+        }
+      }
+
+      // Convert to array and sort descending by amount
+      const categoriesList = Object.values(categoriesMap)
+        .filter(c => c.amount > 0)
+        .sort((a, b) => b.amount - a.amount);
+
+      const totalMonthlyAvg = totalDebitSpend / numMonths;
+
+      // Compute monthly average & percentage for each
+      categoriesList.forEach(c => {
+        c.monthlyAvg = c.amount / numMonths;
+        c.monthlyOps = c.count / numMonths;
+        c.pct = totalDebitSpend > 0 ? (c.amount / totalDebitSpend) * 100 : 0;
+        c.pctFormatted = c.pct.toFixed(1);
+      });
+
+      // Update total badge and category count
+      if (totalAmountEl) {
+        totalAmountEl.textContent = isSingleMonth ? formatFR(totalDebitSpend) : `${formatFR(totalMonthlyAvg)} / mois`;
+      }
+      const totalLabelEl = document.getElementById('cat-global-total-label');
+      if (totalLabelEl) {
+        totalLabelEl.textContent = isSingleMonth ? 'Dépense du Mois' : `Moyenne Mensuelle (${numMonths} mois)`;
+      }
+      if (catCountEl) catCountEl.textContent = `${categoriesList.length} catégories actives`;
+
+      // Center donut feedback elements
+      const centerIcon = document.getElementById('cat-donut-center-icon');
+      const centerTitle = document.getElementById('cat-donut-center-title');
+      const centerPct = document.getElementById('cat-donut-center-pct');
+      const centerAmt = document.getElementById('cat-donut-center-amt');
+
+      function resetCenterInfo() {
+        if (centerIcon) centerIcon.textContent = '📊';
+        if (centerTitle) centerTitle.textContent = isSingleMonth ? 'Dépense du Mois' : 'Moyenne / mois';
+        if (centerPct) centerPct.textContent = '100%';
+        if (centerAmt) centerAmt.textContent = isSingleMonth ? formatFR(totalDebitSpend) : `${formatFR(totalMonthlyAvg)} / mois`;
+      }
+      resetCenterInfo();
+
+      // Render Proportion Bar (multi-segment horizontal bar)
+      barContainer.innerHTML = '';
+      if (categoriesList.length === 0) {
+        barContainer.innerHTML = '<div class="w-full h-full bg-[#EAEAE5]"></div>';
+      } else {
+        categoriesList.forEach(c => {
+          const seg = document.createElement('div');
+          seg.className = 'h-full transition-all duration-200 cursor-pointer hover:opacity-80 hover:brightness-110 relative group';
+          seg.style.width = `${Math.max(0.5, c.pct)}%`;
+          seg.style.backgroundColor = c.color;
+          seg.title = `${c.icon} ${c.name} : ${c.pctFormatted}% (${formatFR(c.monthlyAvg)}${isSingleMonth ? '' : ' / mois'})`;
+          seg.onclick = () => openCategoryDetail(c.name);
+          barContainer.appendChild(seg);
+        });
+      }
+
+      // Render Ranked Category List
+      listContainer.innerHTML = '';
+      if (categoriesList.length === 0) {
+        listContainer.innerHTML = '<div class="p-4 text-center text-xs text-century-muted">Aucune opération pour cette période.</div>';
+      } else {
+        categoriesList.forEach((c, idx) => {
+          const row = document.createElement('div');
+          row.className = 'flex items-center justify-between p-2.5 rounded-xl hover:bg-[#FAF9F6] border border-transparent hover:border-[#EAEAE5] cursor-pointer transition group';
+          row.onclick = () => openCategoryDetail(c.name);
+
+          row.onmouseenter = () => {
+            if (centerIcon) centerIcon.textContent = c.icon;
+            if (centerTitle) centerTitle.textContent = c.name;
+            if (centerPct) centerPct.textContent = `${c.pctFormatted}%`;
+            if (centerAmt) centerAmt.textContent = isSingleMonth ? formatFR(c.amount) : `${formatFR(c.monthlyAvg)} / mois`;
+
+            if (AppState.categoryDistributionChart) {
+              AppState.categoryDistributionChart.setActiveElements([{ datasetIndex: 0, index: idx }]);
+              AppState.categoryDistributionChart.update();
+            }
+          };
+          row.onmouseleave = () => {
+            resetCenterInfo();
+            if (AppState.categoryDistributionChart) {
+              AppState.categoryDistributionChart.setActiveElements([]);
+              AppState.categoryDistributionChart.update();
+            }
+          };
+
+          const excludedBadge = c.excludedCount > 0 
+            ? `<span class="text-[10px] text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200 ml-1.5" title="${c.excludedCount} achat(s) unique(s) de ${formatFR(c.excludedAmount)} exclu(s)">⚡ ${c.excludedCount} achat unique</span>`
+            : '';
+
+          row.innerHTML = `
+            <div class="flex items-center space-x-3 min-w-0 flex-1 mr-4">
+              <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style="background-color: ${c.color}20; color: ${c.color}">
+                <span class="text-sm">${c.icon}</span>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <div class="flex items-center truncate">
+                    <span class="font-semibold text-century-charcoal truncate group-hover:text-[#2D5A3C] transition">${c.name}</span>
+                    ${excludedBadge}
+                  </div>
+                  <span class="font-mono font-bold text-xs text-century-charcoal ml-2">${c.pctFormatted}%</span>
+                </div>
+                <div class="w-full h-1.5 rounded-full bg-[#EAEAE5] overflow-hidden">
+                  <div class="h-full rounded-full transition-all duration-300" style="width: ${c.pct}%; background-color: ${c.color};"></div>
+                </div>
+              </div>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="font-mono font-bold text-xs text-century-charcoal block">${formatFR(c.monthlyAvg)}${isSingleMonth ? '' : ' / mois'}</span>
+              <span class="text-[10px] text-century-muted">${isSingleMonth ? `${c.count} op.` : `${c.monthlyOps >= 5 ? Math.round(c.monthlyOps) : c.monthlyOps.toFixed(1)} op./mois`}</span>
+            </div>
+          `;
+          listContainer.appendChild(row);
+        });
+      }
+
+      // Render Chart.js Donut
+      if (categoriesList.length === 0) return;
+
+      const labels = categoriesList.map(c => c.name);
+      const dataValues = categoriesList.map(c => Math.round(c.monthlyAvg * 100) / 100);
+      const bgColors = categoriesList.map(c => c.color);
+
+      const ctx = canvas.getContext('2d');
+      AppState.categoryDistributionChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: dataValues,
+            backgroundColor: bgColors,
+            borderWidth: 2,
+            borderColor: '#FFFFFF',
+            hoverBorderColor: '#FFFFFF',
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '72%',
+          animation: { duration: 400 },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                label: function(ctx) {
+                  const val = ctx.raw || 0;
+                  const pct = totalMonthlyAvg > 0 ? ((val / totalMonthlyAvg) * 100).toFixed(1) : 0;
+                  return ` ${formatFR(val)}${isSingleMonth ? '' : ' / mois'} (${pct}%)`;
+                }
+              }
+            }
+          },
+          onHover: (event, elements) => {
+            if (elements && elements.length > 0) {
+              const idx = elements[0].index;
+              const c = categoriesList[idx];
+              if (c) {
+                if (centerIcon) centerIcon.textContent = c.icon;
+                if (centerTitle) centerTitle.textContent = c.name;
+                if (centerPct) centerPct.textContent = `${c.pctFormatted}%`;
+                if (centerAmt) centerAmt.textContent = isSingleMonth ? formatFR(c.amount) : `${formatFR(c.monthlyAvg)} / mois`;
+              }
+            } else {
+              resetCenterInfo();
+            }
+          },
+          onClick: (event, elements) => {
+            if (elements && elements.length > 0) {
+              const idx = elements[0].index;
+              const c = categoriesList[idx];
+              if (c) {
+                openCategoryDetail(c.name);
+              }
+            }
+          }
+        }
+      });
+    }
+
+
     // Render View 6: Category Analysis (Dedicated graph for each category with anomaly detection & drill-down)
     function renderCategories(data) {
 
@@ -73,6 +477,9 @@
         openCategoryDetail(AppState.activeCategoryDetail);
         return;
       }
+
+      // Render Very First Row: Interactive Spending Distribution Graphic
+      renderCategoryGlobalDistribution(data);
 
       // Potential savings / optimization banner
       const invAnalysis = trends.investment_analysis || {};
