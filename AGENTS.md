@@ -38,7 +38,18 @@ century-finance/
 │   ├── partials/
 │   │   ├── head.html          # Fonts, Tailwind CDN, custom styles
 │   │   ├── sidebar.html       # Sidebar navigation & workspace selector
-│   │   └── scripts.html       # Frontend JS (AppState, Chart.js, rendering, API calls)
+│   │   ├── scripts.html       # Master script loader (Jinja include manifest)
+│   │   └── scripts/           # Modular client-side JavaScript controllers
+│   │       ├── core.js        # Global AppState, formatting, router, data fetcher
+│   │       ├── workspaces.js  # Workspace switching, profile settings, account modals
+│   │       ├── overview.js    # Financial overview KPIs, spline charts, audit modal
+│   │       ├── timemachine.js # Time machine & pattern discovery charts
+│   │       ├── files.js       # Statement manager, reprocessing, PDF upload
+│   │       ├── transactions.js# Transactions table, filter logic, bulk reclassify
+│   │       ├── categories.js  # Category sparklines, zoom chart, merchant breakdown donut
+│   │       ├── budget.js      # Budget simulator, 50/30/20 baseline, scenario testing
+│   │       ├── rules.js       # Custom regex rules manager & Ollama AI trigger
+│   │       └── holidays.js    # Séjours & Vacances trips, budgeting, assignment modal
 │   ├── views/                 # Modular window views (toggled via switchView())
 │   │   ├── overview.html      # View 1: Overview KPIs, wealth accumulation, major debits
 │   │   ├── budget.html        # View 8: Budget & scenario simulator (50/30/20)

@@ -2279,7 +2279,13 @@
   <!-- ======================================================== -->
   <!-- JAVASCRIPT APPLICATION LOGIC -->
   <!-- ======================================================== -->
-    <script>
+  <!-- ======================================================== -->
+<!-- MASTER SCRIPT CONTROLLER (Modularized)                   -->
+<!-- ======================================================== -->
+<script>
+  // ========================================================
+// CORE DASHBOARD CONTROLLER & GLOBAL STATE
+// ========================================================
     // Global State with localStorage persistence
     let AppState = {
       currentView: (function() {
@@ -2456,6 +2462,51 @@
       }
     }
 
+
+// Utility: HTML entity escaping
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+// Sidebar badges update
+    // Update sidebar counts & status
+    function updateSidebarBadges(data) {
+      const txCount = data.transactions ? data.transactions.length : 0;
+      const pdfCount = data.statements ? data.statements.length : 0;
+      const patternsCount = data.patterns ? data.patterns.length : 6;
+      
+      const txBadge = document.getElementById('nav-tx-count');
+      if (txBadge) txBadge.textContent = txCount;
+
+      const patternsBadge = document.getElementById('nav-patterns-badge');
+      if (patternsBadge) patternsBadge.textContent = patternsCount;
+
+      const holidaysCount = (data.holiday_trips && data.holiday_trips.length) ? data.holiday_trips.length : 0;
+      const holidaysBadge = document.getElementById('nav-holidays-badge');
+      if (holidaysBadge) holidaysBadge.textContent = holidaysCount;
+
+      const stCount = document.getElementById('sidebar-statements-count');
+      if (stCount) stCount.textContent = `${pdfCount} PDF`;
+    }
+
+
+// Mobile navigation & startup lifecycle
+    function toggleMobileMenu() {
+      const nav = document.getElementById('sidebar-nav');
+      if (nav) nav.classList.toggle('hidden');
+    }
+
+    // Initial Startup
+    window.addEventListener('DOMContentLoaded', () => {
+      if (AppState.currentView && AppState.currentView !== 'overview') {
+        switchView(AppState.currentView);
+      }
+      loadDashboardData();
+    });
+  // ========================================================
+// WORKSPACE & MULTI-ACCOUNT MANAGEMENT
+// ========================================================
     // Workspace / Multi-Account Management
     function renderWorkspaceSwitcher(data) {
       const activeWs = data.workspace || { id: 'default', name: 'Compte Principal (SG)', icon: '🏦' };
@@ -2593,10 +2644,6 @@
       }
     }
 
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
 
     function openWorkspaceSettingsModal() {
       const menu = document.getElementById('workspace-dropdown-menu');
@@ -2742,26 +2789,9 @@
       }
     }
 
-    // Update sidebar counts & status
-    function updateSidebarBadges(data) {
-      const txCount = data.transactions ? data.transactions.length : 0;
-      const pdfCount = data.statements ? data.statements.length : 0;
-      const patternsCount = data.patterns ? data.patterns.length : 6;
-      
-      const txBadge = document.getElementById('nav-tx-count');
-      if (txBadge) txBadge.textContent = txCount;
-
-      const patternsBadge = document.getElementById('nav-patterns-badge');
-      if (patternsBadge) patternsBadge.textContent = patternsCount;
-
-      const holidaysCount = (data.holiday_trips && data.holiday_trips.length) ? data.holiday_trips.length : 0;
-      const holidaysBadge = document.getElementById('nav-holidays-badge');
-      if (holidaysBadge) holidaysBadge.textContent = holidaysCount;
-
-      const stCount = document.getElementById('sidebar-statements-count');
-      if (stCount) stCount.textContent = `${pdfCount} PDF`;
-    }
-
+  // ========================================================
+// VIEW 1: FINANCIAL OVERVIEW & AUDIT MODAL
+// ========================================================
     // Render View 1: Financial Overview (Screenshot 2)
     function renderOverview(data) {
       const summary = data.summary || {};
@@ -3645,6 +3675,9 @@
       tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 10 + 'px';
     }
 
+  // ========================================================
+// VIEW 2: FINANCIAL TIME MACHINE & PATTERNS
+// ========================================================
     // Render View 2: Financial Time Machine & Discovered Patterns (Screenshot 1)
     function renderTimeMachine(data) {
       const summary = data.summary || {};
@@ -3777,6 +3810,9 @@
       });
     }
 
+  // ========================================================
+// VIEW 3 & 4: FILE MANAGEMENT & STATEMENT UPLOAD
+// ========================================================
     // Render View 3: File Management (Screenshot 0)
     function renderFileManagement(data) {
       const meta = data.statements_meta || {};
@@ -3907,6 +3943,9 @@
       }
     }
 
+  // ========================================================
+// VIEW 5: TRANSACTIONS REVIEW & BULK ACTIONS
+// ========================================================
     // Render View 5: Transaction Review
     function renderTransactions(data) {
       const catFilter = document.getElementById('tx-category-filter');
@@ -4235,6 +4274,9 @@
       }
     }
 
+  // ========================================================
+// VIEW 6: CATEGORY ANALYSIS & INTERNAL BREAKDOWN
+// ========================================================
     // ─── Bulk Transaction Selection (Category Detail Table) ──────────────────────
 
     function updateCatDetailBulkBar() {
@@ -5094,6 +5136,9 @@
       URL.revokeObjectURL(url);
     }
 
+  // ========================================================
+// VIEW 7: BUDGET SIMULATOR (50/30/20 & SCENARIOS)
+// ========================================================
     // ========================================================
     // BUDGET & SCENARIO SIMULATOR LOGIC
     // ========================================================
@@ -5596,6 +5641,9 @@
       }
     }
 
+  // ========================================================
+// VIEW 8: RULES & KEYWORDS ENGINE
+// ========================================================
     // Render View 7: Rules & Keywords
     function renderRules(data) {
       const rules = data.user_rules || [];
@@ -5662,6 +5710,9 @@
       }
     }
 
+  // ========================================================
+// VIEW 9: SÉJOURS & VACANCES (HOLIDAYS TRACKER)
+// ========================================================
     // ========================================================
     // SÉJOURS & VACANCES (HOLIDAY TRIPS) LOGIC
     // ========================================================
@@ -6209,19 +6260,7 @@
       }
     }
 
-    function toggleMobileMenu() {
-      const nav = document.getElementById('sidebar-nav');
-      if (nav) nav.classList.toggle('hidden');
-    }
-
-    // Initial Startup
-    window.addEventListener('DOMContentLoaded', () => {
-      if (AppState.currentView && AppState.currentView !== 'overview') {
-        switchView(AppState.currentView);
-      }
-      loadDashboardData();
-    });
-  </script>
+</script>
 
 </body>
 
