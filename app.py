@@ -233,6 +233,8 @@ def get_all_statements_transactions(pdf_dir: str = None, cache_dir: str = None, 
                 with open(c_path, "r", encoding="utf-8") as fp:
                     c_data = json.load(fp)
                     for t in c_data.get("transactions", []):
+                        t["color"] = CATEGORY_COLORS.get(t.get("category"), t.get("color", "#8C8D89"))
+                        t["icon"] = CATEGORY_ICONS.get(t.get("category"), t.get("icon", "📦"))
                         sig = (t.get("date"), t.get("amount"), t.get("description"))
                         if sig not in seen:
                             seen.add(sig)
@@ -243,6 +245,8 @@ def get_all_statements_transactions(pdf_dir: str = None, cache_dir: str = None, 
     for p in pdfs:
         txs = parse_and_cache_pdf(p, cache_dir=cache_dir, profile=profile, ws_dir=ws_dir, force=force_reparse)
         for t in txs:
+            t["color"] = CATEGORY_COLORS.get(t.get("category"), t.get("color", "#8C8D89"))
+            t["icon"] = CATEGORY_ICONS.get(t.get("category"), t.get("icon", "📦"))
             # Deduplication key: date + amount + description
             sig = (t.get("date"), t.get("amount"), t.get("description"))
             if sig not in seen:
@@ -885,8 +889,8 @@ def get_dashboard_data():
             cat_totals[c] = {
                 "total": 0.0,
                 "count": 0,
-                "color": tx.get("color", "#94a3b8"),
-                "icon": tx.get("icon", "📦")
+                "color": CATEGORY_COLORS.get(c, tx.get("color", "#8C8D89")),
+                "icon": CATEGORY_ICONS.get(c, tx.get("icon", "📦"))
             }
         if tx_type == "Debit":
             cat_totals[c]["total"] += abs(amt)
@@ -1263,7 +1267,7 @@ def update_category():
             for t in c.get("transactions", []):
                 if t.get("id") == tx_id:
                     t["category"] = new_cat
-                    t["color"] = CATEGORY_COLORS.get(new_cat, "#94a3b8")
+                    t["color"] = CATEGORY_COLORS.get(new_cat, "#8C8D89")
                     t["icon"] = CATEGORY_ICONS.get(new_cat, "📦")
                     t["manual_override"] = True
                     if data.get("merchant"):
@@ -1297,7 +1301,7 @@ def update_category():
                 for t in c.get("transactions", []):
                     if t.get("id") == tx_id:
                         t["category"] = new_cat
-                        t["color"] = CATEGORY_COLORS.get(new_cat, "#94a3b8")
+                        t["color"] = CATEGORY_COLORS.get(new_cat, "#8C8D89")
                         t["icon"] = CATEGORY_ICONS.get(new_cat, "📦")
                         t["manual_override"] = True
                         if data.get("merchant"):
@@ -1367,7 +1371,7 @@ def bulk_update_category():
             for t in c.get("transactions", []):
                 if t.get("id") in id_set:
                     t["category"] = new_cat
-                    t["color"] = CATEGORY_COLORS.get(new_cat, "#94a3b8")
+                    t["color"] = CATEGORY_COLORS.get(new_cat, "#8C8D89")
                     t["icon"] = CATEGORY_ICONS.get(new_cat, "📦")
                     t["manual_override"] = True
                     if t.get("merchant") in ["Divers", "Restauration & Sorties", "Autre", None]:
@@ -1395,7 +1399,7 @@ def bulk_update_category():
                 for t in c.get("transactions", []):
                     if t.get("id") in id_set:
                         t["category"] = new_cat
-                        t["color"] = CATEGORY_COLORS.get(new_cat, "#94a3b8")
+                        t["color"] = CATEGORY_COLORS.get(new_cat, "#8C8D89")
                         t["icon"] = CATEGORY_ICONS.get(new_cat, "📦")
                         t["manual_override"] = True
                         if t.get("merchant") in ["Divers", "Restauration & Sorties", "Autre", None]:

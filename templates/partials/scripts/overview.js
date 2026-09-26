@@ -164,13 +164,13 @@
 
         item.innerHTML = `
           <div class="flex items-center space-x-3.5">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-base shrink-0" style="background-color: ${t.color || '#0ea5e9'}15; color: ${t.color || '#0ea5e9'};">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-base shrink-0" style="background-color: ${t.color || '#52616B'}15; color: ${t.color || '#52616B'};">
               ${t.icon || '💻'}
             </div>
             <div>
               <div class="flex items-center space-x-2 flex-wrap">
                 <span class="font-bold text-sm text-century-charcoal">${cleanMerchant}</span>
-                <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold" style="background-color: ${t.color || '#0ea5e9'}15; color: ${t.color || '#0ea5e9'};">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold" style="background-color: ${t.color || '#52616B'}15; color: ${t.color || '#52616B'};">
                   ${t.category}
                 </span>
               </div>
@@ -814,7 +814,7 @@
             <span class="text-[11px] text-century-muted font-mono truncate max-w-xs block">${cleanDesc}</span>
           </td>
           <td class="py-2.5 px-3 whitespace-nowrap">
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-medium" style="background-color: ${t.color || '#94a3b8'}20; color: ${t.color || '#94a3b8'};">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-medium" style="background-color: ${t.color || '#8C8D89'}20; color: ${t.color || '#8C8D89'};">
               ${t.category}
             </span>
           </td>

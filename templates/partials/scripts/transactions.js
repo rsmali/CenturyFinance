@@ -118,14 +118,14 @@
         let tripHtml = '<span class="text-century-muted/40 text-[11px]">—</span>';
         if (trip) {
           tripHtml = `
-            <button onclick="openHolidayTripModal('${trip.id}')" title="Voir le séjour : ${escapeHtml(trip.name)}" class="inline-flex items-center space-x-1 px-2 py-0.5 rounded-md text-[11px] font-medium border hover:opacity-80 transition" style="background-color: ${trip.color || '#0ea5e9'}15; color: ${trip.color || '#0ea5e9'}; border-color: ${trip.color || '#0ea5e9'}35;">
+            <button onclick="openHolidayTripModal('${trip.id}')" title="Voir le séjour : ${escapeHtml(trip.name)}" class="inline-flex items-center space-x-1 px-2 py-0.5 rounded-md text-[11px] font-medium border hover:opacity-80 transition" style="background-color: ${trip.color || '#366B80'}15; color: ${trip.color || '#366B80'}; border-color: ${trip.color || '#366B80'}35;">
               <span>${trip.icon || '🌴'}</span>
               <span class="truncate max-w-[120px]">${escapeHtml(trip.name)}</span>
             </button>
           `;
         } else if (tx.category === 'Voyages & Vacances') {
           tripHtml = `
-            <button onclick="openCategoryModal('${tx.id}')" title="Rattacher à un séjour" class="inline-flex items-center space-x-1 px-2 py-0.5 rounded-md text-[10px] font-semibold text-sky-700 bg-sky-50 border border-sky-200 hover:bg-sky-100 transition">
+            <button onclick="openCategoryModal('${tx.id}')" title="Rattacher à un séjour" class="inline-flex items-center space-x-1 px-2 py-0.5 rounded-md text-[10px] font-semibold text-[#366B80] bg-[#EEF4F8] border border-[#366B80]/20 hover:bg-[#E3EDF3] transition">
               <span>+ Assigner</span>
             </button>
           `;

@@ -127,7 +127,7 @@
         modeBadge.textContent = isRegular ? 'Mode Régulier (Lissé)' : 'Mode Brut (Tout)';
         modeBadge.className = isRegular 
           ? 'px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#E8F0EC] text-[#2D5A3C] border border-[#2D5A3C]/20'
-          : 'px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200';
+          : 'px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#FDF8EE] text-[#9A6B22] border border-[#F6E1B5]';
       }
 
       // Destroy previous Chart.js instance if it exists
@@ -240,7 +240,7 @@
             name: cat,
             amount: netSpend,
             count: eligibleDebits.length,
-            color: colorsMap[cat] || '#94a3b8',
+            color: colorsMap[cat] || '#8C8D89',
             icon: iconsMap[cat] || '📦',
             excludedCount: excludedForThisCat.length,
             excludedAmount: excludedForThisCat.reduce((s, t) => s + Math.abs(t.amount || 0), 0)
@@ -257,21 +257,21 @@
             adjustments.push({
               icon: '✅',
               text: `Loyer 100% compensé par virements reçus (0 € net)`,
-              bg: 'bg-emerald-50 text-emerald-800 border-emerald-200'
+              bg: 'bg-[#E8F0EC] text-[#2D5A3C] border-[#2D5A3C]/20'
             });
           }
           if (totalExcluded1TimeCount > 0) {
             adjustments.push({
               icon: '⚡',
               text: `${totalExcluded1TimeCount} achat(s) unique(s) lissé(s) (${formatFR(totalExcluded1TimeAmt)})`,
-              bg: 'bg-amber-50 text-amber-800 border-amber-200'
+              bg: 'bg-[#FDF8EE] text-[#9A6B22] border-[#F6E1B5]'
             });
           }
           if (investmentsExcludedAmt > 0) {
             adjustments.push({
               icon: '📈',
               text: `Épargne & investissements exclus (${formatFR(investmentsExcludedAmt)})`,
-              bg: 'bg-purple-50 text-purple-800 border-purple-200'
+              bg: 'bg-[#EEF4FF] text-[#2C4A6F] border-[#2C4A6F]/20'
             });
           }
           adjustments.forEach(adj => {
@@ -368,7 +368,7 @@
           };
 
           const excludedBadge = c.excludedCount > 0 
-            ? `<span class="text-[10px] text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200 ml-1.5" title="${c.excludedCount} achat(s) unique(s) de ${formatFR(c.excludedAmount)} exclu(s)">⚡ ${c.excludedCount} achat unique</span>`
+            ? `<span class="text-[10px] text-[#9A6B22] bg-[#FDF8EE] px-1.5 py-0.5 rounded border border-[#F6E1B5] ml-1.5" title="${c.excludedCount} achat(s) unique(s) de ${formatFR(c.excludedAmount)} exclu(s)">⚡ ${c.excludedCount} achat unique</span>`
             : '';
 
           row.innerHTML = `
@@ -526,7 +526,7 @@
       catTrends.forEach((ct, idx) => {
         const hasMajorSpike = ct.out_of_ordinary && ct.unusual_months && ct.unusual_months.length > 0;
         const card = document.createElement('div');
-        card.className = `c-card c-card-interactive p-5 space-y-3 flex flex-col justify-between cursor-pointer group ${hasMajorSpike ? 'border-amber-300 shadow-sm' : ''}`;
+        card.className = `c-card c-card-interactive p-5 space-y-3 flex flex-col justify-between cursor-pointer group ${hasMajorSpike ? 'border-[#F6E1B5] shadow-xs' : ''}`;
         card.onclick = () => openCategoryDetail(ct.category);
         
         const canvasId = `catChart-${idx}`;
@@ -535,12 +535,12 @@
         // High-value, contextual badge HTML
         let badgeHtml = '';
         if (ct.rent_neutral) {
-          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">✅ 100% compensé</span>`;
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#E8F0EC] text-[#2D5A3C] border border-[#2D5A3C]/20">✅ 100% compensé</span>`;
         } else if (hasMajorSpike) {
-          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">⚠️ Pic en ${ct.unusual_months[0].month_label.split(' ')[0]}</span>`;
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#FDF8EE] text-[#9A6B22] border border-[#F6E1B5]">⚠️ Pic en ${ct.unusual_months[0].month_label.split(' ')[0]}</span>`;
         } else if (ct.category === 'Investissements & Épargne') {
           const invRate = trends.investment_analysis?.overall_savings_rate || 20;
-          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-800 border border-purple-200">${invRate}% des revenus</span>`;
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#EEF4FF] text-[#2C4A6F] border border-[#2C4A6F]/20">${invRate}% des revenus</span>`;
         } else if (ct.budget_share_pct > 0) {
           const isLarge = ct.budget_share_pct >= 20;
           const badgeClass = isLarge ? 'bg-[#FAF3EA] text-[#9A6B22] border-[#F6E1B5]' : 'bg-[#F0F2ED] text-[#4A5550] border-[#EAEAE5]';
@@ -633,7 +633,7 @@
           if (!cCanvas) return;
 
           const shortLabels = (ct.months || []).map(m => m.split(' ')[0]);
-          const pointColors = (ct.history || []).map((_, i) => (hasMajorSpike && unusualSet.has(i)) ? '#D97706' : (ct.color || '#2D5A3C'));
+          const pointColors = (ct.history || []).map((_, i) => (hasMajorSpike && unusualSet.has(i)) ? '#9A6B22' : (ct.color || '#2D5A3C'));
           const pointRadii = (ct.history || []).map((_, i) => (hasMajorSpike && unusualSet.has(i)) ? 5 : 2.5);
 
           const cChart = new Chart(cCanvas, {
@@ -834,7 +834,7 @@
       const avg = ct.avg_monthly || 0;
       const unusualIndices = new Set((ct.unusual_months || []).map(u => u.index));
 
-      const barBgColors = history.map((_, i) => unusualIndices.has(i) ? 'rgba(239, 68, 68, 0.85)' : (ct.color || '#2D5A3C'));
+      const barBgColors = history.map((_, i) => unusualIndices.has(i) ? '#9E4756' : (ct.color || '#2D5A3C'));
       const avgLineData = labels.map(() => avg);
 
       AppState.categoryZoomChart = new Chart(ctx, {
@@ -970,8 +970,8 @@
         });
       }
 
-      const PALETTE = ['#2D5A3C', '#2563EB', '#D97706', '#7C3AED', '#0D9488', '#94A3B8'];
-      const sliceColors = displayItems.map((item, idx) => item.isOtherGroup ? '#94A3B8' : (PALETTE[idx % PALETTE.length]));
+      const PALETTE = ['#2D5A3C', '#C08435', '#2C4A6F', '#9E4756', '#366B80', '#5B7B7A', '#8C8D89'];
+      const sliceColors = displayItems.map((item, idx) => item.isOtherGroup ? '#8C8D89' : (PALETTE[idx % PALETTE.length]));
 
       AppState.currentCategoryBreakdownItems = displayItems;
       AppState.currentCategoryBreakdownTotal = grandTotal;
@@ -1149,7 +1149,7 @@
           <td class="py-3 px-4">
             <div class="font-semibold text-century-charcoal text-xs flex items-center space-x-1.5">
               <span>${cleanMerchant}</span>
-              ${isCredit ? '<span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 uppercase tracking-wider">Crédit / Avoir</span>' : ''}
+              ${isCredit ? '<span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-[#E8F0EC] text-[#2D5A3C] border border-[#2D5A3C]/20 uppercase tracking-wider">Crédit / Avoir</span>' : ''}
             </div>
             <div class="text-[11px] text-century-muted truncate max-w-md">${t.description}</div>
           </td>

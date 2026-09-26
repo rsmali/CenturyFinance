@@ -28,27 +28,27 @@ CATEGORIES = [
 ]
 
 CATEGORY_COLORS = {
-    "Alimentation & Supermarchés": "#10b981",    # Emerald
-    "Restaurants & Bars": "#f59e0b",             # Amber
-    "Sorties": "#e11d48",                        # Rose / Evening & Events
-    "Voyages & Vacances": "#0ea5e9",             # Sky Blue / Lagoon
-    "Sports & Fitness": "#0284c7",               # Ocean Blue
-    "Investissements & Épargne": "#8b5cf6",      # Purple / Violet
-    "High-Tech & Équipement": "#38bdf8",         # Sky Blue / Tech Cyan
-    "Logement & Énergie": "#6366f1",            # Indigo
-    "Télécom & Abonnements": "#a855f7",         # Violet
-    "Transports & Péages": "#06b6d4",           # Cyan
-    "Santé & Pharmacie": "#ec4899",             # Pink
-    "Shopping & Soins": "#d946ef",              # Fuchsia
-    "Livres": "#d97706",                        # Amber / Book Leather
-    "Tabac & Presse": "#78716c",                # Warm Stone
-    "Frais Bancaires": "#ef4444",               # Red
-    "Retraits Espèces (DAB)": "#f97316",        # Orange
-    "Chèques Émis": "#64748b",                  # Slate
-    "Salaires & Revenus": "#22c55e",            # Green
-    "Cadeaux & Dons": "#ec4899",                # Rose / Pink
-    "Remboursements & Avoirs": "#14b8a6",       # Teal
-    "Autre": "#94a3b8"                          # Gray
+    "Alimentation & Supermarchés": "#2D5A3C",    # Century Forest / Sage Green
+    "Restaurants & Bars": "#C08435",             # Warm Bistrot Amber / Caramel
+    "Sorties": "#9E4756",                        # Vintage Wine / Dusty Burgundy Rose
+    "Voyages & Vacances": "#366B80",             # Mediterranean Slate / Aegean Teal
+    "Sports & Fitness": "#417B66",               # Deep Eucalyptus / Pine
+    "Investissements & Épargne": "#2C4A6F",      # Century Royal Navy / Heritage Wealth Blue
+    "High-Tech & Équipement": "#52616B",         # Graphite / Industrial Slate
+    "Logement & Énergie": "#3D4F5C",            # Architectural Nordic Slate
+    "Télécom & Abonnements": "#5C5975",         # Dusk Indigo / Muted Slate Violet
+    "Transports & Péages": "#4A6984",           # Slate Blue / Steel
+    "Santé & Pharmacie": "#5B7B7A",             # Muted Celadon / Apothecary Sage
+    "Shopping & Soins": "#85586F",              # Muted Mauve / Heather Plum
+    "Livres": "#8C6D58",                        # Book Leather / Warm Taupe
+    "Tabac & Presse": "#78716C",                # Flint Stone / Warm Ash
+    "Frais Bancaires": "#964B55",               # Muted Rust / Terracotta Crimson
+    "Retraits Espèces (DAB)": "#A87042",        # Warm Bronze
+    "Chèques Émis": "#64748B",                  # Neutral Slate
+    "Salaires & Revenus": "#234B34",            # Deep Heritage Pine Green
+    "Cadeaux & Dons": "#8C5369",                # Dusty Plum Rose
+    "Remboursements & Avoirs": "#3A7068",       # Deep Mineral Teal
+    "Autre": "#8C8D89"                          # French Gray / Warm Muted Slate
 }
 
 CATEGORY_ICONS = {

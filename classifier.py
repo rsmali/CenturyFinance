@@ -298,7 +298,7 @@ def classify_transactions(transactions: list, profile: dict = None, workspace_di
         # Never overwrite a user's manual category or merchant assignment
         if tx.get("manual_override"):
             cat = tx.get("category", "Autre")
-            tx["color"] = CATEGORY_COLORS.get(cat, "#94a3b8")
+            tx["color"] = CATEGORY_COLORS.get(cat, "#8C8D89")
             tx["icon"] = CATEGORY_ICONS.get(cat, "📦")
             if cat == "Investissements & Épargne" and not tx.get("investment_type"):
                 desc_u = tx.get("description", "").upper()
@@ -317,7 +317,7 @@ def classify_transactions(transactions: list, profile: dict = None, workspace_di
         )
         tx["category"] = cat
         tx["merchant"] = merchant
-        tx["color"] = CATEGORY_COLORS.get(cat, "#94a3b8")
+        tx["color"] = CATEGORY_COLORS.get(cat, "#8C8D89")
         tx["icon"] = CATEGORY_ICONS.get(cat, "📦")
 
         if cat == "Investissements & Épargne":
@@ -338,7 +338,7 @@ def classify_transactions(transactions: list, profile: dict = None, workspace_di
             classify_with_ollama(unclassified, model=model)
             for tx in unclassified:
                 cat = tx.get("category", "Autre")
-                tx["color"] = CATEGORY_COLORS.get(cat, "#94a3b8")
+                tx["color"] = CATEGORY_COLORS.get(cat, "#8C8D89")
                 tx["icon"] = CATEGORY_ICONS.get(cat, "📦")
 
     return transactions

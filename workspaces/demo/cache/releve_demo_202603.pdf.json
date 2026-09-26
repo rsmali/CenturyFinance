@@ -11,7 +11,7 @@
       "raw_amount": 3150.0,
       "category": "Salaires & Revenus",
       "merchant": "ACME Technologies (Salaire)",
-      "color": "#22c55e",
+      "color": "#234B34",
       "icon": "💰",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -25,7 +25,7 @@
       "raw_amount": 820.0,
       "category": "Logement & Énergie",
       "merchant": "Loyer Résidence Horizon",
-      "color": "#6366f1",
+      "color": "#3D4F5C",
       "icon": "⚡",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -39,7 +39,7 @@
       "raw_amount": 500.0,
       "category": "Investissements & Épargne",
       "merchant": "Épargne Livret A",
-      "color": "#8b5cf6",
+      "color": "#2C4A6F",
       "icon": "📈",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -53,7 +53,7 @@
       "raw_amount": 300.0,
       "category": "Investissements & Épargne",
       "merchant": "PEA / Bourse (Trade Republic)",
-      "color": "#8b5cf6",
+      "color": "#2C4A6F",
       "icon": "📈",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -67,7 +67,7 @@
       "raw_amount": 86.4,
       "category": "Transports & Péages",
       "merchant": "Navigo / RATP",
-      "color": "#06b6d4",
+      "color": "#4A6984",
       "icon": "🚗",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -81,7 +81,7 @@
       "raw_amount": 29.99,
       "category": "Sports & Fitness",
       "merchant": "Basic-Fit",
-      "color": "#0284c7",
+      "color": "#417B66",
       "icon": "🏋️",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -93,10 +93,10 @@
       "amount": -19.99,
       "type": "Debit",
       "raw_amount": 19.99,
-      "category": "Télécom, Forfaits & Abonnements",
+      "category": "Télécom & Abonnements",
       "merchant": "Free Mobile",
-      "color": "#94a3b8",
-      "icon": "📦",
+      "color": "#5C5975",
+      "icon": "📱",
       "statement_file": "releve_demo_202603.pdf"
     },
     {
@@ -107,10 +107,10 @@
       "amount": -10.99,
       "type": "Debit",
       "raw_amount": 10.99,
-      "category": "Télécom, Forfaits & Abonnements",
+      "category": "Télécom & Abonnements",
       "merchant": "Spotify",
-      "color": "#94a3b8",
-      "icon": "📦",
+      "color": "#5C5975",
+      "icon": "📱",
       "statement_file": "releve_demo_202603.pdf"
     },
     {
@@ -121,10 +121,10 @@
       "amount": -13.49,
       "type": "Debit",
       "raw_amount": 13.49,
-      "category": "Télécom, Forfaits & Abonnements",
+      "category": "Télécom & Abonnements",
       "merchant": "Netflix",
-      "color": "#94a3b8",
-      "icon": "📦",
+      "color": "#5C5975",
+      "icon": "📱",
       "statement_file": "releve_demo_202603.pdf"
     },
     {
@@ -137,7 +137,7 @@
       "raw_amount": 4.5,
       "category": "Frais Bancaires",
       "merchant": "Frais bancaires & Tenue de compte",
-      "color": "#ef4444",
+      "color": "#964B55",
       "icon": "🏦",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -151,7 +151,7 @@
       "raw_amount": 68.3,
       "category": "Alimentation & Supermarchés",
       "merchant": "Monoprix",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "icon": "🛒",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -165,7 +165,7 @@
       "raw_amount": 41.7,
       "category": "Alimentation & Supermarchés",
       "merchant": "Carrefour City",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "icon": "🛒",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -179,7 +179,7 @@
       "raw_amount": 51.1,
       "category": "Alimentation & Supermarchés",
       "merchant": "Biocoop",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "icon": "🛒",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -193,7 +193,7 @@
       "raw_amount": 75.6,
       "category": "Alimentation & Supermarchés",
       "merchant": "Monoprix",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "icon": "🛒",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -207,7 +207,7 @@
       "raw_amount": 6.4,
       "category": "Alimentation & Supermarchés",
       "merchant": "Boulangerie Artisanale",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "icon": "🛒",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -221,7 +221,7 @@
       "raw_amount": 8.2,
       "category": "Alimentation & Supermarchés",
       "merchant": "Boulangerie Artisanale",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "icon": "🛒",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -235,7 +235,7 @@
       "raw_amount": 11.5,
       "category": "Alimentation & Supermarchés",
       "merchant": "Boulangerie Artisanale",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "icon": "🛒",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -247,9 +247,9 @@
       "amount": -26.5,
       "type": "Debit",
       "raw_amount": 26.5,
-      "category": "Restaurants & Sorties",
+      "category": "Restaurants & Bars",
       "merchant": "Uber Eats",
-      "color": "#f59e0b",
+      "color": "#C08435",
       "icon": "🍽️",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -261,9 +261,9 @@
       "amount": -31.2,
       "type": "Debit",
       "raw_amount": 31.2,
-      "category": "Restaurants & Sorties",
+      "category": "Restaurants & Bars",
       "merchant": "Uber Eats",
-      "color": "#f59e0b",
+      "color": "#C08435",
       "icon": "🍽️",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -275,9 +275,9 @@
       "amount": -58.0,
       "type": "Debit",
       "raw_amount": 58.0,
-      "category": "Restaurants & Sorties",
+      "category": "Restaurants & Bars",
       "merchant": "Restaurant Le Comptoir",
-      "color": "#f59e0b",
+      "color": "#C08435",
       "icon": "🍽️",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -289,9 +289,9 @@
       "amount": -18.5,
       "type": "Debit",
       "raw_amount": 18.5,
-      "category": "Restaurants & Sorties",
+      "category": "Restaurants & Bars",
       "merchant": "Café Le Marais",
-      "color": "#f59e0b",
+      "color": "#C08435",
       "icon": "🍽️",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -305,7 +305,7 @@
       "raw_amount": 24.9,
       "category": "Livres",
       "merchant": "Librairie Gibert",
-      "color": "#d97706",
+      "color": "#8C6D58",
       "icon": "📚",
       "statement_file": "releve_demo_202603.pdf"
     },
@@ -317,10 +317,10 @@
       "amount": -19.4,
       "type": "Debit",
       "raw_amount": 19.4,
-      "category": "Santé & Prévoyance",
+      "category": "Santé & Pharmacie",
       "merchant": "Pharmacie Centrale",
-      "color": "#94a3b8",
-      "icon": "📦",
+      "color": "#5B7B7A",
+      "icon": "💊",
       "statement_file": "releve_demo_202603.pdf"
     },
     {
@@ -333,7 +333,7 @@
       "raw_amount": 79.9,
       "category": "Shopping & Soins",
       "merchant": "Uniqlo",
-      "color": "#d946ef",
+      "color": "#85586F",
       "icon": "🛍️",
       "statement_file": "releve_demo_202603.pdf"
     }

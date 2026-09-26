@@ -338,7 +338,7 @@ def compute_multi_month_trends(transactions: list, profile: dict = None) -> dict
 
         category_trends.append({
             "category": cat,
-            "color": CATEGORY_COLORS.get(cat, "#94a3b8"),
+            "color": CATEGORY_COLORS.get(cat, "#8C8D89"),
             "icon": CATEGORY_ICONS.get(cat, "📦"),
             "history": [round(v, 2) for v in history],
             "months": month_labels,

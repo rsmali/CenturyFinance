@@ -38,7 +38,7 @@
       trips.forEach(trip => {
         const card = document.createElement('div');
         card.className = 'c-card p-6 space-y-5 border-t-4 transition duration-200 hover:shadow-md';
-        card.style.borderTopColor = trip.color || '#0ea5e9';
+        card.style.borderTopColor = trip.color || '#366B80';
 
         const hasBudget = (trip.budget || 0) > 0;
         const spent = trip.total_spent || 0;
@@ -87,7 +87,7 @@
                     <div class="flex items-center space-x-2 truncate flex-1 min-w-0 pr-2">
                       <span class="font-mono text-[11px] text-century-muted shrink-0">${t.date}</span>
                       <span class="truncate font-semibold text-century-charcoal">${escapeHtml(t.merchant || t.description)}</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded-full shrink-0 font-medium" style="background-color: ${t.color || '#94a3b8'}15; color: ${t.color || '#64748b'};">${t.category}</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full shrink-0 font-medium" style="background-color: ${t.color || '#8C8D89'}15; color: ${t.color || '#64748B'};">${t.category}</span>
                     </div>
                     <div class="flex items-center space-x-2 shrink-0">
                       <span class="font-bold text-xs font-sans text-[#6E2D38]">${formatFR(t.amount, true)}</span>
@@ -106,7 +106,7 @@
           <!-- Header -->
           <div class="flex items-start justify-between gap-3">
             <div class="flex items-start space-x-3">
-              <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-2xl shrink-0 shadow-xs" style="background-color: ${trip.color || '#0ea5e9'}18;">
+              <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-2xl shrink-0 shadow-xs" style="background-color: ${trip.color || '#366B80'}18;">
                 ${trip.icon || '🏖️'}
               </div>
               <div>
@@ -240,7 +240,7 @@
           if (endInput) endInput.value = trip.date_end || '';
           if (budgetInput) budgetInput.value = trip.budget > 0 ? trip.budget : '';
           if (iconInput) iconInput.value = trip.icon || '🏖️';
-          if (colorInput) colorInput.value = trip.color || '#0ea5e9';
+          if (colorInput) colorInput.value = trip.color || '#366B80';
           if (notesInput) notesInput.value = trip.notes || '';
           if (autoAssignInput) autoAssignInput.checked = false;
           if (iconPrev) iconPrev.textContent = trip.icon || '🏖️';

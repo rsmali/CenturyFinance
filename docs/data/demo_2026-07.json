@@ -8,15 +8,15 @@
       "High-Tech & Équipement": 114.75,
       "Livres": 24.9,
       "Logement & Énergie": 717.5,
-      "Restaurants & Bars": 0.0,
+      "Restaurants & Bars": 134.2,
       "Retraits Espèces (DAB)": 0.0,
-      "Santé & Pharmacie": 0.0,
+      "Santé & Pharmacie": 19.4,
       "Shopping & Soins": 39.95,
       "Sorties": 0.0,
       "Sports & Fitness": 29.99,
       "Tabac & Presse": 0.0,
       "Transports & Péages": 86.4,
-      "Télécom & Abonnements": 0.0,
+      "Télécom & Abonnements": 44.47,
       "Voyages & Vacances": 105.62
     },
     "income": 3225.0,
@@ -51,7 +51,7 @@
     },
     "investments_cto": 375.0,
     "investments_livret_a": 425.0,
-    "money_left_over": 1052.58,
+    "money_left_over": 854.51,
     "months_considered": [
       "Mai 2026",
       "Juin 2026",
@@ -59,8 +59,8 @@
       "Août 2026"
     ],
     "months_count": 4,
-    "savings_rate": 57.4,
-    "total_expenses": 1372.42
+    "savings_rate": 51.3,
+    "total_expenses": 1570.49
   },
   "categories": [
     "Alimentation & Supermarchés",
@@ -86,27 +86,27 @@
     "Autre"
   ],
   "category_colors": {
-    "Alimentation & Supermarchés": "#10b981",
-    "Autre": "#94a3b8",
-    "Cadeaux & Dons": "#ec4899",
-    "Chèques Émis": "#64748b",
-    "Frais Bancaires": "#ef4444",
-    "High-Tech & Équipement": "#38bdf8",
-    "Investissements & Épargne": "#8b5cf6",
-    "Livres": "#d97706",
-    "Logement & Énergie": "#6366f1",
-    "Remboursements & Avoirs": "#14b8a6",
-    "Restaurants & Bars": "#f59e0b",
-    "Retraits Espèces (DAB)": "#f97316",
-    "Salaires & Revenus": "#22c55e",
-    "Santé & Pharmacie": "#ec4899",
-    "Shopping & Soins": "#d946ef",
-    "Sorties": "#e11d48",
-    "Sports & Fitness": "#0284c7",
-    "Tabac & Presse": "#78716c",
-    "Transports & Péages": "#06b6d4",
-    "Télécom & Abonnements": "#a855f7",
-    "Voyages & Vacances": "#0ea5e9"
+    "Alimentation & Supermarchés": "#2D5A3C",
+    "Autre": "#8C8D89",
+    "Cadeaux & Dons": "#8C5369",
+    "Chèques Émis": "#64748B",
+    "Frais Bancaires": "#964B55",
+    "High-Tech & Équipement": "#52616B",
+    "Investissements & Épargne": "#2C4A6F",
+    "Livres": "#8C6D58",
+    "Logement & Énergie": "#3D4F5C",
+    "Remboursements & Avoirs": "#3A7068",
+    "Restaurants & Bars": "#C08435",
+    "Retraits Espèces (DAB)": "#A87042",
+    "Salaires & Revenus": "#234B34",
+    "Santé & Pharmacie": "#5B7B7A",
+    "Shopping & Soins": "#85586F",
+    "Sorties": "#9E4756",
+    "Sports & Fitness": "#417B66",
+    "Tabac & Presse": "#78716C",
+    "Transports & Péages": "#4A6984",
+    "Télécom & Abonnements": "#5C5975",
+    "Voyages & Vacances": "#366B80"
   },
   "category_icons": {
     "Alimentation & Supermarchés": "🛒",
@@ -133,73 +133,73 @@
   },
   "category_totals": {
     "Alimentation & Supermarchés": {
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "count": 7,
       "icon": "🛒",
       "total": 242.8
     },
     "Frais Bancaires": {
-      "color": "#ef4444",
+      "color": "#964B55",
       "count": 1,
       "icon": "🏦",
       "total": 4.5
     },
     "Investissements & Épargne": {
-      "color": "#8b5cf6",
+      "color": "#2C4A6F",
       "count": 2,
       "icon": "📈",
       "total": 850.0
     },
     "Livres": {
-      "color": "#d97706",
+      "color": "#8C6D58",
       "count": 1,
       "icon": "📚",
       "total": 24.9
     },
     "Logement & Énergie": {
-      "color": "#6366f1",
+      "color": "#3D4F5C",
       "count": 2,
       "icon": "⚡",
       "total": 410.0
     },
-    "Restaurants & Sorties": {
-      "color": "#f59e0b",
+    "Restaurants & Bars": {
+      "color": "#C08435",
       "count": 4,
       "icon": "🍽️",
       "total": 134.2
     },
-    "Santé & Prévoyance": {
-      "color": "#94a3b8",
+    "Santé & Pharmacie": {
+      "color": "#5B7B7A",
       "count": 1,
-      "icon": "📦",
+      "icon": "💊",
       "total": 19.4
     },
     "Shopping & Soins": {
-      "color": "#d946ef",
+      "color": "#85586F",
       "count": 1,
       "icon": "🛍️",
       "total": 79.9
     },
     "Sports & Fitness": {
-      "color": "#0284c7",
+      "color": "#417B66",
       "count": 1,
       "icon": "🏋️",
       "total": 29.99
     },
     "Transports & Péages": {
-      "color": "#06b6d4",
+      "color": "#4A6984",
       "count": 1,
       "icon": "🚗",
       "total": 86.4
     },
-    "Télécom, Forfaits & Abonnements": {
-      "color": "#94a3b8",
+    "Télécom & Abonnements": {
+      "color": "#5C5975",
       "count": 3,
-      "icon": "📦",
+      "icon": "📱",
       "total": 44.47
     },
     "Voyages & Vacances": {
-      "color": "#0ea5e9",
+      "color": "#366B80",
       "count": 1,
       "icon": "🏖️",
       "total": 142.5
@@ -212,7 +212,7 @@
       "budget_pct": 56.3,
       "budget_remaining": 262.0,
       "categories": {
-        "Restaurants & Sorties": 58.0,
+        "Restaurants & Bars": 58.0,
         "Voyages & Vacances": 280.0
       },
       "color": "#0ea5e9",
@@ -236,7 +236,7 @@
       "budget_pct": 57.3,
       "budget_remaining": 149.5,
       "categories": {
-        "Restaurants & Sorties": 58.0,
+        "Restaurants & Bars": 58.0,
         "Voyages & Vacances": 142.5
       },
       "color": "#06b6d4",
@@ -260,15 +260,15 @@
     "breakdown_pct": {
       "cash_cheques": 0.0,
       "discretionary": 8.63633796681,
-      "essentials": 9.794034835784531,
-      "fixed": 36.74376578219164
+      "essentials": 10.576589513767315,
+      "fixed": 38.53759086105217
     },
     "cash_cheques_total": 0,
     "delivery_count": 2,
     "delivery_total": 57.7,
     "discretionary_total": 214.1,
-    "essential_total": 242.79999999999998,
-    "fixed_total": 910.9,
+    "essential_total": 262.2,
+    "fixed_total": 955.37,
     "investments_total": 850.0,
     "potential_savings": 74.93499999999999,
     "recommendations": [
@@ -293,7 +293,7 @@
         "type": "info"
       },
       {
-        "message": "Vos charges fixes récurrentes s'élèvent à 910.90 €/mois (Télécom, Énergie, Banque, Transports).",
+        "message": "Vos charges fixes récurrentes s'élèvent à 955.37 €/mois (Télécom, Énergie, Banque, Transports).",
         "title": "Charges fixes & Abonnements",
         "type": "neutral"
       }
@@ -307,7 +307,7 @@
     {
       "amount": -820.0,
       "category": "Logement & Énergie",
-      "color": "#6366f1",
+      "color": "#3D4F5C",
       "date": "03/07/2026",
       "description": "PRELEVEMENT SEPA DE: AGENCE IMMOBILIERE REF: LOYER RESIDENCE JUILLET",
       "icon": "⚡",
@@ -344,7 +344,7 @@
     {
       "badge": "10% des charges",
       "badge_color": "amber",
-      "description": "Vos prélèvements récurrents s'élèvent à environ 151,82 €/mois (910,90 € au total pour abonnements, forfaits, assurances).",
+      "description": "Vos prélèvements récurrents s'élèvent à environ 159,23 €/mois (955,37 € au total pour abonnements, forfaits, assurances).",
       "details": "Charges fixes régulières identifiées sur l'ensemble de vos relevés bancaires.",
       "icon": "🔄",
       "id": "recurring",
@@ -399,14 +399,14 @@
     },
     {
       "amount": 19.99,
-      "category": "Télécom, Forfaits & Abonnements",
+      "category": "Télécom & Abonnements",
       "date": "10/08/2026",
       "name": "Forfait Télécom / Internet",
       "periodicity": "Mensuel"
     },
     {
       "amount": 13.49,
-      "category": "Télécom, Forfaits & Abonnements",
+      "category": "Télécom & Abonnements",
       "date": "16/08/2026",
       "name": "Abonnement Streaming / Services",
       "periodicity": "Mensuel"
@@ -425,65 +425,65 @@
   "statements_detailed": [
     {
       "filename": "releve_demo_202603.pdf",
-      "mtime": 1790349087.4862597,
+      "mtime": 1790445366.1955097,
+      "size_formatted": "10.1 KB",
+      "size_kb": 10.05,
+      "status": "Completed",
+      "tx_count": 24,
+      "uploaded_date": "26 Sep 2026, 19:56"
+    },
+    {
+      "filename": "releve_demo_202604.pdf",
+      "mtime": 1790445366.1940308,
+      "size_formatted": "9.7 KB",
+      "size_kb": 9.66,
+      "status": "Completed",
+      "tx_count": 23,
+      "uploaded_date": "26 Sep 2026, 19:56"
+    },
+    {
+      "filename": "releve_demo_202605.pdf",
+      "mtime": 1790445366.1933565,
+      "size_formatted": "10.5 KB",
+      "size_kb": 10.49,
+      "status": "Completed",
+      "tx_count": 25,
+      "uploaded_date": "26 Sep 2026, 19:56"
+    },
+    {
+      "filename": "releve_demo_202606.pdf",
+      "mtime": 1790445366.1961086,
       "size_formatted": "10.1 KB",
       "size_kb": 10.1,
       "status": "Completed",
       "tx_count": 24,
-      "uploaded_date": "25 Sep 2026, 17:11"
-    },
-    {
-      "filename": "releve_demo_202604.pdf",
-      "mtime": 1790349087.486721,
-      "size_formatted": "9.7 KB",
-      "size_kb": 9.71,
-      "status": "Completed",
-      "tx_count": 23,
-      "uploaded_date": "25 Sep 2026, 17:11"
-    },
-    {
-      "filename": "releve_demo_202605.pdf",
-      "mtime": 1790349087.4871588,
-      "size_formatted": "10.5 KB",
-      "size_kb": 10.53,
-      "status": "Completed",
-      "tx_count": 25,
-      "uploaded_date": "25 Sep 2026, 17:11"
-    },
-    {
-      "filename": "releve_demo_202606.pdf",
-      "mtime": 1790423576.8911896,
-      "size_formatted": "10.1 KB",
-      "size_kb": 10.14,
-      "status": "Completed",
-      "tx_count": 24,
-      "uploaded_date": "26 Sep 2026, 13:52"
+      "uploaded_date": "26 Sep 2026, 19:56"
     },
     {
       "filename": "releve_demo_202607.pdf",
-      "mtime": 1790423151.3235483,
+      "mtime": 1790445366.1967163,
       "size_formatted": "11.0 KB",
-      "size_kb": 11.04,
+      "size_kb": 11.0,
       "status": "Completed",
       "tx_count": 26,
-      "uploaded_date": "26 Sep 2026, 13:45"
+      "uploaded_date": "26 Sep 2026, 19:56"
     },
     {
       "filename": "releve_demo_202608.pdf",
-      "mtime": 1790423151.3240502,
+      "mtime": 1790445366.1946955,
       "size_formatted": "10.2 KB",
-      "size_kb": 10.22,
+      "size_kb": 10.18,
       "status": "Completed",
       "tx_count": 24,
-      "uploaded_date": "26 Sep 2026, 13:45"
+      "uploaded_date": "26 Sep 2026, 19:56"
     }
   ],
   "statements_meta": {
     "processed": 6,
     "processing": 0,
     "total_files": 6,
-    "total_size_formatted": "61.7 KB",
-    "total_size_kb": 61.74
+    "total_size_formatted": "61.5 KB",
+    "total_size_kb": 61.48
   },
   "status": "ok",
   "summary": {
@@ -567,7 +567,7 @@
     {
       "amount": 3150.0,
       "category": "Salaires & Revenus",
-      "color": "#22c55e",
+      "color": "#234B34",
       "date": "28/07/2026",
       "description": "VIR RECU 918237410 DE: ACME TECH MOTIF: SALAIRE JUILLET 2026",
       "icon": "💰",
@@ -581,7 +581,7 @@
     {
       "amount": -4.5,
       "category": "Frais Bancaires",
-      "color": "#ef4444",
+      "color": "#964B55",
       "date": "26/07/2026",
       "description": "COTISATION MENSUELLE FORFAIT BANCAIRE FORMULE ESSENTIELLE",
       "icon": "🏦",
@@ -595,7 +595,7 @@
     {
       "amount": -70.6,
       "category": "Alimentation & Supermarchés",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "date": "25/07/2026",
       "description": "CARTE X1234 25/07 MONOPRIX SAINT GERMAIN",
       "icon": "🛒",
@@ -609,7 +609,7 @@
     {
       "amount": -11.5,
       "category": "Alimentation & Supermarchés",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "date": "22/07/2026",
       "description": "CARTE X1234 22/07 BOULANGERIE ARTISANALE DU COIN",
       "icon": "🛒",
@@ -622,8 +622,8 @@
     },
     {
       "amount": -31.2,
-      "category": "Restaurants & Sorties",
-      "color": "#f59e0b",
+      "category": "Restaurants & Bars",
+      "color": "#C08435",
       "date": "21/07/2026",
       "description": "CARTE X1234 21/07 UBER *EATS COMMERCE ELECTRONIQUE",
       "icon": "🍽️",
@@ -637,7 +637,7 @@
     {
       "amount": 410.0,
       "category": "Logement & Énergie",
-      "color": "#6366f1",
+      "color": "#3D4F5C",
       "date": "20/07/2026",
       "description": "VIR RECU 912830198 DE: JEAN DUPONT MOTIF: REMBOURSEMENT LOYER",
       "icon": "⚡",
@@ -650,8 +650,8 @@
     },
     {
       "amount": -18.5,
-      "category": "Restaurants & Sorties",
-      "color": "#f59e0b",
+      "category": "Restaurants & Bars",
+      "color": "#C08435",
       "date": "19/07/2026",
       "description": "CARTE X1234 19/07 CAFE LE MARAIS PARIS",
       "icon": "🍽️",
@@ -665,7 +665,7 @@
     {
       "amount": -46.1,
       "category": "Alimentation & Supermarchés",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "date": "18/07/2026",
       "description": "CARTE X1234 18/07 BIOCOOP LES HALLES",
       "icon": "🛒",
@@ -679,7 +679,7 @@
     {
       "amount": -79.9,
       "category": "Shopping & Soins",
-      "color": "#d946ef",
+      "color": "#85586F",
       "date": "17/07/2026",
       "description": "CARTE X1234 17/07 UNIQLO PARIS OPERA",
       "icon": "🛍️",
@@ -692,11 +692,11 @@
     },
     {
       "amount": -13.49,
-      "category": "Télécom, Forfaits & Abonnements",
-      "color": "#94a3b8",
+      "category": "Télécom & Abonnements",
+      "color": "#5C5975",
       "date": "16/07/2026",
       "description": "CARTE X1234 16/07 NETFLIX FRANCE MENSUEL",
-      "icon": "📦",
+      "icon": "📱",
       "id": "demo_07_9",
       "merchant": "Netflix",
       "raw_amount": 13.49,
@@ -707,7 +707,7 @@
     {
       "amount": -24.9,
       "category": "Livres",
-      "color": "#d97706",
+      "color": "#8C6D58",
       "date": "15/07/2026",
       "description": "CARTE X1234 15/07 LIBRAIRIE GIBERT JOSEPH",
       "icon": "📚",
@@ -721,7 +721,7 @@
     {
       "amount": -8.2,
       "category": "Alimentation & Supermarchés",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "date": "14/07/2026",
       "description": "CARTE X1234 14/07 BOULANGERIE ARTISANALE DU COIN",
       "icon": "🛒",
@@ -734,8 +734,8 @@
     },
     {
       "amount": -58.0,
-      "category": "Restaurants & Sorties",
-      "color": "#f59e0b",
+      "category": "Restaurants & Bars",
+      "color": "#C08435",
       "date": "13/07/2026",
       "description": "CARTE X1234 13/07 RESTAURANT LE COMPTOIR DU MARCHE",
       "holiday_trip_color": "#06b6d4",
@@ -752,11 +752,11 @@
     },
     {
       "amount": -10.99,
-      "category": "Télécom, Forfaits & Abonnements",
-      "color": "#94a3b8",
+      "category": "Télécom & Abonnements",
+      "color": "#5C5975",
       "date": "12/07/2026",
       "description": "CARTE X1234 12/07 SPOTIFY PREMIUM ABONNEMENT",
-      "icon": "📦",
+      "icon": "📱",
       "id": "demo_07_8",
       "merchant": "Spotify",
       "raw_amount": 10.99,
@@ -767,7 +767,7 @@
     {
       "amount": -142.5,
       "category": "Voyages & Vacances",
-      "color": "#0ea5e9",
+      "color": "#366B80",
       "date": "12/07/2026",
       "description": "CARTE X1234 12/07 SNCF CONNECT BILLETS DE TRAIN TGV",
       "holiday_trip_color": "#06b6d4",
@@ -785,7 +785,7 @@
     {
       "amount": -36.7,
       "category": "Alimentation & Supermarchés",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "date": "11/07/2026",
       "description": "CARTE X1234 11/07 CARREFOUR CITY PARIS",
       "icon": "🛒",
@@ -798,11 +798,11 @@
     },
     {
       "amount": -19.99,
-      "category": "Télécom, Forfaits & Abonnements",
-      "color": "#94a3b8",
+      "category": "Télécom & Abonnements",
+      "color": "#5C5975",
       "date": "10/07/2026",
       "description": "PRELEVEMENT SEPA FREE MOBILE FORFAIT 5G ILLIMITE",
-      "icon": "📦",
+      "icon": "📱",
       "id": "demo_07_7",
       "merchant": "Free Mobile",
       "raw_amount": 19.99,
@@ -812,11 +812,11 @@
     },
     {
       "amount": -19.4,
-      "category": "Santé & Prévoyance",
-      "color": "#94a3b8",
+      "category": "Santé & Pharmacie",
+      "color": "#5B7B7A",
       "date": "09/07/2026",
       "description": "CARTE X1234 09/07 PHARMACIE PRINCIPALE SOINS",
-      "icon": "📦",
+      "icon": "💊",
       "id": "demo_07_23",
       "merchant": "Pharmacie Centrale",
       "raw_amount": 19.4,
@@ -826,8 +826,8 @@
     },
     {
       "amount": -26.5,
-      "category": "Restaurants & Sorties",
-      "color": "#f59e0b",
+      "category": "Restaurants & Bars",
+      "color": "#C08435",
       "date": "08/07/2026",
       "description": "CARTE X1234 08/07 UBER *EATS COMMERCE ELECTRONIQUE",
       "icon": "🍽️",
@@ -841,7 +841,7 @@
     {
       "amount": -350.0,
       "category": "Investissements & Épargne",
-      "color": "#8b5cf6",
+      "color": "#2C4A6F",
       "date": "07/07/2026",
       "description": "VIR SEPA EMIS POUR: TRADE REPUBLIC MOTIF: VERSEMENT MENSUEL PEA BOURSE",
       "icon": "📈",
@@ -855,7 +855,7 @@
     {
       "amount": -6.4,
       "category": "Alimentation & Supermarchés",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "date": "06/07/2026",
       "description": "CARTE X1234 06/07 BOULANGERIE ARTISANALE DU COIN",
       "icon": "🛒",
@@ -869,7 +869,7 @@
     {
       "amount": -500.0,
       "category": "Investissements & Épargne",
-      "color": "#8b5cf6",
+      "color": "#2C4A6F",
       "date": "05/07/2026",
       "description": "VIR EUROPEEN EMIS LOGITEL POUR: ALEX DUPONT MOTIF: EPARGNE LIVRET A",
       "icon": "📈",
@@ -883,7 +883,7 @@
     {
       "amount": -29.99,
       "category": "Sports & Fitness",
-      "color": "#0284c7",
+      "color": "#417B66",
       "date": "05/07/2026",
       "description": "PRELEVEMENT SEPA DE: BASIC-FIT ABONNEMENT FITNESS CLUB",
       "icon": "🏋️",
@@ -897,7 +897,7 @@
     {
       "amount": -63.3,
       "category": "Alimentation & Supermarchés",
-      "color": "#10b981",
+      "color": "#2D5A3C",
       "date": "04/07/2026",
       "description": "CARTE X1234 04/07 MONOPRIX RUE DE RENNES",
       "icon": "🛒",
@@ -911,7 +911,7 @@
     {
       "amount": -820.0,
       "category": "Logement & Énergie",
-      "color": "#6366f1",
+      "color": "#3D4F5C",
       "date": "03/07/2026",
       "description": "PRELEVEMENT SEPA DE: AGENCE IMMOBILIERE REF: LOYER RESIDENCE JUILLET",
       "icon": "⚡",
@@ -925,7 +925,7 @@
     {
       "amount": -86.4,
       "category": "Transports & Péages",
-      "color": "#06b6d4",
+      "color": "#4A6984",
       "date": "01/07/2026",
       "description": "PRELEVEMENT SEPA DE: FORFAIT NAVIGO RATP MENSUEL",
       "icon": "🚗",
@@ -945,12 +945,12 @@
       "Investissements & Épargne",
       "Livres",
       "Logement & Énergie",
-      "Restaurants & Sorties",
-      "Santé & Prévoyance",
+      "Restaurants & Bars",
+      "Santé & Pharmacie",
       "Shopping & Soins",
       "Sports & Fitness",
       "Transports & Péages",
-      "Télécom, Forfaits & Abonnements",
+      "Télécom & Abonnements",
       "Voyages & Vacances"
     ],
     "anomalies": [
@@ -983,7 +983,7 @@
         "avg_monthly": 825.0,
         "budget_share_pct": 0.0,
         "category": "Investissements & Épargne",
-        "color": "#8b5cf6",
+        "color": "#2C4A6F",
         "current_month": 1050.0,
         "history": [
           800.0,
@@ -1014,7 +1014,7 @@
         "avg_monthly": 751.67,
         "budget_share_pct": 49.0,
         "category": "Logement & Énergie",
-        "color": "#6366f1",
+        "color": "#3D4F5C",
         "current_month": 820.0,
         "history": [
           820.0,
@@ -1045,7 +1045,7 @@
         "avg_monthly": 251.47,
         "budget_share_pct": 16.4,
         "category": "Alimentation & Supermarchés",
-        "color": "#10b981",
+        "color": "#2D5A3C",
         "current_month": 258.8,
         "history": [
           262.8,
@@ -1075,8 +1075,8 @@
         "anomaly_badge": "8.7% du budget",
         "avg_monthly": 134.2,
         "budget_share_pct": 8.7,
-        "category": "Restaurants & Sorties",
-        "color": "#94a3b8",
+        "category": "Restaurants & Bars",
+        "color": "#C08435",
         "current_month": 134.2,
         "history": [
           134.2,
@@ -1086,7 +1086,7 @@
           134.2,
           134.2
         ],
-        "icon": "📦",
+        "icon": "🍽️",
         "max_amount": 134.2,
         "months": [
           "Mars 2026",
@@ -1107,7 +1107,7 @@
         "avg_monthly": 86.4,
         "budget_share_pct": 5.6,
         "category": "Transports & Péages",
-        "color": "#06b6d4",
+        "color": "#4A6984",
         "current_month": 86.4,
         "history": [
           86.4,
@@ -1138,7 +1138,7 @@
         "avg_monthly": 76.5,
         "budget_share_pct": 5.0,
         "category": "High-Tech & Équipement",
-        "color": "#38bdf8",
+        "color": "#52616B",
         "current_month": 0.0,
         "history": [
           0.0,
@@ -1182,7 +1182,7 @@
         "avg_monthly": 70.42,
         "budget_share_pct": 4.6,
         "category": "Voyages & Vacances",
-        "color": "#0ea5e9",
+        "color": "#366B80",
         "current_month": 280.0,
         "history": [
           0.0,
@@ -1225,8 +1225,8 @@
         "anomaly_badge": "2.9% du budget",
         "avg_monthly": 44.47,
         "budget_share_pct": 2.9,
-        "category": "Télécom, Forfaits & Abonnements",
-        "color": "#94a3b8",
+        "category": "Télécom & Abonnements",
+        "color": "#5C5975",
         "current_month": 44.47,
         "history": [
           44.47,
@@ -1236,7 +1236,7 @@
           44.47,
           44.47
         ],
-        "icon": "📦",
+        "icon": "📱",
         "max_amount": 44.47,
         "months": [
           "Mars 2026",
@@ -1257,7 +1257,7 @@
         "avg_monthly": 39.95,
         "budget_share_pct": 2.6,
         "category": "Shopping & Soins",
-        "color": "#d946ef",
+        "color": "#85586F",
         "current_month": 0.0,
         "history": [
           79.9,
@@ -1288,7 +1288,7 @@
         "avg_monthly": 29.99,
         "budget_share_pct": 2.0,
         "category": "Sports & Fitness",
-        "color": "#0284c7",
+        "color": "#417B66",
         "current_month": 29.99,
         "history": [
           29.99,
@@ -1319,7 +1319,7 @@
         "avg_monthly": 24.9,
         "budget_share_pct": 1.6,
         "category": "Livres",
-        "color": "#d97706",
+        "color": "#8C6D58",
         "current_month": 24.9,
         "history": [
           24.9,
@@ -1349,8 +1349,8 @@
         "anomaly_badge": "1.3% du budget",
         "avg_monthly": 19.4,
         "budget_share_pct": 1.3,
-        "category": "Santé & Prévoyance",
-        "color": "#94a3b8",
+        "category": "Santé & Pharmacie",
+        "color": "#5B7B7A",
         "current_month": 19.4,
         "history": [
           19.4,
@@ -1360,7 +1360,7 @@
           19.4,
           19.4
         ],
-        "icon": "📦",
+        "icon": "💊",
         "max_amount": 19.4,
         "months": [
           "Mars 2026",
@@ -1381,7 +1381,7 @@
         "avg_monthly": 4.5,
         "budget_share_pct": 0.3,
         "category": "Frais Bancaires",
-        "color": "#ef4444",
+        "color": "#964B55",
         "current_month": 4.5,
         "history": [
           4.5,
@@ -1436,12 +1436,12 @@
           "Investissements & Épargne": 800.0,
           "Livres": 24.9,
           "Logement & Énergie": 820.0,
-          "Restaurants & Sorties": 134.2,
-          "Santé & Prévoyance": 19.4,
+          "Restaurants & Bars": 134.2,
+          "Santé & Pharmacie": 19.4,
           "Shopping & Soins": 79.9,
           "Sports & Fitness": 29.99,
           "Transports & Péages": 86.4,
-          "Télécom, Forfaits & Abonnements": 44.47
+          "Télécom & Abonnements": 44.47
         },
         "count": 24,
         "expenses": 1506.56,
@@ -1497,11 +1497,11 @@
           "Investissements & Épargne": 950.0,
           "Livres": 24.9,
           "Logement & Énergie": 820.0,
-          "Restaurants & Sorties": 134.2,
-          "Santé & Prévoyance": 19.4,
+          "Restaurants & Bars": 134.2,
+          "Santé & Pharmacie": 19.4,
           "Sports & Fitness": 29.99,
           "Transports & Péages": 86.4,
-          "Télécom, Forfaits & Abonnements": 44.47
+          "Télécom & Abonnements": 44.47
         },
         "count": 23,
         "expenses": 1414.66,
@@ -1557,12 +1557,12 @@
           "Investissements & Épargne": 600.0,
           "Livres": 24.9,
           "Logement & Énergie": 820.0,
-          "Restaurants & Sorties": 134.2,
-          "Santé & Prévoyance": 19.4,
+          "Restaurants & Bars": 134.2,
+          "Santé & Pharmacie": 19.4,
           "Shopping & Soins": 79.9,
           "Sports & Fitness": 29.99,
           "Transports & Péages": 86.4,
-          "Télécom, Forfaits & Abonnements": 44.47
+          "Télécom & Abonnements": 44.47
         },
         "count": 25,
         "expenses": 1482.56,
@@ -1619,11 +1619,11 @@
           "Investissements & Épargne": 700.0,
           "Livres": 24.9,
           "Logement & Énergie": 820.0,
-          "Restaurants & Sorties": 134.2,
-          "Santé & Prévoyance": 19.4,
+          "Restaurants & Bars": 134.2,
+          "Santé & Pharmacie": 19.4,
           "Sports & Fitness": 29.99,
           "Transports & Péages": 86.4,
-          "Télécom, Forfaits & Abonnements": 44.47
+          "Télécom & Abonnements": 44.47
         },
         "count": 24,
         "expenses": 1877.66,
@@ -1679,12 +1679,12 @@
           "Investissements & Épargne": 850.0,
           "Livres": 24.9,
           "Logement & Énergie": 410.0,
-          "Restaurants & Sorties": 134.2,
-          "Santé & Prévoyance": 19.4,
+          "Restaurants & Bars": 134.2,
+          "Santé & Pharmacie": 19.4,
           "Shopping & Soins": 79.9,
           "Sports & Fitness": 29.99,
           "Transports & Péages": 86.4,
-          "Télécom, Forfaits & Abonnements": 44.47,
+          "Télécom & Abonnements": 44.47,
           "Voyages & Vacances": 142.5
         },
         "count": 26,
@@ -1741,11 +1741,11 @@
           "Investissements & Épargne": 1050.0,
           "Livres": 24.9,
           "Logement & Énergie": 820.0,
-          "Restaurants & Sorties": 134.2,
-          "Santé & Prévoyance": 19.4,
+          "Restaurants & Bars": 134.2,
+          "Santé & Pharmacie": 19.4,
           "Sports & Fitness": 29.99,
           "Transports & Péages": 86.4,
-          "Télécom, Forfaits & Abonnements": 44.47,
+          "Télécom & Abonnements": 44.47,
           "Voyages & Vacances": 280.0
         },
         "count": 24,
