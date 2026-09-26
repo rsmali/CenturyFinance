@@ -8,10 +8,11 @@
       "High-Tech & Équipement": 114.75,
       "Livres": 24.9,
       "Logement & Énergie": 717.5,
-      "Restaurants & Sorties": 134.2,
+      "Restaurants & Bars": 0.0,
       "Retraits Espèces (DAB)": 0.0,
       "Santé & Pharmacie": 0.0,
       "Shopping & Soins": 39.95,
+      "Sorties": 0.0,
       "Sports & Fitness": 29.99,
       "Tabac & Presse": 0.0,
       "Transports & Péages": 86.4,
@@ -50,7 +51,7 @@
     },
     "investments_cto": 375.0,
     "investments_livret_a": 425.0,
-    "money_left_over": 918.38,
+    "money_left_over": 1052.58,
     "months_considered": [
       "Mai 2026",
       "Juin 2026",
@@ -58,12 +59,13 @@
       "Août 2026"
     ],
     "months_count": 4,
-    "savings_rate": 53.3,
-    "total_expenses": 1506.62
+    "savings_rate": 57.4,
+    "total_expenses": 1372.42
   },
   "categories": [
     "Alimentation & Supermarchés",
-    "Restaurants & Sorties",
+    "Restaurants & Bars",
+    "Sorties",
     "Voyages & Vacances",
     "Sports & Fitness",
     "Investissements & Épargne",
@@ -94,11 +96,12 @@
     "Livres": "#d97706",
     "Logement & Énergie": "#6366f1",
     "Remboursements & Avoirs": "#14b8a6",
-    "Restaurants & Sorties": "#f59e0b",
+    "Restaurants & Bars": "#f59e0b",
     "Retraits Espèces (DAB)": "#f97316",
     "Salaires & Revenus": "#22c55e",
     "Santé & Pharmacie": "#ec4899",
     "Shopping & Soins": "#d946ef",
+    "Sorties": "#e11d48",
     "Sports & Fitness": "#0284c7",
     "Tabac & Presse": "#78716c",
     "Transports & Péages": "#06b6d4",
@@ -116,11 +119,12 @@
     "Livres": "📚",
     "Logement & Énergie": "⚡",
     "Remboursements & Avoirs": "🔄",
-    "Restaurants & Sorties": "🍽️",
+    "Restaurants & Bars": "🍽️",
     "Retraits Espèces (DAB)": "🏧",
     "Salaires & Revenus": "💰",
     "Santé & Pharmacie": "💊",
     "Shopping & Soins": "🛍️",
+    "Sorties": "🎟️",
     "Sports & Fitness": "🏋️",
     "Tabac & Presse": "📰",
     "Transports & Péages": "🚗",
@@ -315,7 +319,7 @@
       "valeur_date": "03/07/2026"
     }
   ],
-  "ollama_available": false,
+  "ollama_available": true,
   "patterns": [
     {
       "badge": "2% du budget",
@@ -1072,7 +1076,7 @@
         "avg_monthly": 134.2,
         "budget_share_pct": 8.7,
         "category": "Restaurants & Sorties",
-        "color": "#f59e0b",
+        "color": "#94a3b8",
         "current_month": 134.2,
         "history": [
           134.2,
@@ -1082,7 +1086,7 @@
           134.2,
           134.2
         ],
-        "icon": "🍽️",
+        "icon": "📦",
         "max_amount": 134.2,
         "months": [
           "Mars 2026",

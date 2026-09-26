@@ -75,6 +75,38 @@ def save_user_rule(pattern: str, category: str, merchant: str = "", workspace_di
     except Exception as e:
         print(f"[Classifier] Error saving rule: {e}")
 
+def extract_merchant_from_desc(desc: str) -> str:
+    """Extracts a readable merchant / entity name from a raw bank statement description."""
+    if not desc:
+        return "Divers"
+    d = desc.strip()
+    # 1. Card transactions: CARTE X9143 13/06 JIP S CAFE (COMMERCE ELECTRONIQUE)?
+    m = re.search(r"CARTE\s+X\d+\s+\d{2}/\d{2}\s+(.+?)(?:\s+COMMERCE ELECTRONIQUE|\s+\d+,\d+\s+USD|\s+PAYS-BAS|\s+ETATS-UNIS|\s+\d{2}/\d{2}|$)", d, re.I)
+    if m:
+        name = m.group(1).strip()
+        name = re.sub(r"\s+(?:COMMERCE|ELECTRONIQUE|PAYS-BAS|FRANCE|PARIS|ETATS-UNIS).*$", "", name, flags=re.I).strip()
+        if name and name.upper() not in ["DIVERS", "CARTE"]:
+            return name
+
+    # 2. Virement reçu / émis: VIR ... POUR: X MOTIF: ... or DE: X MOTIF: ...
+    m = re.search(r"(?:POUR|DE):\s*([^\d\n\r]+?)(?:\s+MOTIF:|\s+REF:|\s+\d{2}\s+\d{2}|\s+CHEZ:|$)", d, re.I)
+    if m:
+        name = m.group(1).strip()
+        if name and name.upper() not in ["DIVERS"]:
+            return name
+
+    # 3. Prélèvement SEPA: PRELEVEMENT SEPA DE: X
+    m = re.search(r"PRELEVEMENT\s+SEPA\s+DE:\s*([^\n\r]+?)(?:\s+REF:|\s+MOTIF:|$)", d, re.I)
+    if m:
+        name = m.group(1).strip()
+        if name and name.upper() not in ["DIVERS"]:
+            return name
+
+    # 4. Clean standard prefixes
+    clean = re.sub(r"^(?:CARTE\s+X\d+\s+\d{2}/\d{2}\s+|PAIEMENT\s+CB\s+\d{2}/\d{2}\s+|VIR\s+(?:INSTANTANE\s+)?(?:EMIS|RECU)\s+.*?POUR:\s+|PRELEVEMENT\s+SEPA\s+DE:\s*|COTISATION\s+)", "", d, flags=re.I).strip()
+    clean = re.sub(r"\s+(?:COMMERCE ELECTRONIQUE|\d+,\d+\s+USD).*$", "", clean, flags=re.I).strip()
+    return clean[:35] if clean else "Divers"
+
 def rule_classify(desc: str, amount: float, tx_type: str, profile: dict = None, user_rules: list = None):
     """
     Dynamically classifies transaction using:
@@ -152,17 +184,24 @@ def rule_classify(desc: str, amount: float, tx_type: str, profile: dict = None, 
             return "High-Tech & Équipement", "High-Tech & Électronique"
         else:
             return "Shopping & Soins", "High-Tech & Électronique"
-
     # 5. Universal French heuristics
     for pattern, cat, default_merchant in UNIVERSAL_RULES:
         if re.search(pattern, clean_desc):
             merchant = default_merchant
             if "UBER" in clean_desc and "EATS" in clean_desc:
                 merchant = "Uber Eats"
+            elif "DELIVEROO" in clean_desc:
+                merchant = "Deliveroo"
             elif "MAC DONALD" in clean_desc:
                 merchant = "McDonald's"
             elif "KENTUCKY FRIED" in clean_desc:
                 merchant = "KFC"
+            elif "FIVE GUYS" in clean_desc:
+                merchant = "Five Guys"
+            elif "BURGER KING" in clean_desc:
+                merchant = "Burger King"
+            elif "SUBWAY" in clean_desc:
+                merchant = "Subway"
             elif "CARREFOUR" in clean_desc:
                 merchant = "Carrefour"
             elif "ORANGE" in clean_desc:
@@ -171,10 +210,15 @@ def rule_classify(desc: str, amount: float, tx_type: str, profile: dict = None, 
                 merchant = "APRR Autoroutes"
             elif "PHARMA" in clean_desc:
                 merchant = "Pharmacie"
+            elif default_merchant in ["Restaurant / Bar", "Sorties & Événements"]:
+                extracted = extract_merchant_from_desc(desc)
+                if extracted and extracted != "Divers":
+                    merchant = extracted
             return cat, merchant
 
     # Fallback default
-    return "Autre", "Divers"
+    extracted = extract_merchant_from_desc(desc)
+    return "Autre", (extracted if extracted else "Divers")
 
 def check_ollama_available(host: str = "http://localhost:11434") -> bool:
     try:
@@ -322,7 +366,7 @@ def analyze_budget_insights(transactions: list, profile: dict = None) -> dict:
     essential_total = sum(abs(t.get("amount", 0.0)) for t in essential_txs)
 
     # 3. Discretionary / Lifestyle / Avoidable ("Plaisir & Sorties")
-    discretionary_categories = ["Restaurants & Sorties", "Shopping & Soins", "Tabac & Presse"]
+    discretionary_categories = ["Restaurants & Sorties", "Restaurants & Bars", "Sorties", "Shopping & Soins", "Tabac & Presse"]
     discretionary_txs = [t for t in debits if t.get("category") in discretionary_categories]
     discretionary_total = sum(abs(t.get("amount", 0.0)) for t in discretionary_txs)
 
@@ -334,7 +378,7 @@ def analyze_budget_insights(transactions: list, profile: dict = None) -> dict:
     delivery_txs = [t for t in debits if re.search(r"UBER|DELIVEROO|EATS", t.get("description", ""), re.I)]
     delivery_total = sum(abs(t.get("amount", 0.0)) for t in delivery_txs)
 
-    restaurants_bars_txs = [t for t in debits if t.get("category") == "Restaurants & Sorties"]
+    restaurants_bars_txs = [t for t in debits if t.get("category") in ["Restaurants & Sorties", "Restaurants & Bars", "Sorties"]]
     restaurants_bars_total = sum(abs(t.get("amount", 0.0)) for t in restaurants_bars_txs)
 
     # 4. Investments & Wealth Transfers

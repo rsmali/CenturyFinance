@@ -44,12 +44,31 @@
         </select>
       </div>
 
+      <!-- Bulk Action Bar (appears when rows are selected) -->
+      <div id="tx-bulk-action-bar" class="hidden sticky top-4 z-20 c-card p-3 flex flex-col sm:flex-row sm:items-center gap-3 border border-[#2D5A3C]/30 bg-[#E8F0EC] shadow-lg">
+        <span id="tx-bulk-count" class="text-xs font-semibold text-[#2D5A3C]">0 opération(s) sélectionnée(s)</span>
+        <div class="flex items-center gap-2 flex-1">
+          <select id="tx-bulk-category-select" class="flex-1 px-3 py-1.5 rounded-lg bg-white border border-[#CDE0D4] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C] transition">
+            <option value="">— Choisir une catégorie —</option>
+          </select>
+          <button onclick="bulkUpdateSelectedTransactions()" class="px-4 py-1.5 rounded-lg bg-[#2D5A3C] text-white text-xs font-semibold hover:bg-[#234B34] transition shadow-sm whitespace-nowrap">
+            Modifier la sélection
+          </button>
+          <button onclick="clearTxSelection()" class="px-3 py-1.5 rounded-lg border border-[#CDE0D4] bg-white text-xs font-medium text-century-charcoal hover:bg-[#F6F6F2] transition whitespace-nowrap">
+            Annuler
+          </button>
+        </div>
+      </div>
+
       <!-- Transactions Table -->
       <div class="c-card overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
             <thead class="bg-[#FAF9F5] border-b border-[#EAEAE5] text-[#6C7570] font-semibold uppercase tracking-wider">
               <tr>
+                <th class="py-3.5 pl-4 pr-2 w-8">
+                  <input type="checkbox" id="tx-select-all" onchange="toggleSelectAllTransactions(this.checked)" class="rounded border-[#D2D4CA] text-[#2D5A3C] focus:ring-[#2D5A3C] cursor-pointer">
+                </th>
                 <th class="py-3.5 px-4">Date</th>
                 <th class="py-3.5 px-4">Catégorie</th>
                 <th class="py-3.5 px-4">Commerçant / Libellé</th>

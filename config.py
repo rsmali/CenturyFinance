@@ -5,7 +5,8 @@ Centralized configuration for categories, colors, icons, and universal banking h
 
 CATEGORIES = [
     "Alimentation & Supermarchés",
-    "Restaurants & Sorties",
+    "Restaurants & Bars",
+    "Sorties",
     "Voyages & Vacances",
     "Sports & Fitness",
     "Investissements & Épargne",
@@ -28,7 +29,8 @@ CATEGORIES = [
 
 CATEGORY_COLORS = {
     "Alimentation & Supermarchés": "#10b981",    # Emerald
-    "Restaurants & Sorties": "#f59e0b",          # Amber
+    "Restaurants & Bars": "#f59e0b",             # Amber
+    "Sorties": "#e11d48",                        # Rose / Evening & Events
     "Voyages & Vacances": "#0ea5e9",             # Sky Blue / Lagoon
     "Sports & Fitness": "#0284c7",               # Ocean Blue
     "Investissements & Épargne": "#8b5cf6",      # Purple / Violet
@@ -51,7 +53,8 @@ CATEGORY_COLORS = {
 
 CATEGORY_ICONS = {
     "Alimentation & Supermarchés": "🛒",
-    "Restaurants & Sorties": "🍽️",
+    "Restaurants & Bars": "🍽️",
+    "Sorties": "🎟️",
     "Voyages & Vacances": "🏖️",
     "Sports & Fitness": "🏋️",
     "Investissements & Épargne": "📈",
@@ -74,9 +77,15 @@ CATEGORY_ICONS = {
 
 # Standard universal heuristics for French banking statements (independent of individual users)
 UNIVERSAL_RULES = [
-    # Food delivery & Fast Food & Dining
-    (r"UBER\s*\*?\s*EATS|DELIVEROO", "Restaurants & Sorties", "Livraison Repas"),
-    (r"MAC\s*DONALD|KENTUCKY\s*FRIED|BURGER\s*KING|SUBWAY|CREP\s+|RESTAURANT|PIZZA|BRASSERIE|BISTROT|CAFE|BAR\b|PUB\b", "Restaurants & Sorties", "Restauration & Sorties"),
+    # Food delivery, Dining & Bars
+    (r"UBER\s*\*?\s*EATS|DELIVEROO", "Restaurants & Bars", "Livraison Repas"),
+    (r"MAC\s*DONALD|KENTUCKY\s*FRIED|BURGER\s*KING|SUBWAY|FIVE\s*GUYS|CREP\s+|RESTAURANT|PIZZA|BRASSERIE|BISTROT|POULET|DELICES|BAR\b|PUB\b|BIERE|BEER|COCKTAIL|BOMBARDIER|EVEREST", "Restaurants & Bars", "Restaurant / Bar"),
+    
+    # Sorties, Cinema, Culture & Events
+    (r"UGC\b|PATHE|GAUMONT|CGR|CINEMA|THEATRE|CONCERT|SPECTACLE|MUSEE|EXPOSITION|OPERA|DISCOTHEQUE|NIGHTCLUB|CLUB\b|BOWLING|FESTIVAL", "Sorties", "Sorties & Événements"),
+    
+    # Bakeries & Delis
+    (r"BOULANGERIE|PATISSERIE", "Alimentation & Supermarchés", "Boulangerie"),
     
     # Travel, Hotels & Vacations
     (r"AIRBNB|BOOKING(?:\.COM)?|HOTEL|HOSTEL|VOYAGE|EXPEDIA|EASYJET|RYANAIR|TRANSAVIA|AIR\s*FRANCE|VUELING|TRIPADVISOR|GITES\s+DE\s+FRANCE|CAMPING|AGODA|CLUB\s+MED|HILTON|ACCOR|IBIS|NOVOTEL|MERCURE|MARRIOTT|LUFTHANSA|EUROWINGS|VOLOTEA|SEJOUR|SEJOURS|LOCATION\s+VACANCE", "Voyages & Vacances", "Voyage & Vacances"),
@@ -97,9 +106,6 @@ UNIVERSAL_RULES = [
     
     # Culture & Books
     (r"GIBERT|FNAC\s+LIVRES|LIBRAIRIE|DECITRE|FURET\s+DU\s+NORD", "Livres", "Librairie"),
-    
-    # Cinema & Culture
-    (r"UGC\b|PATHE|GAUMONT|CGR|CINEMA", "Restaurants & Sorties", "Cinéma"),
     
     # Fitness
     (r"BASIC-FIT|FITNESS\s*PARK|KEEP\s*COOL|NEONESS", "Sports & Fitness", "Salle de Sport"),

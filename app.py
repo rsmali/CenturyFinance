@@ -21,7 +21,8 @@ from classifier import (
     check_ollama_available,
     load_user_rules,
     save_user_rule,
-    analyze_budget_insights
+    analyze_budget_insights,
+    extract_merchant_from_desc
 )
 from analytics import (
     compute_multi_month_trends, 
@@ -1342,6 +1343,75 @@ def update_category():
                     pass
 
     return jsonify({"status": "ok"})
+
+@app.route("/api/bulk-update-category", methods=["POST"])
+def bulk_update_category():
+    data = request.get_json() or {}
+    tx_ids = data.get("ids", [])
+    new_cat = data.get("category")
+    ws_id = data.get("workspace")
+    ws_ctx = get_workspace_context(ws_id)
+
+    if not tx_ids or not new_cat or new_cat not in CATEGORIES:
+        return jsonify({"status": "error", "message": "Catégorie ou identifiants invalides"}), 400
+
+    id_set = set(tx_ids)
+    cache_files = glob.glob(os.path.join(ws_ctx["cache_dir"], "*.json"))
+    updated_count = 0
+
+    for cache_f in cache_files:
+        try:
+            with open(cache_f, "r", encoding="utf-8") as f:
+                c = json.load(f)
+            modified = False
+            for t in c.get("transactions", []):
+                if t.get("id") in id_set:
+                    t["category"] = new_cat
+                    t["color"] = CATEGORY_COLORS.get(new_cat, "#94a3b8")
+                    t["icon"] = CATEGORY_ICONS.get(new_cat, "📦")
+                    t["manual_override"] = True
+                    if t.get("merchant") in ["Divers", "Restauration & Sorties", "Autre", None]:
+                        extracted = extract_merchant_from_desc(t.get("description", ""))
+                        if extracted and extracted != "Divers":
+                            t["merchant"] = extracted
+                    updated_count += 1
+                    modified = True
+            if modified:
+                with open(cache_f, "w", encoding="utf-8") as f:
+                    json.dump(c, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print(f"[Bulk Update] Error updating {cache_f}: {e}")
+
+    # Fallback across all workspaces if some IDs not found
+    if updated_count < len(id_set):
+        all_cache_files = glob.glob(os.path.join(WORKSPACES_ROOT, "*", "cache", "*.json"))
+        for cache_f in all_cache_files:
+            if cache_f in cache_files:
+                continue
+            try:
+                with open(cache_f, "r", encoding="utf-8") as f:
+                    c = json.load(f)
+                modified = False
+                for t in c.get("transactions", []):
+                    if t.get("id") in id_set:
+                        t["category"] = new_cat
+                        t["color"] = CATEGORY_COLORS.get(new_cat, "#94a3b8")
+                        t["icon"] = CATEGORY_ICONS.get(new_cat, "📦")
+                        t["manual_override"] = True
+                        if t.get("merchant") in ["Divers", "Restauration & Sorties", "Autre", None]:
+                            extracted = extract_merchant_from_desc(t.get("description", ""))
+                            if extracted and extracted != "Divers":
+                                t["merchant"] = extracted
+                        updated_count += 1
+                        modified = True
+                if modified:
+                    with open(cache_f, "w", encoding="utf-8") as f:
+                        json.dump(c, f, ensure_ascii=False, indent=2)
+            except Exception:
+                pass
+
+    return jsonify({"status": "ok", "updated_count": updated_count})
+
 
 @app.route("/api/custom-rules", methods=["GET", "POST"])
 def handle_custom_rules():
