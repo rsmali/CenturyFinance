@@ -1,0 +1,64 @@
+    <section id="view-transactions" class="hidden p-6 md:p-10 space-y-6">
+      
+      <!-- Top Title & Export Action -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Transaction Review</h2>
+          <p class="text-sm text-century-muted mt-1">Recherchez, filtrez et ajustez la classification de chaque opération</p>
+        </div>
+        <div class="flex items-center space-x-3">
+          <a href="/api/export-csv" class="flex items-center space-x-2 px-4 py-2 rounded-lg border border-[#EAEAE5] bg-white text-xs font-medium text-century-charcoal hover:bg-[#F6F6F2] transition shadow-sm">
+            <svg class="w-3.5 h-3.5 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Export CSV</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Search & Filters Bar -->
+      <div class="c-card p-4 flex flex-col md:flex-row items-center gap-3">
+        <!-- Search Input -->
+        <div class="relative flex-1 w-full">
+          <svg class="w-4 h-4 text-century-muted absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="tx-search-input" oninput="applyTransactionFilters()" placeholder="Rechercher par commerçant, libellé, montant..." class="w-full pl-10 pr-4 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C] transition">
+        </div>
+
+        <!-- Category Dropdown Filter -->
+        <select id="tx-category-filter" onchange="applyTransactionFilters()" class="w-full md:w-56 px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C] transition">
+          <option value="ALL">Toutes les catégories</option>
+          <!-- Dynamic categories -->
+        </select>
+
+        <!-- Type Filter (Tous / Débits / Crédits) -->
+        <select id="tx-type-filter" onchange="applyTransactionFilters()" class="w-full md:w-36 px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C] transition">
+          <option value="ALL">Tous les types</option>
+          <option value="Debit">Débits seuls</option>
+          <option value="Credit">Crédits seuls</option>
+        </select>
+      </div>
+
+      <!-- Transactions Table -->
+      <div class="c-card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#FAF9F5] border-b border-[#EAEAE5] text-[#6C7570] font-semibold uppercase tracking-wider">
+              <tr>
+                <th class="py-3.5 px-4">Date</th>
+                <th class="py-3.5 px-4">Catégorie</th>
+                <th class="py-3.5 px-4">Commerçant / Libellé</th>
+                <th class="py-3.5 px-4">Relevé</th>
+                <th class="py-3.5 px-4 text-right">Montant</th>
+                <th class="py-3.5 px-4 text-center">Modifier</th>
+              </tr>
+            </thead>
+            <tbody id="transactions-table-body" class="divide-y divide-[#EAEAE5]/60 font-sans">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+        <!-- Empty State -->
+        <div id="tx-empty-state" class="hidden p-8 text-center text-xs text-century-muted">
+          Aucune opération ne correspond aux filtres.
+        </div>
+      </div>
+
+    </section>

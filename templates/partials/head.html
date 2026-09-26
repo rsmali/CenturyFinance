@@ -1,0 +1,130 @@
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Century Finance — Personal Wealth Management</title>
+  
+  <!-- Google Fonts: Newsreader / Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            century: {
+              bg: '#F9F9F6',        // warm alabaster / ivory luxury paper
+              card: '#FFFFFF',      // crisp white surfaces
+              border: '#EAEAE5',    // ultra-fine warm border
+              borderLight: '#F3F3EF',
+              forest: '#234B34',    // deep heritage pine green
+              forestHover: '#1B3C29',
+              sage: '#2D5A3C',      // accent sage green
+              sageBg: '#E8F0EC',    // pill / badge background
+              burgundy: '#6E2D38',  // wine / deep rose for expenses
+              burgundyBg: '#FDF0F2',
+              navy: '#2C4A6F',      // royal navy for wealth & épargne
+              navyBg: '#EEF4FF',
+              amber: '#9A6B22',     // warning / recurring
+              amberBg: '#FDF8EE',
+              charcoal: '#1A2820',  // editorial headings
+              text: '#222A25',      // main body text
+              muted: '#6C7570',     // subtitles & meta
+            }
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F9F9F6;
+      color: #222A25;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .font-serif-title {
+      font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+    }
+
+    /* Century Card Style */
+    .c-card {
+      background-color: #FFFFFF;
+      border: 1px solid #EAEAE5;
+      border-radius: 1rem;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+    }
+    
+    .c-card-interactive {
+      background-color: #FFFFFF;
+      border: 1px solid #EAEAE5;
+      border-radius: 1rem;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+      transition: all 0.15s ease-in-out;
+    }
+    .c-card-interactive:hover {
+      border-color: #D4D6CE;
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04);
+      transform: translateY(-1px);
+    }
+
+    /* Active Sidebar Navigation Item (from Screenshot 0) */
+    .nav-item-active {
+      background-color: #2D5A3C !important;
+      color: #FFFFFF !important;
+      font-weight: 500;
+    }
+    .nav-item-active svg {
+      color: #FFFFFF !important;
+      stroke: #FFFFFF !important;
+    }
+
+    /* Active Filter Pill (from Screenshot 2) */
+    .filter-pill-active {
+      background-color: #E8F0EC !important;
+      color: #2D5A3C !important;
+      font-weight: 600;
+      border-color: #CDE0D4 !important;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F9F9F6;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D7D8D0;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #BCBEB4;
+    }
+
+    /* Custom Chart Tooltip styling */
+    #chartjs-custom-tooltip {
+      position: absolute;
+      background: #FFFFFF;
+      border: 1px solid #EAEAE5;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      pointer-events: none;
+      transition: all 0.1s ease;
+      z-index: 50;
+    }
+  </style>

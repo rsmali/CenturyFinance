@@ -1,0 +1,83 @@
+  <div id="workspace-profile-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl border border-[#EAEAE5] shadow-2xl max-w-xl w-full p-6 space-y-5 animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
+      
+      <div class="flex items-center justify-between border-b border-[#EAEAE5] pb-3">
+        <div class="flex items-center space-x-2">
+          <span class="text-xl">⚙️</span>
+          <div>
+            <h3 class="font-serif-title text-xl text-century-charcoal">Paramètres & Profil du Compte</h3>
+            <p class="text-xs text-century-muted mt-0.5">Personnalisez les employeurs, mots-clés et comptes d'épargne sans modifier de code.</p>
+          </div>
+        </div>
+        <button onclick="closeWorkspaceSettingsModal()" class="text-century-muted hover:text-century-charcoal">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form onsubmit="handleWorkspaceProfileSubmit(event)" class="space-y-4 text-xs">
+        
+        <!-- Employer name -->
+        <div>
+          <label class="block font-medium text-century-charcoal mb-1">Nom de l'Employeur / Source Principale de Salaire</label>
+          <input type="text" id="prof-emp-name" placeholder="ex: Mon Entreprise, Entreprise SAS, Freelance..." class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+          <span class="text-[10px] text-century-muted mt-0.5 block">Ce nom sera affiché sur les graphiques et dans les calculs de taux d'épargne.</span>
+        </div>
+
+        <!-- Salary keywords -->
+        <div>
+          <label class="block font-medium text-century-charcoal mb-1">Mots-clés Salaires (séparés par des virgules)</label>
+          <input type="text" id="prof-salary-keywords" placeholder="SALAIRE, REMUNERATION, PAYE, NOM_ENTREPRISE..." class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+          <span class="text-[10px] text-century-muted mt-0.5 block">Seuls les virements créditeurs contenant ces mots sont comptabilisés comme revenus d'activité.</span>
+        </div>
+
+        <!-- Account Holder Keywords -->
+        <div>
+          <label class="block font-medium text-century-charcoal mb-1">Mots-clés Titulaire du Compte (séparés par des virgules)</label>
+          <input type="text" id="prof-holder-keywords" placeholder="ex: JEAN DUPONT, DUPONT JEAN..." class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+          <span class="text-[10px] text-century-muted mt-0.5 block">Permet d'identifier les virements internes reçus depuis vos propres comptes d'épargne (déduits du total investi).</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Rent Keywords -->
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Mots-clés Loyer</label>
+            <input type="text" id="prof-rent-keywords" placeholder="LOYER, RENT, PROPRIETAIRE..." class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+            <span class="text-[10px] text-century-muted mt-0.5 block">Les remboursements reçus avec ces mots neutralisent la dépense de loyer.</span>
+          </div>
+
+          <!-- Family Keywords -->
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Mots-clés Famille & Dons</label>
+            <input type="text" id="prof-family-keywords" placeholder="NOM_FAMILLE, MAMAN, PAPA..." class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+            <span class="text-[10px] text-century-muted mt-0.5 block">Classés en Cadeaux & Dons (exclus du salaire professionnel).</span>
+          </div>
+        </div>
+
+        <!-- Investment Accounts Section -->
+        <div class="pt-3 border-t border-[#EAEAE5] space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="block font-semibold text-century-charcoal">Comptes d'Investissement & Épargne</label>
+            <button type="button" onclick="addInvestmentAccountRow()" class="text-[11px] text-[#2D5A3C] font-semibold hover:underline">+ Ajouter un support</button>
+          </div>
+          <div id="prof-investment-accounts-list" class="space-y-2">
+            <!-- Dynamic investment account rows -->
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-[#EAEAE5]">
+          <button type="button" onclick="resetProfileToDefault()" class="text-xs text-rose-600 hover:underline">
+            Réinitialiser par défaut
+          </button>
+          <div class="flex items-center space-x-2">
+            <button type="button" onclick="closeWorkspaceSettingsModal()" class="px-4 py-2 rounded-lg border border-[#EAEAE5] text-xs font-medium text-century-charcoal hover:bg-[#F6F6F2] transition">
+              Annuler
+            </button>
+            <button type="submit" id="btn-save-workspace-profile" class="px-4 py-2 rounded-lg bg-[#2D5A3C] text-white text-xs font-semibold hover:bg-[#234B34] transition shadow-xs flex items-center space-x-1.5">
+              <span>💾 Enregistrer & Recalculer</span>
+            </button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>

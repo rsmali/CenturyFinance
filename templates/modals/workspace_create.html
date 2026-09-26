@@ -1,0 +1,59 @@
+  <div id="workspace-create-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl border border-[#EAEAE5] shadow-2xl max-w-md w-full p-6 space-y-5 animate-in fade-in zoom-in-95 duration-150">
+      
+      <div class="flex items-center justify-between border-b border-[#EAEAE5] pb-3">
+        <div class="flex items-center space-x-2">
+          <span class="text-xl">📁</span>
+          <h3 class="font-serif-title text-xl text-century-charcoal">Créer un Espace / Compte</h3>
+        </div>
+        <button onclick="closeCreateWorkspaceModal()" class="text-century-muted hover:text-century-charcoal">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form onsubmit="handleCreateWorkspaceSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-medium text-century-charcoal mb-1">Nom du Compte / Dossier</label>
+          <input type="text" id="ws-new-name" required placeholder="ex: Compte Épargne, Compte BNP, Compte Pro..." class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Type de Compte</label>
+            <select id="ws-new-type" class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+              <option value="Courant">Compte Courant</option>
+              <option value="Épargne">Compte Épargne / Livret</option>
+              <option value="Professionnel">Compte Professionnel</option>
+              <option value="Conjoint">Compte Joint</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-century-charcoal mb-1">Icône</label>
+            <select id="ws-new-icon" class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+              <option value="🏦">🏦 Banque</option>
+              <option value="📈">📈 Investissement / Épargne</option>
+              <option value="💼">💼 Pro / Entreprise</option>
+              <option value="🏠">🏠 Logement / Foyer</option>
+              <option value="💳">💳 Carte secondaire</option>
+              <option value="🏖️">🏖️ Vacances / Projet</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-century-muted leading-relaxed">
+          Un dossier dédié sera créé pour stocker les relevés PDF et isoler les transactions de ce compte.
+        </p>
+
+        <div class="flex items-center justify-end space-x-2 pt-3 border-t border-[#EAEAE5]">
+          <button type="button" onclick="closeCreateWorkspaceModal()" class="px-4 py-2 rounded-lg border border-[#EAEAE5] text-xs font-medium text-century-charcoal hover:bg-[#F6F6F2] transition">
+            Annuler
+          </button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-[#2D5A3C] text-white text-xs font-semibold hover:bg-[#234B34] transition shadow-xs">
+            Créer l'Espace
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>

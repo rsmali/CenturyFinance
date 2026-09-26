@@ -1,0 +1,469 @@
+    <section id="view-budget" class="hidden p-6 md:p-10 space-y-8">
+      
+      <!-- Top Title & Baseline Info -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-2xl">🧮</span>
+            <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Budget & Scenario Simulator</h2>
+          </div>
+          <p class="text-sm text-century-muted mt-1">
+            Simulez vos revenus, charges fixes (loyer, abonnements) et sorties. Pré-rempli avec votre moyenne des 4 derniers mois pour tester un déménagement ou de nouvelles habitudes.
+          </p>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <button onclick="resetBudgetToBaseline()" class="flex items-center space-x-2 px-4 py-2 rounded-lg border border-[#EAEAE5] bg-white text-xs font-semibold text-century-charcoal hover:bg-[#F6F6F2] transition shadow-xs">
+            <svg class="w-3.5 h-3.5 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            <span>Réinitialiser (Moyenne 4 mois)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Top KPI Cards for Projected Budget -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Projected Income -->
+        <div class="c-card p-5 flex items-center space-x-4 border-l-4 border-l-[#2D5A3C]">
+          <div class="w-12 h-12 rounded-xl bg-[#E8F0EC] text-[#2D5A3C] flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <div>
+            <span class="text-xs font-medium text-century-muted block">Revenu Mensuel Prévu</span>
+            <span id="sim-kpi-income" class="text-2xl font-bold font-sans text-[#2D5A3C]">0,00 €</span>
+          </div>
+        </div>
+
+        <!-- Projected Living Expenses -->
+        <div class="c-card p-5 flex items-center space-x-4 border-l-4 border-l-[#6E2D38]">
+          <div class="w-12 h-12 rounded-xl bg-[#FDF0F2] text-[#6E2D38] flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+          </div>
+          <div>
+            <span class="text-xs font-medium text-century-muted block">Dépenses de Vie Prévues</span>
+            <span id="sim-kpi-expenses" class="text-2xl font-bold font-sans text-[#6E2D38]">0,00 €</span>
+          </div>
+        </div>
+
+        <!-- Planned Investments -->
+        <div class="c-card p-5 flex items-center space-x-4 border-l-4 border-l-[#7C3AED]">
+          <div class="w-12 h-12 rounded-xl bg-[#F5F3FF] text-[#7C3AED] flex items-center justify-center shrink-0">
+            <span class="text-xl">📈</span>
+          </div>
+          <div>
+            <span class="text-xs font-medium text-century-muted block">Épargne & Investissements</span>
+            <span id="sim-kpi-investments" class="text-2xl font-bold font-sans text-[#7C3AED]">0,00 €</span>
+          </div>
+        </div>
+
+        <!-- Money Left Over / Surplus -->
+        <div class="c-card p-5 flex items-center space-x-4 border-l-4 border-l-[#059669] bg-gradient-to-br from-white to-[#F0FDF4]">
+          <div class="w-12 h-12 rounded-xl bg-[#DCFCE7] text-[#059669] flex items-center justify-center shrink-0">
+            <span class="text-xl">💎</span>
+          </div>
+          <div>
+            <span class="text-xs font-medium text-century-muted block">Reste à Vivre / Surplus</span>
+            <span id="sim-kpi-leftover" class="text-2xl font-bold font-sans text-[#059669]">0,00 €</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Projection Banner: Annual Wealth Accumulation & Baseline Comparison -->
+      <div class="c-card p-6 bg-gradient-to-r from-white via-white to-[#F0FDF4] border-l-4 border-l-[#2D5A3C] flex flex-col md:flex-row md:items-center justify-between gap-5">
+        <div class="space-y-1.5">
+          <div class="flex items-center space-x-2">
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#2D5A3C]">Projection Annuelle</span>
+            <span id="sim-baseline-period-badge" class="px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#E8F0EC] text-[#2D5A3C]">
+              Base : 4 derniers mois
+            </span>
+          </div>
+          <h4 class="font-serif-title text-xl text-century-charcoal" id="sim-wealth-heading">
+            Patrimoine & Surplus Projeté : <span class="font-sans font-bold text-[#2D5A3C]" id="sim-annual-wealth">0,00 € / an</span>
+          </h4>
+          <p id="sim-delta-message" class="text-xs text-century-muted leading-relaxed max-w-3xl">
+            Calcul en cours selon vos ajustements...
+          </p>
+        </div>
+        <div class="shrink-0 text-left md:text-right">
+          <span class="text-xs text-century-muted block">Taux d'Épargne Projeté</span>
+          <span id="sim-savings-rate-badge" class="text-3xl font-bold font-sans text-[#2D5A3C]">0,0%</span>
+        </div>
+      </div>
+
+      <!-- Simulator Layout: Left Sliders & Inputs, Right Donut & 50/30/20 Rule -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Controls Column (2 cols) -->
+        <div class="lg:col-span-2 space-y-6">
+
+          <!-- Section 1: Revenus -->
+          <div class="c-card p-6 space-y-4">
+            <div class="flex items-center justify-between border-b border-[#EAEAE5] pb-3">
+              <div class="flex items-center space-x-2">
+                <span class="text-xl">💰</span>
+                <h3 class="font-serif-title text-lg text-century-charcoal">1. Revenus & Entrées d'Argent</h3>
+              </div>
+              <span id="sim-sec-income-total" class="font-sans text-sm font-bold text-[#2D5A3C]">0,00 €</span>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Salary -->
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span id="sim-salary-label" class="font-semibold text-century-charcoal">Salaire Net Mensuel (Principal)</span>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-[10px] text-century-muted" id="sim-salary-baseline-hint">Moyenne 4 mois : 0 €</span>
+                    <div class="relative">
+                      <input type="number" id="sim-input-salary" step="10" min="0" oninput="onBudgetInputChange('salary', this.value)" class="w-28 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-[#2D5A3C] focus:outline-none focus:border-[#2D5A3C]">
+                      <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                    </div>
+                  </div>
+                </div>
+                <input type="range" id="sim-range-salary" min="0" max="6000" step="25" oninput="onBudgetSliderChange('salary', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#2D5A3C]">
+              </div>
+
+              <!-- Other Income -->
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="font-semibold text-century-charcoal">Autres Revenus, Primes ou Freelance</span>
+                  <div class="relative">
+                    <input type="number" id="sim-input-other-income" step="10" min="0" value="0" oninput="onBudgetInputChange('other_income', this.value)" class="w-28 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-[#2D5A3C] focus:outline-none focus:border-[#2D5A3C]">
+                    <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Charges Fixes & Logement (Totalement Modifiables) -->
+          <div class="c-card p-6 space-y-5 border-l-4 border-l-[#6366f1]">
+            <div class="flex items-center justify-between border-b border-[#EAEAE5] pb-3">
+              <div>
+                <div class="flex items-center space-x-2">
+                  <span class="text-xl">🏠</span>
+                  <h3 class="font-serif-title text-lg text-century-charcoal">2. Charges Fixes & Logement (Totalement Modifiables)</h3>
+                </div>
+                <p class="text-xs text-century-muted mt-0.5">Testez l'impact direct d'un changement d'appartement, de loyer ou d'abonnements</p>
+              </div>
+              <span id="sim-sec-fixed-total" class="font-sans text-sm font-bold text-[#6366f1]">0,00 €</span>
+            </div>
+
+            <!-- Housing / Rent -->
+            <div class="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-3">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-sm text-century-charcoal">⚡ Logement & Loyer</span>
+                  <span class="block text-[11px] text-century-muted">Loyer mensuel, charges locatives, colocation</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-logement" step="10" min="0" max="3500" oninput="onBudgetCategoryInputChange('Logement & Énergie', this.value)" class="w-28 px-2.5 py-1.5 text-right rounded-lg bg-white border border-[#CBD5E1] text-xs font-bold font-sans text-[#1E293B] focus:outline-none focus:border-[#6366f1]">
+                  <span class="absolute right-2 top-1.5 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-logement" min="0" max="2500" step="25" oninput="onBudgetCategorySliderChange('Logement & Énergie', this.value)" class="w-full h-1.5 bg-[#CBD5E1] rounded-lg appearance-none cursor-pointer accent-[#6366f1]">
+              <!-- Scenario presets for moving -->
+              <div class="flex items-center gap-2 flex-wrap pt-1 text-[11px]">
+                <span class="text-century-muted">Scénarios logement :</span>
+                <button type="button" onclick="setBudgetCategoryPreset('Logement & Énergie', 0)" class="px-2 py-0.5 rounded border border-[#E2E8F0] bg-white hover:bg-[#F1F5F9] text-century-charcoal font-medium">Actuel (0 €)</button>
+                <button type="button" onclick="setBudgetCategoryPreset('Logement & Énergie', 650)" class="px-2 py-0.5 rounded border border-[#E2E8F0] bg-white hover:bg-[#F1F5F9] text-century-charcoal font-medium">Studio (650 €)</button>
+                <button type="button" onclick="setBudgetCategoryPreset('Logement & Énergie', 850)" class="px-2 py-0.5 rounded border border-[#E2E8F0] bg-white hover:bg-[#F1F5F9] text-century-charcoal font-medium">T2 (850 €)</button>
+                <button type="button" onclick="setBudgetCategoryPreset('Logement & Énergie', 1100)" class="px-2 py-0.5 rounded border border-[#E2E8F0] bg-white hover:bg-[#F1F5F9] text-century-charcoal font-medium">Maison/T3 (1 100 €)</button>
+                <button type="button" onclick="setBudgetCategoryPreset('Logement & Énergie', 1400)" class="px-2 py-0.5 rounded border border-[#E2E8F0] bg-white hover:bg-[#F1F5F9] text-century-charcoal font-medium">Grand T4 (1 400 €)</button>
+              </div>
+            </div>
+
+            <!-- Telecom & Subscriptions -->
+            <div class="space-y-2 pt-1">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">📱 Télécom & Abonnements</span>
+                  <span class="block text-[11px] text-century-muted">Mobile, fibre internet, streaming</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-telecom" step="1" min="0" oninput="onBudgetCategoryInputChange('Télécom & Abonnements', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#6366f1]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-telecom" min="0" max="250" step="5" oninput="onBudgetCategorySliderChange('Télécom & Abonnements', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#a855f7]">
+              <div class="flex items-center gap-2 flex-wrap text-[11px]">
+                <button type="button" onclick="setBudgetCategoryPreset('Télécom & Abonnements', 20)" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted font-medium">Forfait Éco (20 €)</button>
+                <button type="button" onclick="setBudgetCategoryPreset('Télécom & Abonnements', 40)" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted font-medium">Fibre + Mobile (40 €)</button>
+                <button type="button" onclick="setBudgetCategoryPreset('Télécom & Abonnements', 70)" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted font-medium">Fibre + Abos (70 €)</button>
+              </div>
+            </div>
+
+            <!-- Transports -->
+            <div class="space-y-2 pt-2 border-t border-[#EAEAE5]/60">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">🚗 Transports & Péages</span>
+                  <span class="block text-[11px] text-century-muted">Pass Navigo, Imagine R, carburant</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-transports" step="1" min="0" oninput="onBudgetCategoryInputChange('Transports & Péages', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#6366f1]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-transports" min="0" max="350" step="5" oninput="onBudgetCategorySliderChange('Transports & Péages', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#06b6d4]">
+              <div class="flex items-center gap-2 flex-wrap text-[11px]">
+                <button type="button" onclick="setBudgetCategoryPreset('Transports & Péages', 42)" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted font-medium">Imagine R (42 €)</button>
+                <button type="button" onclick="setBudgetCategoryPreset('Transports & Péages', 86)" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted font-medium">Pass Navigo Plein (86 €)</button>
+              </div>
+            </div>
+
+            <!-- Bank Fees -->
+            <div class="space-y-2 pt-2 border-t border-[#EAEAE5]/60">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">🏦 Frais Bancaires & Assurances</span>
+                  <span class="block text-[11px] text-century-muted">Sobrio, Sogessur, tenue de compte</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-frais-bancaires" step="1" min="0" oninput="onBudgetCategoryInputChange('Frais Bancaires', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#6366f1]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-frais-bancaires" min="0" max="100" step="1" oninput="onBudgetCategorySliderChange('Frais Bancaires', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#ef4444]">
+            </div>
+
+          </div>
+
+          <!-- Section 3: Alimentation & Santé -->
+          <div class="c-card p-6 space-y-5 border-l-4 border-l-[#10b981]">
+            <div class="flex items-center justify-between border-b border-[#EAEAE5] pb-3">
+              <div class="flex items-center space-x-2">
+                <span class="text-xl">🛒</span>
+                <h3 class="font-serif-title text-lg text-century-charcoal">3. Alimentation & Santé (Essentiels)</h3>
+              </div>
+              <span id="sim-sec-essentials-total" class="font-sans text-sm font-bold text-[#10b981]">0,00 €</span>
+            </div>
+
+            <!-- Supermarket -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">🛒 Alimentation & Supermarchés</span>
+                  <span class="block text-[11px] text-century-muted">Courses du quotidien, Carrefour, Monoprix, etc.</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-alimentation" step="5" min="0" oninput="onBudgetCategoryInputChange('Alimentation & Supermarchés', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#10b981]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-alimentation" min="0" max="800" step="10" oninput="onBudgetCategorySliderChange('Alimentation & Supermarchés', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#10b981]">
+              <div class="flex items-center gap-2 flex-wrap text-[11px]">
+                <button type="button" onclick="adjustCategoryPct('Alimentation & Supermarchés', -0.15)" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted">-15%</button>
+                <button type="button" onclick="resetSingleCategoryToBaseline('Alimentation & Supermarchés')" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted">Moyenne</button>
+                <button type="button" onclick="adjustCategoryPct('Alimentation & Supermarchés', 0.15)" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted">+15%</button>
+              </div>
+            </div>
+
+            <!-- Health -->
+            <div class="space-y-2 pt-2 border-t border-[#EAEAE5]/60">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">💊 Santé & Pharmacie</span>
+                  <span class="block text-[11px] text-century-muted">Médecins, pharmacie, soins</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-sante" step="5" min="0" oninput="onBudgetCategoryInputChange('Santé & Pharmacie', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#10b981]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-sante" min="0" max="250" step="5" oninput="onBudgetCategorySliderChange('Santé & Pharmacie', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#ec4899]">
+            </div>
+
+          </div>
+
+          <!-- Section 4: Loisirs, Sorties & Mode de Vie -->
+          <div class="c-card p-6 space-y-5 border-l-4 border-l-[#f59e0b]">
+            <div class="flex items-center justify-between border-b border-[#EAEAE5] pb-3">
+              <div class="flex items-center space-x-2">
+                <span class="text-xl">🍽️</span>
+                <h3 class="font-serif-title text-lg text-century-charcoal">4. Loisirs, Sorties & Mode de Vie</h3>
+              </div>
+              <span id="sim-sec-lifestyle-total" class="font-sans text-sm font-bold text-[#f59e0b]">0,00 €</span>
+            </div>
+
+            <!-- Restaurants & Sorties -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">🍽️ Restaurants & Sorties</span>
+                  <span class="block text-[11px] text-century-muted">Uber Eats, Deliveroo, bars, restaurants</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-restaurants" step="5" min="0" oninput="onBudgetCategoryInputChange('Restaurants & Sorties', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#f59e0b]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-restaurants" min="0" max="600" step="5" oninput="onBudgetCategorySliderChange('Restaurants & Sorties', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#f59e0b]">
+              <div class="flex items-center gap-2 flex-wrap text-[11px]">
+                <button type="button" onclick="adjustCategoryPct('Restaurants & Sorties', -0.35)" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-[#2D5A3C] font-semibold">-35% (Recommandé)</button>
+                <button type="button" onclick="adjustCategoryPct('Restaurants & Sorties', -0.20)" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted">-20%</button>
+                <button type="button" onclick="resetSingleCategoryToBaseline('Restaurants & Sorties')" class="px-2 py-0.5 rounded border border-[#EAEAE5] bg-white hover:bg-[#F6F6F2] text-century-muted">Moyenne</button>
+              </div>
+            </div>
+
+            <!-- Sports & Fitness -->
+            <div class="space-y-2 pt-2 border-t border-[#EAEAE5]/60">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">🏋️ Sports & Fitness</span>
+                  <span class="block text-[11px] text-century-muted">Fitness Kremlin, salle de sport</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-sports" step="5" min="0" oninput="onBudgetCategoryInputChange('Sports & Fitness', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#f59e0b]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-sports" min="0" max="150" step="5" oninput="onBudgetCategorySliderChange('Sports & Fitness', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#0284c7]">
+            </div>
+
+            <!-- Shopping & Soins -->
+            <div class="space-y-2 pt-2 border-t border-[#EAEAE5]/60">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">🛍️ Shopping & Soins</span>
+                  <span class="block text-[11px] text-century-muted">Mode, parfumerie, coiffeur, livres</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-shopping" step="5" min="0" oninput="onBudgetCategoryInputChange('Shopping & Soins', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#f59e0b]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-shopping" min="0" max="300" step="5" oninput="onBudgetCategorySliderChange('Shopping & Soins', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#d946ef]">
+            </div>
+
+            <!-- High-Tech & Hardware monthly reserve -->
+            <div class="space-y-2 pt-2 border-t border-[#EAEAE5]/60">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">💻 High-Tech (Provision Mensuelle)</span>
+                  <span class="block text-[11px] text-century-muted">Provision lissée pour renouvellement ordinateur/téléphone</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-hightech" step="5" min="0" oninput="onBudgetCategoryInputChange('High-Tech & Équipement', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#f59e0b]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-hightech" min="0" max="300" step="5" oninput="onBudgetCategorySliderChange('High-Tech & Équipement', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#0ea5e9]">
+            </div>
+
+            <!-- Tabac, Chèques & Autre -->
+            <div class="space-y-2 pt-2 border-t border-[#EAEAE5]/60">
+              <div class="flex items-center justify-between text-xs">
+                <div>
+                  <span class="font-bold text-century-charcoal">📦 Autre & Dépenses Diverses</span>
+                  <span class="block text-[11px] text-century-muted">Retraits espèces, imprévus, presse</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="sim-input-autre" step="5" min="0" oninput="onBudgetCategoryInputChange('Autre', this.value)" class="w-24 px-2.5 py-1 text-right rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs font-bold font-sans text-century-charcoal focus:outline-none focus:border-[#f59e0b]">
+                  <span class="absolute right-2 top-1 text-xs text-century-muted pointer-events-none">€</span>
+                </div>
+              </div>
+              <input type="range" id="sim-range-autre" min="0" max="250" step="5" oninput="onBudgetCategorySliderChange('Autre', this.value)" class="w-full h-1.5 bg-[#EAEAE5] rounded-lg appearance-none cursor-pointer accent-[#94a3b8]">
+            </div>
+
+          </div>
+
+          <!-- Section 5: Investissements Programmés -->
+          <div class="c-card p-6 space-y-4 border-l-4 border-l-[#8b5cf6]">
+            <div class="flex items-center justify-between border-b border-[#EAEAE5] pb-3">
+              <div class="flex items-center space-x-2">
+                <span class="text-xl">📈</span>
+                <h3 class="font-serif-title text-lg text-century-charcoal">5. Investissements & Patrimoine Programmés</h3>
+              </div>
+              <span id="sim-sec-invest-total" class="font-sans text-sm font-bold text-[#8b5cf6]">0,00 €</span>
+            </div>
+
+            <div class="space-y-4" id="sim-investments-container">
+              <!-- Dynamically populated from workspace investment accounts -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Visual Breakdown & 50/30/20 Rule Column (1 col) -->
+        <div class="space-y-6">
+
+          <!-- Donut Breakdown Card -->
+          <div class="c-card p-6 space-y-4">
+            <h3 class="font-serif-title text-lg text-century-charcoal">Répartition du Budget Projeté</h3>
+            <div class="relative w-full h-[220px]">
+              <canvas id="budgetBreakdownDonutChart"></canvas>
+            </div>
+            <div class="space-y-2 pt-2 border-t border-[#EAEAE5] text-xs">
+              <div class="flex items-center justify-between">
+                <span class="flex items-center space-x-1.5 text-century-muted">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#2563EB]"></span>
+                  <span>Besoins & Logement</span>
+                </span>
+                <span id="sim-pct-needs" class="font-bold text-century-charcoal">0%</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="flex items-center space-x-1.5 text-century-muted">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B]"></span>
+                  <span>Envies & Sorties</span>
+                </span>
+                <span id="sim-pct-wants" class="font-bold text-century-charcoal">0%</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="flex items-center space-x-1.5 text-century-muted">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#10B981]"></span>
+                  <span>Épargne & Reste à vivre</span>
+                </span>
+                <span id="sim-pct-savings" class="font-bold text-[#10B981]">0%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 50/30/20 Rule Benchmark Card -->
+          <div class="c-card p-6 space-y-4 border-l-4 border-l-[#2D5A3C]">
+            <h3 class="font-serif-title text-lg text-century-charcoal">Règle Budgétaire 50 / 30 / 20</h3>
+            <p class="text-xs text-century-muted leading-relaxed">
+              Standard d'excellence en gestion de patrimoine : 50% max pour les besoins, 30% max pour les envies, 20% min pour l'épargne et les investissements.
+            </p>
+            <div class="space-y-3 pt-2">
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="text-century-charcoal font-medium">Besoins fixes (Max 50%)</span>
+                  <span id="bench-needs-val" class="font-bold text-century-charcoal">0%</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-[#EAEAE5] overflow-hidden">
+                  <div id="bench-needs-bar" class="h-full bg-[#2563EB] transition-all duration-300" style="width: 50%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="text-century-charcoal font-medium">Envies & Sorties (Max 30%)</span>
+                  <span id="bench-wants-val" class="font-bold text-century-charcoal">0%</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-[#EAEAE5] overflow-hidden">
+                  <div id="bench-wants-bar" class="h-full bg-[#F59E0B] transition-all duration-300" style="width: 30%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="text-century-charcoal font-medium">Épargne & Reste à vivre (Min 20%)</span>
+                  <span id="bench-savings-val" class="font-bold text-[#10B981]">0%</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-[#EAEAE5] overflow-hidden">
+                  <div id="bench-savings-bar" class="h-full bg-[#10B981] transition-all duration-300" style="width: 20%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="sim-bench-advice" class="p-3 rounded-xl bg-[#FAF9F5] border border-[#EAEAE5] text-xs text-century-charcoal leading-relaxed mt-2">
+              Ajustez vos catégories pour voir l'impact immédiat sur votre surplus financier.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>

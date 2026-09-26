@@ -1,0 +1,83 @@
+  <div id="kpi-audit-modal" class="fixed inset-0 z-50 bg-black/45 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl border border-[#EAEAE5] shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-[#EAEAE5] flex items-center justify-between bg-[#FAF9F5]">
+        <div class="flex items-center space-x-3">
+          <div id="audit-modal-icon-badge" class="w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-[#E8F0EC] text-[#2D5A3C]">
+            🧮
+          </div>
+          <div>
+            <h3 id="audit-modal-title" class="font-serif-title text-xl text-century-charcoal font-semibold">Audit du Calcul & Opérations</h3>
+            <p id="audit-modal-subtitle" class="text-xs text-century-muted mt-0.5">Détail complet des transactions et de la formule appliquée</p>
+          </div>
+        </div>
+        <button onclick="closeKpiAuditModal()" class="w-8 h-8 rounded-lg border border-[#EAEAE5] bg-white text-century-muted hover:text-century-charcoal hover:bg-[#F6F6F2] flex items-center justify-center transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 overflow-y-auto space-y-6 flex-1 text-xs">
+        
+        <!-- Formula Breakdown Cards Grid -->
+        <div id="audit-modal-formula-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Explanatory Context Notice -->
+        <div id="audit-modal-notice" class="p-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] space-y-2">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Filter and Search Row -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+          <div class="relative flex-1 max-w-sm">
+            <input type="text" id="audit-tx-search" oninput="filterAuditModalTransactions()" placeholder="Rechercher une opération (loyer, virement, courses...)" class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+            <svg class="w-3.5 h-3.5 text-century-muted absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <div class="flex items-center space-x-2 text-[11px] text-century-muted">
+            <span id="audit-tx-count-badge" class="font-medium text-century-charcoal">0 opérations</span>
+            <span>•</span>
+            <span id="audit-tx-sum-badge" class="font-bold text-century-charcoal font-sans">0,00 €</span>
+          </div>
+        </div>
+
+        <!-- Transactions Table Container -->
+        <div class="border border-[#EAEAE5] rounded-xl overflow-hidden shadow-xs">
+          <div class="max-h-72 overflow-y-auto">
+            <table class="w-full text-left border-collapse">
+              <thead class="sticky top-0 bg-[#F6F6F2] border-b border-[#EAEAE5] text-[11px] font-semibold text-century-muted select-none">
+                <tr>
+                  <th class="py-2.5 px-3">Date</th>
+                  <th class="py-2.5 px-3">Opération / Libellé bancaire</th>
+                  <th class="py-2.5 px-3">Catégorie</th>
+                  <th class="py-2.5 px-3 text-right">Montant</th>
+                  <th class="py-2.5 px-3 text-center">Impact Calcul</th>
+                </tr>
+              </thead>
+              <tbody id="audit-modal-tx-tbody" class="divide-y divide-[#EAEAE5] bg-white">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3.5 border-t border-[#EAEAE5] bg-[#FAF9F5] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <label class="inline-flex items-center space-x-2 cursor-pointer text-xs select-none">
+          <input type="checkbox" id="modal-audit-toggle-reimb" checked onchange="toggleDeductReimbursements(this.checked)" class="rounded border-[#CBD5E1] text-[#2D5A3C] focus:ring-[#2D5A3C] w-4 h-4">
+          <span class="font-medium text-century-charcoal">Déduire les remboursements de mes dépenses de vie</span>
+        </label>
+        <button onclick="closeKpiAuditModal()" class="px-5 py-2 rounded-xl bg-[#2D5A3C] text-white text-xs font-semibold hover:bg-[#234B34] transition shadow-xs self-end sm:self-auto">
+          Compris / Fermer
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Custom Floating Tooltip Element for Chart.js -->
+  <div id="chartjs-custom-tooltip" style="opacity: 0;"></div>

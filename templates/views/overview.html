@@ -1,0 +1,218 @@
+    <section id="view-overview" class="p-6 md:p-10 space-y-8">
+      
+      <!-- Top Title & Time Filters Row -->
+      <div>
+        <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Financial Overview</h2>
+        <p id="overview-subtitle" class="text-sm text-century-muted mt-1">
+          Opérations analysées
+        </p>
+      </div>
+
+      <!-- Time Filter Pills (Screenshot 2 exact layout) & Net Reimbursement Toggle -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-1 pb-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Date dropdown pill -->
+          <div class="relative">
+            <button class="flex items-center space-x-2 px-3.5 py-1.5 rounded-lg border border-[#EAEAE5] bg-white text-xs font-medium text-century-charcoal hover:bg-[#F6F6F2] transition shadow-xs">
+              <svg class="w-3.5 h-3.5 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span id="overview-range-label">Toutes les périodes</span>
+              <svg class="w-3 h-3 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+          </div>
+
+          <!-- Quick filter pills -->
+          <button onclick="selectMonthFilter('ALL')" id="filter-pill-all" class="px-3.5 py-1.5 rounded-lg border border-[#EAEAE5] text-xs font-medium text-[#4A5550] hover:text-century-charcoal transition filter-pill-active">
+            Toutes périodes
+          </button>
+          <button onclick="selectQuickFilter('latest')" id="filter-pill-latest" class="px-3.5 py-1.5 rounded-lg border border-transparent text-xs font-medium text-[#6C7570] hover:text-century-charcoal transition">
+            Dernier mois
+          </button>
+
+          <!-- Dynamic Month Selectors -->
+          <div id="dynamic-month-pills" class="flex items-center gap-2 flex-wrap">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Net / Gross Toggle for Living Expenses -->
+        <label class="inline-flex items-center space-x-2 bg-white px-3 py-1.5 rounded-xl border border-[#EAEAE5] shadow-xs cursor-pointer hover:bg-[#FAF9F5] transition text-xs select-none shrink-0 self-start md:self-auto">
+          <input type="checkbox" id="toggle-deduct-reimb" checked onchange="toggleDeductReimbursements(this.checked)" class="rounded border-[#CBD5E1] text-[#2D5A3C] focus:ring-[#2D5A3C] w-4 h-4">
+          <span class="font-semibold text-century-charcoal">Déduire les remboursements</span>
+          <span class="text-[10px] text-century-muted">(Loyer famille, CAF, CPAM)</span>
+        </label>
+      </div>
+
+      <!-- 4 Top KPI Cards (Screenshot 2 exact cards) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Total Transactions -->
+        <div class="c-card p-5 flex flex-col justify-between">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-[#F0F2ED] text-[#4A5550] flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+            </div>
+            <div>
+              <span class="text-xs font-medium text-century-muted block">Total Transactions</span>
+              <span id="kpi-total-tx" class="text-2xl font-bold font-sans text-century-charcoal">0</span>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-[#EAEAE5]/60 flex items-center justify-between text-[11px]">
+            <span class="text-century-muted">Relevés Société Générale</span>
+            <button onclick="switchView('transactions')" class="text-[#2D5A3C] font-semibold hover:underline">Voir liste →</button>
+          </div>
+        </div>
+
+        <!-- Total Income (Deep Green) -->
+        <div class="c-card p-5 flex flex-col justify-between border-l-4 border-l-[#2D5A3C]">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-[#E8F0EC] text-[#2D5A3C] flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+            <div>
+              <span id="kpi-income-title" class="text-xs font-medium text-century-muted block">Total Income (Salaires)</span>
+              <span id="kpi-total-income" class="text-2xl font-bold font-sans text-[#2D5A3C]">0,00 €</span>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-[#EAEAE5]/60 flex items-center justify-between text-[11px]">
+            <span class="text-century-muted">100% Salaires d'activité</span>
+            <button onclick="openKpiAuditModal('income')" class="text-[#2D5A3C] font-semibold hover:underline flex items-center space-x-0.5">
+              <span>Détail calcul</span><span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Total Expenses (Burgundy) = All money spent - investments -->
+        <div class="c-card p-5 flex flex-col justify-between border-l-4 border-l-[#6E2D38]">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-[#FDF0F2] text-[#6E2D38] flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+            </div>
+            <div>
+              <span id="kpi-expenses-title" class="text-xs font-medium text-century-muted block">Dépenses de vie (hors invest.)</span>
+              <span id="kpi-total-expenses" class="text-2xl font-bold font-sans text-[#6E2D38]">0,00 €</span>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-[#EAEAE5]/60 flex items-center justify-between text-[11px]">
+            <span id="kpi-expenses-sub" class="text-century-muted truncate max-w-[150px]">Gross : 0,00 €</span>
+            <button onclick="openKpiAuditModal('expenses')" class="text-[#6E2D38] font-semibold hover:underline flex items-center space-x-0.5 shrink-0">
+              <span>Détail calcul</span><span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Net Savings (Deep Green) -->
+        <div class="c-card p-5 flex flex-col justify-between border-l-4 border-l-[#2D5A3C]">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-[#E8F0EC] text-[#2D5A3C] flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <span class="text-xs font-medium text-century-muted block">Net Savings (Épargne Réelle)</span>
+              <span id="kpi-net-savings" class="text-2xl font-bold font-sans text-[#2D5A3C]">0,00 €</span>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-[#EAEAE5]/60 flex items-center justify-between text-[11px]">
+            <span id="kpi-savings-rate-sub" class="text-century-muted">Taux : 0,0%</span>
+            <button onclick="openKpiAuditModal('savings')" class="text-[#2D5A3C] font-semibold hover:underline flex items-center space-x-0.5">
+              <span>Détail calcul</span><span>→</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Graph 1: Monthly Spending Trend (Income vs Dépenses de vie = all money spent - investments) -->
+      <div class="c-card p-6 md:p-8 space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <div class="flex items-center space-x-2 text-century-charcoal">
+              <svg class="w-4 h-4 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Monthly Spending Trend</h3>
+            </div>
+            <p id="chart-spending-subtitle" class="text-xs text-century-muted mt-1">Revenus vs Dépenses de vie courante (total dépensé - investissements)</p>
+          </div>
+          <button onclick="openKpiAuditModal('expenses')" class="text-xs text-[#2D5A3C] font-semibold hover:underline flex items-center space-x-1.5 self-start md:self-auto bg-[#FAF9F5] border border-[#EAEAE5] px-3 py-1.5 rounded-lg">
+            <span>🧮 Comprendre le calcul</span>
+          </button>
+        </div>
+
+        <!-- Chart Container with Spline Curve -->
+        <div class="relative w-full h-[320px]">
+          <canvas id="overviewTrendChart"></canvas>
+        </div>
+
+        <!-- Chart Legend (Screenshot 2) -->
+        <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs text-[#555E58]">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#2D5A3C]"></span>
+            <span id="chart-legend-income-label" class="font-medium">Income (Salaires)</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#6E2D38]"></span>
+            <span id="chart-legend-expenses-label" class="font-medium">Dépenses de vie (hors investissements)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graph 2: DEDICATED INVESTMENTS GRAPH (Livret A vs CTO Interactive Brokers) -->
+      <div class="c-card p-6 md:p-8 space-y-6 border-l-4 border-l-[#2C4A6F]">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center space-x-2 text-century-charcoal">
+              <span class="text-xl">📈</span>
+              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Investments & Wealth Accumulation</h3>
+            </div>
+            <p class="text-xs text-century-muted mt-1">Suivi comparatif des versements mensuels d'épargne et d'investissement. Cliquez sur un indicateur pour auditer les flux.</p>
+          </div>
+          <!-- Dynamic KPI Badges for Investments (Clickable for audit) -->
+          <div id="invest-kpi-badges-container" class="flex flex-wrap items-center gap-3">
+            <!-- Dynamically populated from workspace profile investment accounts -->
+          </div>
+        </div>
+
+        <!-- Spline Area Chart Canvas for Investments -->
+        <div class="relative w-full h-[300px]">
+          <canvas id="investmentsSplineChart"></canvas>
+        </div>
+
+        <!-- Dynamic Legend -->
+        <div id="investments-chart-legend" class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs text-[#555E58]">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+
+      <!-- Card 3: DÉPENSES MAJEURES & HIGH-TECH (> 300 €) -->
+      <div class="c-card p-6 md:p-8 space-y-6 border-l-4 border-l-[#0ea5e9]">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center space-x-2 text-century-charcoal">
+              <span class="text-xl">💻</span>
+              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Major & One-Off Expenditures</h3>
+            </div>
+            <p class="text-xs text-century-muted mt-1">Dépenses exceptionnelles, matériel informatique & high-tech (> 300 €) isolés des charges régulières</p>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span id="major-exp-count-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-[#E0F2FE] text-[#0369A1] border border-[#BAE6FD]">
+              0 dépense
+            </span>
+            <span id="major-exp-total-badge" class="font-sans text-sm font-bold text-century-charcoal">
+              0,00 €
+            </span>
+          </div>
+        </div>
+
+        <!-- Major Expenditures List -->
+        <div id="major-expenditures-container" class="space-y-3">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-[#F0F9FF] border border-[#BAE6FD]/60 flex items-start space-x-3 text-xs text-[#0369A1]">
+          <span class="text-base shrink-0">💡</span>
+          <p class="leading-relaxed">
+            Ces investissements matériels ou achats majeurs ponctuels sont dissociés de vos dépenses courantes d'alimentation, sorties et abonnements pour éviter de fausser votre coût de vie mensuel récurrent (~300–400 €/mois).
+          </p>
+        </div>
+      </div>
+
+    </section>

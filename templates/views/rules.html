@@ -1,0 +1,64 @@
+    <section id="view-rules" class="hidden p-6 md:p-10 space-y-8">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Rules & Automation</h2>
+          <p class="text-sm text-century-muted mt-1">Gérez vos règles d'association mot-clé vers catégorie persistantes</p>
+        </div>
+
+        <!-- Local Ollama trigger -->
+        <button onclick="triggerOllamaReclassify()" class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-[#2D5A3C] text-white text-xs font-medium hover:bg-[#234B34] transition shadow-sm">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span>Classifier via Ollama Local (qwen2.5:7b)</span>
+        </button>
+      </div>
+
+      <!-- Add Rule Card -->
+      <div class="c-card p-6 space-y-4">
+        <h3 class="font-serif-title text-lg text-century-charcoal">Ajouter une nouvelle règle</h3>
+        <form onsubmit="handleAddNewRule(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-century-muted mb-1">Mot-clé ou Commerçant (ex: SOBRIO)</label>
+            <input type="text" id="new-rule-pattern" required placeholder="Mot-clé dans le libellé..." class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-century-muted mb-1">Catégorie cible</label>
+            <select id="new-rule-category" required class="w-full px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+              <!-- Injected categories -->
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-century-muted mb-1">Nom affiché (optionnel)</label>
+            <div class="flex space-x-2">
+              <input type="text" id="new-rule-merchant" placeholder="Nom propre..." class="flex-1 px-3 py-2 rounded-lg bg-[#FAF9F6] border border-[#EAEAE5] text-xs text-century-charcoal focus:outline-none focus:border-[#2D5A3C]">
+              <button type="submit" class="px-4 py-2 rounded-lg bg-[#2D5A3C] text-white text-xs font-medium hover:bg-[#234B34] transition">
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Active Rules Table -->
+      <div class="c-card overflow-hidden">
+        <div class="px-6 py-4 border-b border-[#EAEAE5] bg-[#FAF9F5] flex items-center justify-between">
+          <span class="text-xs font-semibold text-century-charcoal uppercase tracking-wider">Règles enregistrées</span>
+          <span id="rules-count-badge" class="text-xs font-mono font-medium text-century-muted">0 règles</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#FAF9F6] border-b border-[#EAEAE5] text-[#6C7570]">
+              <tr>
+                <th class="py-3 px-6">Mot-clé détecté</th>
+                <th class="py-3 px-6">Catégorie assignée</th>
+                <th class="py-3 px-6">Commerçant</th>
+              </tr>
+            </thead>
+            <tbody id="rules-table-body" class="divide-y divide-[#EAEAE5]/60">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>

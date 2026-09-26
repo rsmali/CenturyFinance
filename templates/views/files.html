@@ -1,0 +1,69 @@
+    <section id="view-files" class="hidden p-6 md:p-10 space-y-8">
+      
+      <!-- Top Title & Refresh Button (Screenshot 0) -->
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">File Management</h2>
+          <p class="text-sm text-century-muted mt-1">View and manage your uploaded financial statements</p>
+        </div>
+        <button onclick="loadDashboardData()" class="flex items-center space-x-2 px-4 py-2 rounded-lg border border-[#EAEAE5] bg-white text-xs font-medium text-century-charcoal hover:bg-[#F6F6F2] transition shadow-sm">
+          <svg class="w-3.5 h-3.5 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span>Refresh</span>
+        </button>
+      </div>
+
+      <!-- 4 Top Cards (Screenshot 0 exact layout) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Total Files -->
+        <div class="c-card p-5 flex items-center space-x-4">
+          <div class="w-12 h-12 rounded-xl bg-[#EEF2F6] text-[#334155] flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div>
+            <span class="text-xs font-medium text-century-muted block">Total Files</span>
+            <span id="fm-total-files" class="text-2xl font-bold font-sans text-century-charcoal">3</span>
+          </div>
+        </div>
+
+        <!-- Processed -->
+        <div class="c-card p-5 flex items-center space-x-4">
+          <div class="w-12 h-12 rounded-xl bg-[#E8F0EC] text-[#2D5A3C] flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <div>
+            <span class="text-xs font-medium text-century-muted block">Processed</span>
+            <span id="fm-processed" class="text-2xl font-bold font-sans text-[#2D5A3C]">3</span>
+          </div>
+        </div>
+
+        <!-- Processing -->
+        <div class="c-card p-5 flex items-center space-x-4">
+          <div class="w-12 h-12 rounded-xl bg-[#EEF4FF] text-[#2563EB] flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <div>
+            <span class="text-xs font-medium text-century-muted block">Processing</span>
+            <span id="fm-processing" class="text-2xl font-bold font-sans text-[#2563EB]">0</span>
+          </div>
+        </div>
+
+        <!-- Total Size -->
+        <div class="c-card p-5 flex items-center space-x-4">
+          <div class="w-12 h-12 rounded-xl bg-[#F0EFEA] text-[#555E58] flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+          </div>
+          <div>
+            <span class="text-xs font-medium text-century-muted block">Total Size</span>
+            <span id="fm-total-size" class="text-2xl font-bold font-sans text-century-charcoal">125.4 KB</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- File Cards List (Screenshot 0 exact wide card layout) -->
+      <div id="file-management-list" class="space-y-4">
+        <!-- Injected dynamically -->
+      </div>
+
+    </section>

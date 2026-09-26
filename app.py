@@ -167,12 +167,24 @@ def parse_and_cache_pdf(pdf_path: str, cache_dir: str = None, profile: dict = No
         cache_dir = STATEMENTS_DIR
     cache_path = os.path.join(cache_dir, f"{filename}.json")
 
-    if not force and os.path.exists(cache_path):
+    existing_overrides = {}
+    if os.path.exists(cache_path):
         try:
             with open(cache_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                if data.get("transactions"):
+                if not force and data.get("transactions"):
                     return data["transactions"]
+                # Collect existing manual overrides before force re-parse
+                for t in data.get("transactions", []):
+                    if t.get("manual_override"):
+                        sig = (t.get("date"), t.get("amount"), t.get("description"))
+                        existing_overrides[sig] = {
+                            "category": t.get("category"),
+                            "merchant": t.get("merchant"),
+                            "manual_override": True,
+                            "color": t.get("color"),
+                            "icon": t.get("icon")
+                        }
         except Exception:
             pass
 
@@ -185,6 +197,9 @@ def parse_and_cache_pdf(pdf_path: str, cache_dir: str = None, profile: dict = No
     for i, r in enumerate(records):
         r["id"] = f"{filename}_{i+1}"
         r["statement_file"] = filename
+        sig = (r.get("date"), r.get("amount"), r.get("description"))
+        if sig in existing_overrides:
+            r.update(existing_overrides[sig])
 
     classified = classify_transactions(records, profile=profile, workspace_dir=ws_dir, use_ollama=False)
 
@@ -842,10 +857,10 @@ def upload_multiple():
             filename = secure_filename(file.filename)
             filepath = os.path.join(ws_ctx["pdf_dir"], filename)
             file.save(filepath)
-            parse_and_cache_pdf(filepath, cache_dir=ws_ctx["cache_dir"], force=True)
+            parse_and_cache_pdf(filepath, cache_dir=ws_ctx["cache_dir"], profile=ws_ctx["meta"].get("profile"), ws_dir=ws_ctx["ws_dir"], force=True)
             saved_count += 1
 
-    all_txs = get_all_statements_transactions(pdf_dir=ws_ctx["pdf_dir"], cache_dir=ws_ctx["cache_dir"], force_reparse=False)
+    all_txs = get_all_statements_transactions(pdf_dir=ws_ctx["pdf_dir"], cache_dir=ws_ctx["cache_dir"], profile=ws_ctx["meta"].get("profile"), ws_dir=ws_ctx["ws_dir"], force_reparse=False)
     save_master_csv(all_txs, csv_path=ws_ctx["csv_path"])
 
     return jsonify({
@@ -890,7 +905,7 @@ def delete_statement():
                 print(f"[App] Error removing cache {j}: {e}")
 
     # Re-aggregate remaining transactions
-    all_txs = get_all_statements_transactions(pdf_dir=ws_ctx["pdf_dir"], cache_dir=ws_ctx["cache_dir"], force_reparse=False)
+    all_txs = get_all_statements_transactions(pdf_dir=ws_ctx["pdf_dir"], cache_dir=ws_ctx["cache_dir"], profile=ws_ctx["meta"].get("profile"), ws_dir=ws_ctx["ws_dir"], force_reparse=False)
     save_master_csv(all_txs, csv_path=ws_ctx["csv_path"])
     return jsonify({
         "status": "ok",
@@ -904,13 +919,14 @@ def reprocess_statement():
     filename = data.get("filename", "").strip()
     ws_id = data.get("workspace")
     ws_ctx = get_workspace_context(ws_id)
+    ws_profile = ws_ctx["meta"].get("profile") or DEFAULT_WORKSPACE_PROFILE
 
     if not filename:
         return jsonify({"status": "error", "error": "Nom de fichier manquant"}), 400
     filepath = os.path.join(ws_ctx["pdf_dir"], os.path.basename(filename))
     if os.path.exists(filepath):
-        parse_and_cache_pdf(filepath, cache_dir=ws_ctx["cache_dir"], force=True)
-        all_txs = get_all_statements_transactions(pdf_dir=ws_ctx["pdf_dir"], cache_dir=ws_ctx["cache_dir"], force_reparse=False)
+        parse_and_cache_pdf(filepath, cache_dir=ws_ctx["cache_dir"], profile=ws_profile, ws_dir=ws_ctx["ws_dir"], force=True)
+        all_txs = get_all_statements_transactions(pdf_dir=ws_ctx["pdf_dir"], cache_dir=ws_ctx["cache_dir"], profile=ws_profile, ws_dir=ws_ctx["ws_dir"], force_reparse=False)
         save_master_csv(all_txs, csv_path=ws_ctx["csv_path"])
         return jsonify({"status": "ok", "message": f"{filename} retraité avec succès", "total_transactions": len(all_txs)})
     return jsonify({"status": "error", "error": "Fichier introuvable"}), 404
@@ -929,18 +945,16 @@ def update_category():
     if not tx_id or not new_cat or new_cat not in CATEGORIES:
         return jsonify({"status": "error", "message": "Catégorie ou ID invalide"}), 400
 
-    # Search in workspace cache files first, then fallback to all caches
+    # Search in workspace cache files first
     target_statement = None
     matched_desc = ""
     cache_files = glob.glob(os.path.join(ws_ctx["cache_dir"], "*.json"))
-    if not cache_files:
-        cache_files = glob.glob(os.path.join(WORKSPACES_ROOT, "*", "cache", "*.json"))
+    found = False
 
     for cache_f in cache_files:
         try:
             with open(cache_f, "r", encoding="utf-8") as f:
                 c = json.load(f)
-            found = False
             for t in c.get("transactions", []):
                 if t.get("id") == tx_id:
                     t["category"] = new_cat
@@ -960,6 +974,38 @@ def update_category():
         except Exception:
             pass
 
+    # If not found in active workspace cache, search across all workspaces
+    if not found:
+        all_cache_files = glob.glob(os.path.join(WORKSPACES_ROOT, "*", "cache", "*.json"))
+        for cache_f in all_cache_files:
+            if cache_f in cache_files:
+                continue
+            try:
+                with open(cache_f, "r", encoding="utf-8") as f:
+                    c = json.load(f)
+                for t in c.get("transactions", []):
+                    if t.get("id") == tx_id:
+                        t["category"] = new_cat
+                        t["color"] = CATEGORY_COLORS.get(new_cat, "#94a3b8")
+                        t["icon"] = CATEGORY_ICONS.get(new_cat, "📦")
+                        t["manual_override"] = True
+                        if data.get("merchant"):
+                            t["merchant"] = data.get("merchant").strip()
+                        target_statement = cache_f
+                        matched_desc = t.get("description", "")
+                        found = True
+                        break
+                if found:
+                    with open(cache_f, "w", encoding="utf-8") as f:
+                        json.dump(c, f, ensure_ascii=False, indent=2)
+                    ws_dir_candidate = os.path.dirname(os.path.dirname(cache_f))
+                    if os.path.exists(ws_dir_candidate):
+                        ws_ctx["ws_dir"] = ws_dir_candidate
+                        ws_ctx["cache_dir"] = os.path.dirname(cache_f)
+                    break
+            except Exception:
+                pass
+
     if remember_rule:
         kw = custom_pattern
         if not kw and matched_desc:
@@ -969,7 +1015,7 @@ def update_category():
             save_user_rule(kw, new_cat, data.get("merchant") or kw, workspace_dir=ws_ctx["ws_dir"])
             if ws_ctx["id"] == "default":
                 save_user_rule(kw, new_cat, data.get("merchant") or kw, workspace_dir=app.config["UPLOAD_FOLDER"])
-            for cache_f in cache_files:
+            for cache_f in glob.glob(os.path.join(ws_ctx["cache_dir"], "*.json")):
                 try:
                     with open(cache_f, "r", encoding="utf-8") as f:
                         c = json.load(f)

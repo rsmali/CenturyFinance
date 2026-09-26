@@ -59,7 +59,11 @@ def export_demo():
         print(f"  ✓ Exported: {ws_path}")
 
     # 4. Generate docs/index.html with GitHub Pages compatibility
-    shutil.copyfile(TEMPLATE_SRC, INDEX_DEST)
+    with app.test_request_context("/"):
+        from flask import render_template
+        rendered_html = render_template("index.html")
+    with open(INDEX_DEST, "w", encoding="utf-8") as f:
+        f.write(rendered_html)
     print(f"  ✓ Generated: {INDEX_DEST}")
     
     print("\n🎉 GitHub Pages Demo Export complete!")

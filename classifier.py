@@ -92,7 +92,13 @@ def rule_classify(desc: str, amount: float, tx_type: str, profile: dict = None, 
     rent_keywords = [k.upper().strip() for k in profile.get("rent_keywords", ["LOYER", "RENT"]) if k.strip()]
     investment_accounts = profile.get("investment_accounts", [])
 
-    # 1. Credits / Inflows
+    # 1. Highest Priority: Workspace user-defined custom rules (applies to both debits & credits)
+    for rule in user_rules:
+        pat = rule.get("pattern", "")
+        if pat and re.search(pat, clean_desc, re.IGNORECASE):
+            return rule.get("category", "Autre"), rule.get("merchant", desc)
+
+    # 2. Credits / Inflows
     if tx_type == "Credit":
         # A. Internal transfer from own savings / investment account back to checking:
         is_own_transfer = False
@@ -127,12 +133,6 @@ def rule_classify(desc: str, amount: float, tx_type: str, profile: dict = None, 
 
         # E. General reimbursements (CAF, CPAM, etc.)
         return "Remboursements & Avoirs", "Remboursement"
-
-    # 2. Check workspace user-defined custom rules
-    for rule in user_rules:
-        pat = rule.get("pattern", "")
-        if pat and re.search(pat, clean_desc, re.IGNORECASE):
-            return rule.get("category", "Autre"), rule.get("merchant", desc)
 
     # 3. Dynamic Investment Debits (Deposits to Livret A, Brokerage, PEA, etc.)
     for inv in investment_accounts:
