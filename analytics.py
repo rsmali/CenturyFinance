@@ -43,6 +43,13 @@ def get_month_label(month_key: str) -> str:
         return f"{m_name} {y}"
     return month_key
 
+def format_fr(val: float) -> str:
+    """Formats a float as standard French currency string: 1.234,56 €."""
+    parts = f"{abs(val):.2f}".split(".")
+    int_part = re.sub(r"\B(?=(\d{3})+(?!\d))", ".", parts[0])
+    res = f"{int_part},{parts[1]} €"
+    return f"-{res}" if val < 0 else res
+
 def compute_multi_month_trends(transactions: list, profile: dict = None) -> dict:
     """
     Computes month-over-month trends, category evolution,
@@ -257,9 +264,16 @@ def compute_multi_month_trends(transactions: list, profile: dict = None) -> dict
             "top_merchants": [{"name": k, "amount": round(v, 2)} for k, v in top_merch]
         })
 
-    # Detailed Category Trends with Monthly History & Out-of-Ordinary Anomaly Detection
+    # Detailed Category Trends with Budget Share & Out-of-Ordinary Anomaly Detection
     month_labels = [m["label"] for m in monthly_data]
     category_trends = []
+
+    non_living_categories = {"Salaires & Revenus", "Cadeaux & Dons", "Remboursements & Avoirs", "Investissements & Épargne"}
+    living_categories = [c for c in all_categories if c not in non_living_categories]
+    total_living_spent = sum(
+        sum(m["categories"].get(cat, 0.0) for cat in living_categories)
+        for m in monthly_data
+    )
 
     for cat in sorted(list(all_categories)):
         history = [m["categories"].get(cat, 0.0) for m in monthly_data]
@@ -271,38 +285,56 @@ def compute_multi_month_trends(transactions: list, profile: dict = None) -> dict
         non_zero = [v for v in history if v > 0]
         avg_spend = (total_spent / len(history)) if history else 0.0
 
-        # Compute standard deviation for anomaly detection
-        variance = sum((x - avg_spend) ** 2 for x in history) / len(history) if history else 0.0
-        std_dev = variance ** 0.5
+        # Calculate budget share percentage of living expenses
+        is_living_cat = cat in living_categories
+        budget_share_pct = round((total_spent / total_living_spent * 100), 1) if (total_living_spent > 0 and is_living_cat and total_spent > 0) else 0.0
 
         unusual_months = []
-        for idx, (val, m_obj) in enumerate(zip(history, monthly_data)):
-            is_unusual = False
-            pct_diff = round(((val - avg_spend) / avg_spend) * 100) if avg_spend > 0 else 0
+        # Strict anomaly detection: Only flag genuinely massive spikes in operational spending
+        # Never flag investments, salary, gifts, or reimbursements as spending anomalies
+        if is_living_cat and avg_spend > 0:
+            for idx, (val, m_obj) in enumerate(zip(history, monthly_data)):
+                is_unusual = False
+                pct_diff = round(((val - avg_spend) / avg_spend) * 100) if avg_spend > 0 else 0
+                prev_val = history[idx - 1] if idx > 0 else 0.0
 
-            # Significant spending (> 35 EUR) and > 1.45x average or jump
-            if val >= 35.0 and avg_spend > 0:
-                if val >= (avg_spend * 1.45) or (std_dev > 0 and val >= (avg_spend + 1.15 * std_dev)):
-                    is_unusual = True
-                elif idx > 0 and (val - history[idx - 1]) >= 40.0 and history[idx - 1] > 0 and (val / history[idx - 1]) >= 1.5:
-                    is_unusual = True
+                if cat == "Logement & Énergie":
+                    # Rent: only flag if at least 1.5x average and jump >= 200 EUR
+                    if val >= 400.0 and val >= (avg_spend * 1.5) and (val - avg_spend) >= 200.0:
+                        is_unusual = True
+                else:
+                    # Variable categories: must be >= 150 EUR, at least double average (>= 2x), and >= 100 EUR delta
+                    if val >= 150.0 and val >= (avg_spend * 2.0) and (val - avg_spend) >= 100.0:
+                        is_unusual = True
 
-            if is_unusual:
-                unusual_months.append({
-                    "index": idx,
-                    "month_key": m_obj["month_key"],
-                    "month_label": m_obj["label"],
-                    "amount": round(val, 2),
-                    "avg": round(avg_spend, 2),
-                    "pct_diff": pct_diff,
-                    "message": f"Dépense inhabituelle en {m_obj['label']} : {val:.2f} € (+{pct_diff}% vs moyenne)."
-                })
+                if is_unusual:
+                    unusual_months.append({
+                        "index": idx,
+                        "month_key": m_obj["month_key"],
+                        "month_label": m_obj["label"],
+                        "amount": round(val, 2),
+                        "avg": round(avg_spend, 2),
+                        "pct_diff": pct_diff,
+                        "previous": round(prev_val, 2),
+                        "current": round(val, 2),
+                        "delta_pct": pct_diff,
+                        "message": f"Dépense ponctuelle en {m_obj['label']} : {format_fr(val)} (+{pct_diff}% vs moyenne)."
+                    })
 
-        # Informative badge if rent was 100% reimbursed
+        # Informative badge for category overview
         is_rent_neutral = (cat == "Logement & Énergie" and total_spent <= 0 and has_tx)
-        anomaly_badge = f"⚠️ Pic inhabituel ({unusual_months[0]['month_label']})" if unusual_months else None
         if is_rent_neutral:
-            anomaly_badge = "✅ Loyer 100% compensé (0 € net)"
+            anomaly_badge = "✅ Loyer compensé (0 €)"
+        elif unusual_months:
+            anomaly_badge = f"⚠️ Pic en {unusual_months[0]['month_label'].split(' ')[0]}"
+        elif cat == "Investissements & Épargne":
+            anomaly_badge = "Patrimoine & Épargne"
+        elif budget_share_pct >= 20.0:
+            anomaly_badge = f"{budget_share_pct}% du budget"
+        elif budget_share_pct > 0:
+            anomaly_badge = f"{budget_share_pct}% du budget"
+        else:
+            anomaly_badge = None
 
         category_trends.append({
             "category": cat,
@@ -312,6 +344,8 @@ def compute_multi_month_trends(transactions: list, profile: dict = None) -> dict
             "months": month_labels,
             "total_spent": round(max(0.0, total_spent), 2),
             "avg_monthly": round(max(0.0, avg_spend), 2),
+            "budget_share_pct": budget_share_pct,
+            "pct_of_budget": budget_share_pct,
             "current_month": round(history[-1] if history else 0.0, 2),
             "max_amount": round(max(history) if history else 0.0, 2),
             "out_of_ordinary": len(unusual_months) > 0,
@@ -326,7 +360,7 @@ def compute_multi_month_trends(transactions: list, profile: dict = None) -> dict
     # Anomaly / Overspending detection for general alerts
     anomalies = []
     for ct in category_trends:
-        if ct["category"] == "Investissements & Épargne":
+        if ct["category"] in ["Investissements & Épargne", "Salaires & Revenus", "Cadeaux & Dons", "Remboursements & Avoirs"]:
             continue
         if ct["out_of_ordinary"] and ct["unusual_months"]:
             for u in ct["unusual_months"]:
@@ -336,15 +370,91 @@ def compute_multi_month_trends(transactions: list, profile: dict = None) -> dict
                     "amount": u["amount"],
                     "avg": u["avg"],
                     "pct_diff": u["pct_diff"],
+                    "previous": u["previous"],
+                    "current": u["current"],
+                    "delta_pct": u["delta_pct"],
                     "message": u["message"]
                 })
+
+    # Multi-month Investment & Savings Capacity Analysis (balances out lumpy investments)
+    n_months = max(1, len(monthly_data))
+    total_income = sum(m.get("income_salary", 0.0) for m in monthly_data)
+    total_invested = sum(m.get("investments", 0.0) for m in monthly_data)
+    total_living = sum(m.get("expenses_living", 0.0) for m in monthly_data)
+
+    avg_monthly_income = round(total_income / n_months, 2)
+    avg_monthly_invested = round(total_invested / n_months, 2)
+    avg_monthly_living = round(total_living / n_months, 2)
+
+    overall_savings_rate = round(((total_invested / total_income) * 100), 1) if total_income > 0 else 0.0
+    monthly_cash_margin = round(max(0.0, avg_monthly_income - avg_monthly_living), 2)
+
+    invest_history = [m.get("investments", 0.0) for m in monthly_data]
+    has_lumpy_investments = False
+    if len(invest_history) >= 2 and avg_monthly_invested > 0:
+        if min(invest_history) < (avg_monthly_invested * 0.4) and max(invest_history) > (avg_monthly_invested * 1.4):
+            has_lumpy_investments = True
+
+    if has_lumpy_investments and overall_savings_rate >= 15.0:
+        diagnosis = {
+            "status": "balanced_lumpy",
+            "title": "Investissements : Versements Lissés & Équilibrés",
+            "badge": f"{overall_savings_rate:.0f}% des revenus",
+            "badge_color": "purple",
+            "icon": "⚖️",
+            "summary": f"Bien que vos versements d'épargne varient d'un mois à l'autre (pauses ponctuelles compensées par des apports plus forts), votre taux d'investissement global atteint {overall_savings_rate:.1f}% de vos revenus ({format_fr(avg_monthly_invested)}/mois en moyenne).",
+            "advice": f"Sur l'ensemble de la période ({n_months} mois), vous avez placé {format_fr(total_invested)} en patrimoine. Les irrégularités mensuelles s'équilibrent parfaitement sur la durée."
+        }
+    elif monthly_cash_margin >= 300.0 and avg_monthly_invested < (monthly_cash_margin * 0.4):
+        idle_cash = round(monthly_cash_margin - avg_monthly_invested, 2)
+        diagnosis = {
+            "status": "under_investing",
+            "title": "Capacité d'Investissement Sous-Exploitée",
+            "badge": "Trésorerie dormante",
+            "badge_color": "amber",
+            "icon": "💡",
+            "summary": f"Vos revenus ({format_fr(avg_monthly_income)}/mois) dégagent un excédent moyen de {format_fr(monthly_cash_margin)}/mois après dépenses courantes, mais vos placements ne captent que {format_fr(avg_monthly_invested)}/mois ({overall_savings_rate:.1f}% des revenus).",
+            "advice": f"Vous disposez d'environ {format_fr(idle_cash)}/mois de surplus qui dort sur le compte courant. Un virement automatique vers votre Livret A ou PEA permettrait de faire fructifier cette épargne sans effort."
+        }
+    elif overall_savings_rate < 10.0 and total_income > 0:
+        diagnosis = {
+            "status": "low_savings",
+            "title": "Effort d'Épargne Perfectible",
+            "badge": f"{overall_savings_rate:.0f}% / 20%",
+            "badge_color": "rose",
+            "icon": "📊",
+            "summary": f"Vos investissements totalisent {format_fr(total_invested)} sur la période, soit {overall_savings_rate:.1f}% de vos revenus (en dessous du benchmark 50/30/20 de 20%).",
+            "advice": "Allouer systématiquement 15% à 20% de vos revenus à l'épargne dès réception du salaire (stratégie 'se payer en premier') renforce durablement votre résilience."
+        }
+    else:
+        diagnosis = {
+            "status": "healthy",
+            "title": "Constitution de Patrimoine & Épargne",
+            "badge": f"{overall_savings_rate:.0f}% des revenus",
+            "badge_color": "purple",
+            "icon": "📈",
+            "summary": f"Vous investissez régulièrement {overall_savings_rate:.1f}% de vos revenus ({format_fr(avg_monthly_invested)}/mois en moyenne), totalisant {format_fr(total_invested)} de patrimoine constitué.",
+            "advice": "Ces flux financiers augmentent directement votre valeur nette patrimoniale et ne constituent pas des dépenses consommées."
+        }
 
     return {
         "months": sorted_month_keys,
         "monthly_data": monthly_data,
         "category_trends": category_trends,
         "all_categories": sorted(list(all_categories)),
-        "anomalies": anomalies
+        "anomalies": anomalies,
+        "investment_analysis": {
+            "total_income": round(total_income, 2),
+            "total_invested": round(total_invested, 2),
+            "total_living": round(total_living, 2),
+            "avg_monthly_income": avg_monthly_income,
+            "avg_monthly_invested": avg_monthly_invested,
+            "avg_monthly_living": avg_monthly_living,
+            "overall_savings_rate": overall_savings_rate,
+            "monthly_cash_margin": monthly_cash_margin,
+            "has_lumpy_investments": has_lumpy_investments,
+            "diagnosis": diagnosis
+        }
     }
 
 def detect_recurring_subscriptions(transactions: list) -> list:

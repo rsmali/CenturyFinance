@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Century Finance — Personal Wealth Management</title>
+  <title>Century Finance — Gestion Patrimoniale & Relevés Bancaires</title>
   
   <!-- Google Fonts: Newsreader / Playfair Display & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,7 +143,7 @@
     <div class="px-6 py-5 border-b border-[#EAEAE5]/80 flex items-center justify-between">
       <div>
         <h1 class="font-serif-title text-xl font-bold text-century-charcoal tracking-tight whitespace-nowrap">Century Finance</h1>
-        <p class="text-xs text-century-muted font-normal mt-0.5 whitespace-nowrap">Personal Wealth Management</p>
+        <p class="text-xs text-century-muted font-normal mt-0.5 whitespace-nowrap">Gestion de Patrimoine & Finances</p>
       </div>
       <!-- Mobile hamburger -->
       <button class="md:hidden text-century-muted hover:text-century-charcoal p-1" onclick="toggleMobileMenu()">
@@ -190,54 +190,54 @@
     <!-- Navigation Menu (Exact layout & items from Screenshots) -->
     <nav id="sidebar-nav" class="flex-1 px-4 py-5 space-y-1.5 overflow-y-auto">
       
-      <!-- Dashboard (Financial Overview - Screenshot 2) -->
+      <!-- Vue d'ensemble (Financial Overview) -->
       <button onclick="switchView('overview')" id="nav-overview" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition nav-item-active">
         <svg class="w-4 h-4 text-[#4A5550] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-        <span class="font-medium whitespace-nowrap">Dashboard</span>
+        <span class="font-medium whitespace-nowrap">Vue d'ensemble</span>
       </button>
 
-      <!-- Budget Simulator (New Tab) -->
+      <!-- Simulateur de Budget -->
       <button onclick="switchView('budget')" id="nav-budget" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition">
         <svg class="w-4 h-4 text-[#4A5550] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-        <span class="font-medium whitespace-nowrap">Budget Simulator</span>
+        <span class="font-medium whitespace-nowrap">Simulateur de Budget</span>
       </button>
 
-      <!-- Financial Time Machine (Screenshot 1) -->
+      <!-- Machine Temporelle (Time Machine) -->
       <button onclick="switchView('timemachine')" id="nav-timemachine" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition">
         <svg class="w-4 h-4 text-[#4A5550] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span class="font-medium whitespace-nowrap">Time Machine</span>
+        <span class="font-medium whitespace-nowrap">Machine Temporelle</span>
         <span id="nav-patterns-badge" class="ml-auto text-[11px] px-2 py-0.2 rounded-full bg-[#E8F0EC] text-[#2D5A3C] font-semibold shrink-0">6</span>
       </button>
 
-      <!-- Document Upload -->
+      <!-- Import de Relevés (Document Upload) -->
       <button onclick="switchView('upload')" id="nav-upload" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition">
         <svg class="w-4 h-4 text-[#4A5550] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-        <span class="font-medium whitespace-nowrap">Document Upload</span>
+        <span class="font-medium whitespace-nowrap">Import de Relevés</span>
       </button>
 
-      <!-- Transaction Review -->
+      <!-- Journal des Opérations (Transaction Review) -->
       <button onclick="switchView('transactions')" id="nav-transactions" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition">
         <svg class="w-4 h-4 text-[#4A5550] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-        <span class="font-medium whitespace-nowrap">Transaction Review</span>
+        <span class="font-medium whitespace-nowrap">Journal des Opérations</span>
         <span id="nav-tx-count" class="ml-auto text-xs px-2 py-0.5 rounded-full bg-[#EAEAE5] text-[#555E58] font-mono shrink-0">0</span>
       </button>
 
-      <!-- File Management (Screenshot 0) -->
+      <!-- Gestion des Relevés (File Management) -->
       <button onclick="switchView('files')" id="nav-files" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition">
         <svg class="w-4 h-4 text-[#4A5550] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-        <span class="font-medium whitespace-nowrap">File Management</span>
+        <span class="font-medium whitespace-nowrap">Gestion des Relevés</span>
       </button>
 
-      <!-- Category Analysis -->
+      <!-- Analyse des Catégories (Category Analysis) -->
       <button onclick="switchView('categories')" id="nav-categories" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition">
         <svg class="w-4 h-4 text-[#4A5550] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        <span class="font-medium whitespace-nowrap">Category Analysis</span>
+        <span class="font-medium whitespace-nowrap">Analyse des Catégories</span>
       </button>
 
-      <!-- Rules & Keywords -->
+      <!-- Règles & Mots-clés (Rules & Keywords) -->
       <button onclick="switchView('rules')" id="nav-rules" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm text-[#4A5550] hover:bg-[#EFEFE9] hover:text-century-charcoal transition">
         <svg class="w-4 h-4 text-[#4A5550] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        <span class="font-medium whitespace-nowrap">Rules & Keywords</span>
+        <span class="font-medium whitespace-nowrap">Règles & Mots-clés</span>
       </button>
 
     </nav>
@@ -268,7 +268,7 @@
       
       <!-- Top Title & Time Filters Row -->
       <div>
-        <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Financial Overview</h2>
+        <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Vue d'ensemble Financière</h2>
         <p id="overview-subtitle" class="text-sm text-century-muted mt-1">
           Opérations analysées
         </p>
@@ -318,7 +318,7 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
             </div>
             <div>
-              <span class="text-xs font-medium text-century-muted block">Total Transactions</span>
+              <span class="text-xs font-medium text-century-muted block">Total des Opérations</span>
               <span id="kpi-total-tx" class="text-2xl font-bold font-sans text-century-charcoal">0</span>
             </div>
           </div>
@@ -335,7 +335,7 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
             </div>
             <div>
-              <span id="kpi-income-title" class="text-xs font-medium text-century-muted block">Total Income (Salaires)</span>
+              <span id="kpi-income-title" class="text-xs font-medium text-century-muted block">Revenus Totaux (Salaires)</span>
               <span id="kpi-total-income" class="text-2xl font-bold font-sans text-[#2D5A3C]">0,00 €</span>
             </div>
           </div>
@@ -359,7 +359,7 @@
             </div>
           </div>
           <div class="mt-3 pt-2 border-t border-[#EAEAE5]/60 flex items-center justify-between text-[11px]">
-            <span id="kpi-expenses-sub" class="text-century-muted truncate max-w-[150px]">Gross : 0,00 €</span>
+            <span id="kpi-expenses-sub" class="text-century-muted truncate max-w-[150px]">Brut : 0,00 €</span>
             <button onclick="openKpiAuditModal('expenses')" class="text-[#6E2D38] font-semibold hover:underline flex items-center space-x-0.5 shrink-0">
               <span>Détail calcul</span><span>→</span>
             </button>
@@ -373,7 +373,7 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <div>
-              <span class="text-xs font-medium text-century-muted block">Net Savings (Épargne Réelle)</span>
+              <span class="text-xs font-medium text-century-muted block">Épargne Nette Réelle</span>
               <span id="kpi-net-savings" class="text-2xl font-bold font-sans text-[#2D5A3C]">0,00 €</span>
             </div>
           </div>
@@ -393,7 +393,7 @@
           <div>
             <div class="flex items-center space-x-2 text-century-charcoal">
               <svg class="w-4 h-4 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Monthly Spending Trend</h3>
+              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Évolution Mensuelle des Dépenses</h3>
             </div>
             <p id="chart-spending-subtitle" class="text-xs text-century-muted mt-1">Revenus vs Dépenses de vie courante (total dépensé - investissements)</p>
           </div>
@@ -411,7 +411,7 @@
         <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs text-[#555E58]">
           <div class="flex items-center space-x-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#2D5A3C]"></span>
-            <span id="chart-legend-income-label" class="font-medium">Income (Salaires)</span>
+            <span id="chart-legend-income-label" class="font-medium">Revenus (Salaires)</span>
           </div>
           <div class="flex items-center space-x-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#6E2D38]"></span>
@@ -426,7 +426,7 @@
           <div>
             <div class="flex items-center space-x-2 text-century-charcoal">
               <span class="text-xl">📈</span>
-              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Investments & Wealth Accumulation</h3>
+              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Patrimoine & Investissements</h3>
             </div>
             <p class="text-xs text-century-muted mt-1">Suivi comparatif des versements mensuels d'épargne et d'investissement. Cliquez sur un indicateur pour auditer les flux.</p>
           </div>
@@ -454,7 +454,7 @@
           <div>
             <div class="flex items-center space-x-2 text-century-charcoal">
               <span class="text-xl">💻</span>
-              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Major & One-Off Expenditures</h3>
+              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Dépenses Majeures & Ponctuelles</h3>
             </div>
             <p class="text-xs text-century-muted mt-1">Dépenses exceptionnelles, matériel informatique & high-tech (> 300 €) isolés des charges régulières</p>
           </div>
@@ -491,7 +491,7 @@
         <div>
           <div class="flex items-center space-x-2">
             <span class="text-2xl">🧮</span>
-            <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Budget & Scenario Simulator</h2>
+            <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Simulateur de Budget & Scénarios</h2>
           </div>
           <p class="text-sm text-century-muted mt-1">
             Simulez vos revenus, charges fixes (loyer, abonnements) et sorties. Pré-rempli avec votre moyenne des 4 derniers mois pour tester un déménagement ou de nouvelles habitudes.
@@ -960,9 +960,9 @@
       <!-- Top Title & Subtitle (Screenshot 1) -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Financial Time Machine</h2>
+          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Machine Temporelle Financière</h2>
           <p class="text-sm text-century-muted mt-1">
-            AI-discovered patterns and trends in your spending history
+            Habitudes et tendances identifiées dans l'historique de vos dépenses
           </p>
         </div>
         
@@ -985,7 +985,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div>
-            <span class="text-xs font-medium text-century-muted block">Transactions Analyzed</span>
+            <span class="text-xs font-medium text-century-muted block">Opérations Analysées</span>
             <span id="tm-kpi-analyzed" class="text-2xl font-bold font-sans text-century-charcoal">113</span>
           </div>
         </div>
@@ -996,7 +996,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
           </div>
           <div>
-            <span class="text-xs font-medium text-century-muted block">Patterns Found</span>
+            <span class="text-xs font-medium text-century-muted block">Habitudes Détectées</span>
             <span id="tm-kpi-patterns" class="text-2xl font-bold font-sans text-century-charcoal">6</span>
           </div>
         </div>
@@ -1018,7 +1018,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           </div>
           <div>
-            <span class="text-xs font-medium text-century-muted block">Analysis Period</span>
+            <span class="text-xs font-medium text-century-muted block">Période d'Analyse</span>
             <span id="tm-kpi-period" class="text-lg md:text-xl font-bold font-sans text-[#6E2D38]">Fév 2026 - Mai 2026</span>
           </div>
         </div>
@@ -1030,7 +1030,7 @@
         <div>
           <div class="flex items-center space-x-2 text-century-charcoal">
             <svg class="w-4 h-4 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-            <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Spending Over Time</h3>
+            <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Trajectoire Budgétaire dans le Temps</h3>
           </div>
           <p id="tm-spending-subtitle" class="text-xs text-century-muted mt-1">Revenus vs Dépenses de vie courante (hors investissements)</p>
         </div>
@@ -1044,11 +1044,11 @@
         <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs text-[#555E58]">
           <div class="flex items-center space-x-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#2D5A3C]"></span>
-            <span id="tm-legend-income-label" class="font-medium">Income (Salaires)</span>
+            <span id="tm-legend-income-label" class="font-medium">Revenus (Salaires)</span>
           </div>
           <div class="flex items-center space-x-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#6E2D38]"></span>
-            <span class="font-medium">Spending (Vie courante)</span>
+            <span class="font-medium">Dépenses (Vie courante)</span>
           </div>
           <div class="text-[#7E8881]">
             * Épargne & investissements isolés pour éviter les faux pics de consommation
@@ -1058,7 +1058,7 @@
 
       <!-- Discovered Patterns Title & 2-Column Grid (Screenshot 1 exact layout) -->
       <div class="space-y-4">
-        <h3 class="font-serif-title text-2xl font-normal text-century-charcoal">Discovered Patterns</h3>
+        <h3 class="font-serif-title text-2xl font-normal text-century-charcoal">Habitudes & Motifs Découverts</h3>
         
         <div id="discovered-patterns-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <!-- Dynamically populated patterns matching screenshot -->
@@ -1073,12 +1073,12 @@
       <!-- Top Title & Refresh Button (Screenshot 0) -->
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">File Management</h2>
-          <p class="text-sm text-century-muted mt-1">View and manage your uploaded financial statements</p>
+          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Gestion des Relevés</h2>
+          <p class="text-sm text-century-muted mt-1">Consultez et gérez vos relevés bancaires importés</p>
         </div>
         <button onclick="loadDashboardData()" class="flex items-center space-x-2 px-4 py-2 rounded-lg border border-[#EAEAE5] bg-white text-xs font-medium text-century-charcoal hover:bg-[#F6F6F2] transition shadow-sm">
           <svg class="w-3.5 h-3.5 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          <span>Refresh</span>
+          <span>Actualiser</span>
         </button>
       </div>
 
@@ -1091,7 +1091,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           </div>
           <div>
-            <span class="text-xs font-medium text-century-muted block">Total Files</span>
+            <span class="text-xs font-medium text-century-muted block">Total des Fichiers</span>
             <span id="fm-total-files" class="text-2xl font-bold font-sans text-century-charcoal">3</span>
           </div>
         </div>
@@ -1102,7 +1102,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           </div>
           <div>
-            <span class="text-xs font-medium text-century-muted block">Processed</span>
+            <span class="text-xs font-medium text-century-muted block">Traités avec Succès</span>
             <span id="fm-processed" class="text-2xl font-bold font-sans text-[#2D5A3C]">3</span>
           </div>
         </div>
@@ -1113,7 +1113,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           </div>
           <div>
-            <span class="text-xs font-medium text-century-muted block">Processing</span>
+            <span class="text-xs font-medium text-century-muted block">En Cours d'Analyse</span>
             <span id="fm-processing" class="text-2xl font-bold font-sans text-[#2563EB]">0</span>
           </div>
         </div>
@@ -1124,7 +1124,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
           </div>
           <div>
-            <span class="text-xs font-medium text-century-muted block">Total Size</span>
+            <span class="text-xs font-medium text-century-muted block">Taille Totale</span>
             <span id="fm-total-size" class="text-2xl font-bold font-sans text-century-charcoal">125.4 KB</span>
           </div>
         </div>
@@ -1142,7 +1142,7 @@
         <section id="view-upload" class="hidden p-6 md:p-10 space-y-8">
       
       <div>
-        <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Document Upload</h2>
+        <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Import de Relevés</h2>
         <p class="text-sm text-century-muted mt-1">
           Ajoutez un ou plusieurs relevés de compte PDF (Société Générale ou standard).
         </p>
@@ -1176,13 +1176,13 @@
       <!-- Top Title & Export Action -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Transaction Review</h2>
+          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Journal des Opérations</h2>
           <p class="text-sm text-century-muted mt-1">Recherchez, filtrez et ajustez la classification de chaque opération</p>
         </div>
         <div class="flex items-center space-x-3">
           <a href="/api/export-csv" class="flex items-center space-x-2 px-4 py-2 rounded-lg border border-[#EAEAE5] bg-white text-xs font-medium text-century-charcoal hover:bg-[#F6F6F2] transition shadow-sm">
             <svg class="w-3.5 h-3.5 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            <span>Export CSV</span>
+            <span>Exporter en CSV</span>
           </a>
         </div>
       </div>
@@ -1242,21 +1242,21 @@
       <!-- Main Category Overview Section -->
       <div id="categories-main-view" class="space-y-8">
         <div>
-          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Category Analysis</h2>
+          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Analyse des Catégories</h2>
           <p class="text-sm text-century-muted mt-1">Évolution mensuelle par catégorie et détection des dépenses hors du commun. Cliquez sur une catégorie pour explorer les opérations.</p>
         </div>
 
         <!-- Optimization Advice Banner -->
         <div id="category-optimization-banner" class="c-card p-6 bg-gradient-to-r from-white via-white to-[#FDF8EE] border-l-4 border-l-[#9A6B22] flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div class="space-y-1">
-            <span class="text-xs uppercase tracking-wider font-semibold text-[#9A6B22]">Optimisation Budgétaire</span>
-            <h4 class="font-serif-title text-lg text-century-charcoal">Uber Eats, Restaurants & Abonnements superflus</h4>
+            <span id="optimization-tag" class="text-xs uppercase tracking-wider font-semibold text-[#9A6B22]">Optimisation Budgétaire</span>
+            <h4 id="optimization-title" class="font-serif-title text-lg text-century-charcoal">Uber Eats, Restaurants & Abonnements superflus</h4>
             <p id="optimization-text" class="text-xs text-century-muted leading-relaxed max-w-2xl">
               Calcul en cours sur vos opérations...
             </p>
           </div>
           <div class="shrink-0 text-left md:text-right">
-            <span class="text-xs text-century-muted block">Économies potentielles</span>
+            <span id="optimization-label" class="text-xs text-century-muted block">Économies potentielles</span>
             <span id="optimization-potential-amount" class="text-2xl font-bold font-sans text-[#2D5A3C]">125,00 €/mois</span>
           </div>
         </div>
@@ -1367,7 +1367,7 @@
       
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Rules & Automation</h2>
+          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Règles & Automatisation</h2>
           <p class="text-sm text-century-muted mt-1">Gérez vos règles d'association mot-clé vers catégorie persistantes</p>
         </div>
 
@@ -2221,13 +2221,13 @@
       // Update dynamic employer & salary labels across dashboard
       const empName = data.workspace?.profile?.salary_employer_name || 'Salaires';
       const kpiIncomeTitle = document.getElementById('kpi-income-title');
-      if (kpiIncomeTitle) kpiIncomeTitle.textContent = `Total Income (${empName})`;
+      if (kpiIncomeTitle) kpiIncomeTitle.textContent = `Revenus Totaux (${empName})`;
 
       const chartSub = document.getElementById('chart-spending-subtitle');
       if (chartSub) chartSub.textContent = `Revenus (${empName}) vs Dépenses de vie courante (total dépensé - investissements)`;
 
       const legendInc = document.getElementById('chart-legend-income-label');
-      if (legendInc) legendInc.textContent = `Income (${empName})`;
+      if (legendInc) legendInc.textContent = `Revenus (${empName})`;
 
       const simSalaryLabel = document.getElementById('sim-salary-label');
       if (simSalaryLabel) simSalaryLabel.textContent = `Salaire Net Mensuel (${empName})`;
@@ -2236,7 +2236,7 @@
       if (tmSub) tmSub.textContent = `Revenus (${empName}) vs Dépenses de vie courante (hors investissements)`;
 
       const tmLegendInc = document.getElementById('tm-legend-income-label');
-      if (tmLegendInc) tmLegendInc.textContent = `Income (${empName})`;
+      if (tmLegendInc) tmLegendInc.textContent = `Revenus (${empName})`;
 
       // Sync checkbox in overview and modal
       const toggleEl = document.getElementById('toggle-deduct-reimb');
@@ -2659,6 +2659,9 @@
       const summary = AppState.data.summary || {};
       const txs = AppState.data.transactions || [];
       const useNet = AppState.deductReimbursements;
+      const empName = AppState.data?.workspace?.profile?.salary_employer_name || 'Salaire';
+      const totDeb = Math.abs(summary.total_debits || 0);
+      const totRentReimb = Math.abs(summary.total_rent_reimbursements || 0);
 
       const modal = document.getElementById('kpi-audit-modal');
       const titleEl = document.getElementById('audit-modal-title');
@@ -2843,7 +2846,7 @@
       } else if (type === 'income') {
         iconBadge.className = 'w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-[#E8F0EC] text-[#2D5A3C]';
         iconBadge.textContent = '💰';
-        titleEl.textContent = 'Audit & Calcul : Total Income';
+        titleEl.textContent = 'Audit & Calcul : Revenus Totaux';
         subEl.textContent = `100% Revenus (${empName}) (hors virements de tiers et aides)`;
 
         modalTxs = txs.filter(t => t.type === 'Credit');
@@ -2884,7 +2887,7 @@
       } else if (type === 'savings') {
         iconBadge.className = 'w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-[#E8F0EC] text-[#2D5A3C]';
         iconBadge.textContent = '🌱';
-        titleEl.textContent = 'Audit : Net Savings (Capacité d\'Épargne)';
+        titleEl.textContent = 'Audit : Épargne Nette (Capacité d\'Épargne)';
         subEl.textContent = `Revenus (${empName}) − Dépenses de vie courante`;
 
         const totSal = summary.total_salary || 0;
@@ -3147,7 +3150,7 @@
               pointBackgroundColor: '#2D5A3C',
             },
             {
-              label: 'Spending (Vie courante)',
+              label: 'Dépenses (Vie courante)',
               data: spendingData,
               borderColor: '#6E2D38',
               backgroundColor: burgundyGradient,
@@ -3206,7 +3209,7 @@
       if (files.length === 0) {
         listContainer.innerHTML = `
           <div class="c-card p-8 text-center text-xs text-century-muted">
-            Aucun relevé PDF n'est actuellement chargé. Utilisez l'onglet Document Upload pour ajouter vos fichiers.
+            Aucun relevé PDF n'est actuellement chargé. Utilisez l'onglet Import de Relevés pour ajouter vos fichiers.
           </div>
         `;
         return;
@@ -3223,17 +3226,17 @@
             <div>
               <div class="flex items-center space-x-2.5 flex-wrap">
                 <span class="font-sans font-bold text-sm text-century-charcoal">${f.filename}</span>
-                <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#E8F0EC] text-[#2D5A3C]">✓ Completed</span>
+                <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#E8F0EC] text-[#2D5A3C]">✓ Traité</span>
               </div>
               <div class="text-xs text-century-muted mt-1 space-x-2">
-                <span>Size: ${f.size_formatted}</span>
+                <span>Taille : ${f.size_formatted}</span>
                 <span>•</span>
-                <span>Type: PDF</span>
+                <span>Type : PDF</span>
                 <span>•</span>
-                <span>Uploaded: ${f.uploaded_date}</span>
+                <span>Importé le : ${f.uploaded_date}</span>
               </div>
               <div class="text-xs text-[#555E58] mt-0.5 font-medium">
-                ${f.tx_count} transactions matched
+                ${f.tx_count} opération(s) extraite(s)
               </div>
             </div>
           </div>
@@ -3485,13 +3488,32 @@
         return;
       }
 
-      // Potential discretionary savings
-      const potAmt = data.summary?.potential_savings_monthly || (insights.potential_savings ? Math.round(insights.potential_savings / (trends.months?.length || 1)) : 60);
-      document.getElementById('optimization-potential-amount').textContent = `+${formatFR(potAmt)}/mois`;
-      
-      const currentAvgSavings = data.summary?.monthly_avg_savings || 1600;
-      let optText = `En réduisant de 35% les repas commandés (Uber Eats / livraisons) et sorties festives, vous pourriez dégager environ ${formatFR(potAmt)} d'épargne supplémentaire chaque mois (en complément de vos ${formatFR(currentAvgSavings)}/mois d'épargne moyenne actuelle).`;
-      document.getElementById('optimization-text').textContent = optText;
+      // Potential savings / optimization banner
+      const invAnalysis = trends.investment_analysis || {};
+      const invDiag = invAnalysis.diagnosis;
+      const optTagEl = document.getElementById('optimization-tag');
+      const optTitleEl = document.getElementById('optimization-title');
+      const optLabelEl = document.getElementById('optimization-label');
+      const optAmtEl = document.getElementById('optimization-potential-amount');
+      const optTextEl = document.getElementById('optimization-text');
+
+      if (invDiag && invDiag.status === 'under_investing') {
+        const idle = Math.max(0, (invAnalysis.monthly_cash_margin || 0) - (invAnalysis.avg_monthly_invested || 0));
+        if (optTagEl) optTagEl.textContent = "Constitution Patrimoniale";
+        if (optTitleEl) optTitleEl.textContent = "Capacité d'Investissement & Trésorerie Dormante";
+        if (optLabelEl) optLabelEl.textContent = "Capacité disponible";
+        if (optAmtEl) optAmtEl.textContent = `+${formatFR(idle)}/mois`;
+        if (optTextEl) optTextEl.textContent = `Capacité d'investissement sous-exploitée : Vous dégagez un excédent moyen de ${formatFR(invAnalysis.monthly_cash_margin)}/mois après dépenses courantes, mais n'en placez que ${formatFR(invAnalysis.avg_monthly_invested)}/mois. Placer automatiquement environ ${formatFR(idle)}/mois vers un Livret A ou PEA optimiserait votre patrimoine dormant.`;
+      } else {
+        const potAmt = data.summary?.potential_savings_monthly || (insights.potential_savings ? Math.round(insights.potential_savings / (trends.months?.length || 1)) : 60);
+        if (optTagEl) optTagEl.textContent = "Optimisation Budgétaire";
+        if (optTitleEl) optTitleEl.textContent = "Repas commandés, Restaurants & Abonnements superflus";
+        if (optLabelEl) optLabelEl.textContent = "Économies potentielles";
+        if (optAmtEl) optAmtEl.textContent = `+${formatFR(potAmt)}/mois`;
+        const currentAvgSavings = data.summary?.monthly_avg_savings || 1600;
+        let optText = `En réduisant de 35% les repas commandés (Uber Eats / livraisons) et sorties festives, vous pourriez dégager environ ${formatFR(potAmt)} d'épargne supplémentaire chaque mois (en complément de vos ${formatFR(currentAvgSavings)}/mois d'épargne moyenne actuelle).`;
+        if (optTextEl) optTextEl.textContent = optText;
+      }
 
       const grid = document.getElementById('categories-cards-grid');
       if (!grid) return;
@@ -3509,32 +3531,64 @@
       }
 
       catTrends.forEach((ct, idx) => {
+        const hasMajorSpike = ct.out_of_ordinary && ct.unusual_months && ct.unusual_months.length > 0;
         const card = document.createElement('div');
-        card.className = `c-card c-card-interactive p-5 space-y-3 flex flex-col justify-between cursor-pointer group ${ct.out_of_ordinary ? 'border-amber-300 shadow-sm' : ''}`;
+        card.className = `c-card c-card-interactive p-5 space-y-3 flex flex-col justify-between cursor-pointer group ${hasMajorSpike ? 'border-amber-300 shadow-sm' : ''}`;
         card.onclick = () => openCategoryDetail(ct.category);
         
         const canvasId = `catChart-${idx}`;
         const unusualSet = new Set((ct.unusual_months || []).map(u => u.index));
 
-        // Anomaly badge HTML
-        const anomalyBadgeHtml = ct.out_of_ordinary && ct.unusual_months && ct.unusual_months.length > 0
-          ? `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
-               ⚠️ Pic en ${ct.unusual_months[0].month_label.split(' ')[0]}
-             </span>`
-          : '';
+        // High-value, contextual badge HTML
+        let badgeHtml = '';
+        if (ct.rent_neutral) {
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">✅ 100% compensé</span>`;
+        } else if (hasMajorSpike) {
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">⚠️ Pic en ${ct.unusual_months[0].month_label.split(' ')[0]}</span>`;
+        } else if (ct.category === 'Investissements & Épargne') {
+          const invRate = trends.investment_analysis?.overall_savings_rate || 20;
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-800 border border-purple-200">${invRate}% des revenus</span>`;
+        } else if (ct.budget_share_pct > 0) {
+          const isLarge = ct.budget_share_pct >= 20;
+          const badgeClass = isLarge ? 'bg-[#FAF3EA] text-[#9A6B22] border-[#F6E1B5]' : 'bg-[#F0F2ED] text-[#4A5550] border-[#EAEAE5]';
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium ${badgeClass} border">${ct.budget_share_pct}% du budget</span>`;
+        }
 
-        // Status or anomaly description message
+        // Status or insightful description message
         let statusMessageHtml = '';
-        if (ct.out_of_ordinary && ct.unusual_months) {
+        if (ct.rent_neutral) {
+          statusMessageHtml = `
+            <div class="mt-2 text-[11px] text-[#2D5A3C] font-medium">
+              ✅ Loyer 100% compensé par les virements reçus (reste 0,00 € net).
+            </div>
+          `;
+        } else if (ct.category === 'Investissements & Épargne') {
+          const isLumpy = trends.investment_analysis?.has_lumpy_investments;
+          const invRate = trends.investment_analysis?.overall_savings_rate || 20;
+          statusMessageHtml = `
+            <div class="mt-2 text-[11px] text-[#555E58] leading-relaxed">
+              ${isLumpy ? 'Versements ponctuels compensés par des apports plus forts (s\'équilibrent sur la durée)' : 'Flux régulier d\'accumulation patrimoniale'} (${invRate}% des revenus).
+            </div>
+          `;
+        } else if (hasMajorSpike) {
           statusMessageHtml = `
             <div class="mt-2 p-2.5 rounded-xl bg-[#FDF8EE] border border-[#F6E1B5] text-[#9A6B22] text-[11px] leading-relaxed">
-              <strong>Anomalie :</strong> ${ct.unusual_months.map(u => u.message).join(' ')}
+              <strong>Dépense ponctuelle :</strong> ${ct.unusual_months.map(u => u.message).join(' ')}
             </div>
           `;
         } else {
+          const share = ct.budget_share_pct || 0;
+          let contextDesc = 'Dépense maîtrisée et stable sur l\'ensemble de la période.';
+          if (share >= 25) {
+            contextDesc = `Poste principal : représente ${share}% de vos dépenses de vie (${formatFR(ct.avg_monthly)}/mois).`;
+          } else if (share >= 10) {
+            contextDesc = `Représente ${share}% de votre budget de vie (${formatFR(ct.avg_monthly)}/mois en moyenne).`;
+          } else if (share > 0) {
+            contextDesc = `Poste secondaire modéré (${share}% du budget, ${formatFR(ct.avg_monthly)}/mois).`;
+          }
           statusMessageHtml = `
-            <div class="mt-2 text-[11px] text-century-muted">
-              Trajectoire stable sur l'ensemble de la période.
+            <div class="mt-2 text-[11px] text-century-muted leading-relaxed">
+              ${contextDesc}
             </div>
           `;
         }
@@ -3547,7 +3601,7 @@
                 <span class="text-lg">${ct.icon || '📦'}</span>
                 <span class="font-sans font-bold text-sm text-century-charcoal group-hover:text-[#2D5A3C] transition">${ct.category}</span>
               </div>
-              ${anomalyBadgeHtml}
+              ${badgeHtml}
             </div>
 
             <!-- Amounts: Total & Average -->
@@ -3586,8 +3640,8 @@
           if (!cCanvas) return;
 
           const shortLabels = (ct.months || []).map(m => m.split(' ')[0]);
-          const pointColors = (ct.history || []).map((_, i) => unusualSet.has(i) ? '#EF4444' : (ct.color || '#2D5A3C'));
-          const pointRadii = (ct.history || []).map((_, i) => unusualSet.has(i) ? 6 : 3.5);
+          const pointColors = (ct.history || []).map((_, i) => (hasMajorSpike && unusualSet.has(i)) ? '#D97706' : (ct.color || '#2D5A3C'));
+          const pointRadii = (ct.history || []).map((_, i) => (hasMajorSpike && unusualSet.has(i)) ? 5 : 2.5);
 
           const cChart = new Chart(cCanvas, {
             type: 'line',
@@ -3658,6 +3712,7 @@
         color: '#2D5A3C',
         total_spent: 0,
         avg_monthly: 0,
+        budget_share_pct: 0,
         pct_of_budget: 0,
         months: [],
         history: []
@@ -3672,7 +3727,7 @@
       if (anomalyBadge) {
         if (ct.out_of_ordinary && ct.unusual_months && ct.unusual_months.length > 0) {
           anomalyBadge.classList.remove('hidden');
-          anomalyBadge.textContent = `⚠️ Pic inhabituel en ${ct.unusual_months[0].month_label || ''}`;
+          anomalyBadge.textContent = `⚠️ Pic ponctuel en ${ct.unusual_months[0].month_label || ''}`;
         } else {
           anomalyBadge.classList.add('hidden');
         }
@@ -3716,7 +3771,14 @@
       const kpiCount = document.getElementById('cat-detail-kpi-count');
       if (kpiTotal) kpiTotal.textContent = formatFR(displayTotal);
       if (kpiAvg) kpiAvg.textContent = `${formatFR(ct.avg_monthly)} / mois`;
-      if (kpiShare) kpiShare.textContent = `${ct.pct_of_budget || 0}%`;
+      if (kpiShare) {
+        if (ct.category === 'Investissements & Épargne') {
+          const invRate = AppState.data?.trends?.investment_analysis?.overall_savings_rate || 20;
+          kpiShare.textContent = `${invRate}% (Revenus)`;
+        } else {
+          kpiShare.textContent = `${ct.budget_share_pct || ct.pct_of_budget || 0}%`;
+        }
+      }
       if (kpiCount) kpiCount.textContent = txs.length;
 
       const chartMeta = document.getElementById('cat-detail-chart-meta');

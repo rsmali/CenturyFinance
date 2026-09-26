@@ -272,64 +272,64 @@
   "ollama_available": false,
   "patterns": [
     {
-      "badge": "+35%",
+      "badge": "2% du budget",
       "badge_color": "rose",
-      "description": "Vos dépenses en restaurants et repas commandés totalisent 191,90 € dont 57,70 € en livraisons (2 commandes).",
-      "details": "Privilégier les repas faits maison et limiter les plateformes de livraison pourrait vous faire économiser environ 76,76 €/mois.",
+      "description": "Vos dépenses en restaurants et repas commandés totalisent 191,90 € (31,98 €/mois), soit 2.1% de vos dépenses de vie.",
+      "details": "Privilégier la cuisine maison et réduire les plateformes de livraison (2 commandes, 57,70 €) dégagerait environ 11,19 €/mois d'épargne supplémentaire.",
       "icon": "🍽️",
       "id": "dining",
       "title": "Restaurants, Bars & Livraisons de repas",
-      "type": "Seasonal"
+      "type": "Budget"
     },
     {
-      "badge": "Épargne",
+      "badge": "26% des revenus",
       "badge_color": "purple",
-      "description": "Vous avez placé 700,00 € en investissements et épargne de précaution.",
-      "details": "Ces flux financiers augmentent directement votre valeur patrimoniale et ne constituent pas des dépenses consommées.",
+      "description": "Vous investissez régulièrement 25.8% de vos revenus (825,00 €/mois en moyenne), totalisant 4.950,00 € de patrimoine constitué.",
+      "details": "Ces flux financiers augmentent directement votre valeur nette patrimoniale et ne constituent pas des dépenses consommées.",
       "icon": "📈",
       "id": "investments",
       "title": "Constitution de Patrimoine & Épargne",
-      "type": "Trend"
+      "type": "Patrimoine"
     },
     {
-      "badge": "Charges Fixes",
+      "badge": "10% des charges",
       "badge_color": "amber",
-      "description": "Vos prélèvements récurrents mensuels s'élèvent à environ 910,90 € (abonnements, forfaits, assurances).",
+      "description": "Vos prélèvements récurrents s'élèvent à environ 151,82 €/mois (910,90 € au total pour abonnements, forfaits, assurances).",
       "details": "Charges fixes régulières identifiées sur l'ensemble de vos relevés bancaires.",
       "icon": "🔄",
       "id": "recurring",
       "title": "Abonnements et Charges Fixes",
-      "type": "Recurring"
+      "type": "Charges Fixes"
     },
     {
-      "badge": "Santé",
+      "badge": "Discipline",
       "badge_color": "pink",
-      "description": "Abonnement constant dédié à la santé et aux activités sportives (29,99 €/mois).",
+      "description": "Abonnement constant dédié à la santé et aux activités sportives (5,00 €/mois).",
       "details": "Dépense saine et régulière identifiée sur l'ensemble des relevés analysés.",
       "icon": "⚡",
       "id": "lifestyle",
       "title": "Discipline Sport & Bien-être",
-      "type": "Lifestyle"
+      "type": "Santé"
     },
     {
-      "badge": "+0%",
+      "badge": "+500%",
       "badge_color": "amber",
-      "description": "Dépense inhabituelle en Août 2026 : 820.00 € (+9% vs moyenne).",
-      "details": "Dépense passée de 0,00 € à 0,00 €.",
+      "description": "Dépense ponctuelle en Juin 2026 : 459,00 € (+500% vs moyenne).",
+      "details": "Dépense ponctuelle de 459,00 € dépassant votre moyenne habituelle (76,50 €/mois) de 382,50 €.",
       "icon": "⚠️",
-      "id": "anomaly_Logement & Énergie",
-      "title": "Variation notable : Logement & Énergie",
-      "type": "Anomaly"
+      "id": "anomaly_High-Tech & Équipement",
+      "title": "Variation notable : High-Tech & Équipement",
+      "type": "Alerte"
     },
     {
-      "badge": "+0%",
+      "badge": "+298%",
       "badge_color": "amber",
-      "description": "Dépense inhabituelle en Mars 2026 : 262.80 € (+5% vs moyenne).",
-      "details": "Dépense passée de 0,00 € à 0,00 €.",
+      "description": "Dépense ponctuelle en Août 2026 : 280,00 € (+298% vs moyenne).",
+      "details": "Dépense passée de 142,50 € le mois précédent à 280,00 € en Août 2026.",
       "icon": "⚠️",
-      "id": "anomaly_Alimentation & Supermarchés",
-      "title": "Variation notable : Alimentation & Supermarchés",
-      "type": "Anomaly"
+      "id": "anomaly_Voyages & Vacances",
+      "title": "Variation notable : Voyages & Vacances",
+      "type": "Alerte"
     }
   ],
   "recurring": [
@@ -869,74 +869,33 @@
     ],
     "anomalies": [
       {
-        "amount": 820.0,
-        "avg": 751.67,
-        "category": "Logement & Énergie",
-        "message": "Dépense inhabituelle en Août 2026 : 820.00 € (+9% vs moyenne).",
-        "month": "Août 2026",
-        "pct_diff": 9
-      },
-      {
-        "amount": 262.8,
-        "avg": 251.47,
-        "category": "Alimentation & Supermarchés",
-        "message": "Dépense inhabituelle en Mars 2026 : 262.80 € (+5% vs moyenne).",
-        "month": "Mars 2026",
-        "pct_diff": 5
-      },
-      {
         "amount": 459.0,
         "avg": 76.5,
         "category": "High-Tech & Équipement",
-        "message": "Dépense inhabituelle en Juin 2026 : 459.00 € (+500% vs moyenne).",
+        "current": 459.0,
+        "delta_pct": 500,
+        "message": "Dépense ponctuelle en Juin 2026 : 459,00 € (+500% vs moyenne).",
         "month": "Juin 2026",
-        "pct_diff": 500
-      },
-      {
-        "amount": 142.5,
-        "avg": 70.42,
-        "category": "Voyages & Vacances",
-        "message": "Dépense inhabituelle en Juillet 2026 : 142.50 € (+102% vs moyenne).",
-        "month": "Juillet 2026",
-        "pct_diff": 102
+        "pct_diff": 500,
+        "previous": 0.0
       },
       {
         "amount": 280.0,
         "avg": 70.42,
         "category": "Voyages & Vacances",
-        "message": "Dépense inhabituelle en Août 2026 : 280.00 € (+298% vs moyenne).",
+        "current": 280.0,
+        "delta_pct": 298,
+        "message": "Dépense ponctuelle en Août 2026 : 280,00 € (+298% vs moyenne).",
         "month": "Août 2026",
-        "pct_diff": 298
-      },
-      {
-        "amount": 79.9,
-        "avg": 39.95,
-        "category": "Shopping & Soins",
-        "message": "Dépense inhabituelle en Mars 2026 : 79.90 € (+100% vs moyenne).",
-        "month": "Mars 2026",
-        "pct_diff": 100
-      },
-      {
-        "amount": 79.9,
-        "avg": 39.95,
-        "category": "Shopping & Soins",
-        "message": "Dépense inhabituelle en Mai 2026 : 79.90 € (+100% vs moyenne).",
-        "month": "Mai 2026",
-        "pct_diff": 100
-      },
-      {
-        "amount": 79.9,
-        "avg": 39.95,
-        "category": "Shopping & Soins",
-        "message": "Dépense inhabituelle en Juillet 2026 : 79.90 € (+100% vs moyenne).",
-        "month": "Juillet 2026",
-        "pct_diff": 100
+        "pct_diff": 298,
+        "previous": 142.5
       }
     ],
     "category_trends": [
       {
-        "anomaly_badge": "⚠️ Pic inhabituel (Août 2026)",
+        "anomaly_badge": "Patrimoine & Épargne",
         "avg_monthly": 825.0,
+        "budget_share_pct": 0.0,
         "category": "Investissements & Épargne",
         "color": "#8b5cf6",
         "current_month": 1050.0,
@@ -958,24 +917,16 @@
           "Juillet 2026",
           "Août 2026"
         ],
-        "out_of_ordinary": true,
+        "out_of_ordinary": false,
+        "pct_of_budget": 0.0,
         "rent_neutral": false,
         "total_spent": 4950.0,
-        "unusual_months": [
-          {
-            "amount": 1050.0,
-            "avg": 825.0,
-            "index": 5,
-            "message": "Dépense inhabituelle en Août 2026 : 1050.00 € (+27% vs moyenne).",
-            "month_key": "2026-08",
-            "month_label": "Août 2026",
-            "pct_diff": 27
-          }
-        ]
+        "unusual_months": []
       },
       {
-        "anomaly_badge": "⚠️ Pic inhabituel (Août 2026)",
+        "anomaly_badge": "49.0% du budget",
         "avg_monthly": 751.67,
+        "budget_share_pct": 49.0,
         "category": "Logement & Énergie",
         "color": "#6366f1",
         "current_month": 820.0,
@@ -997,24 +948,16 @@
           "Juillet 2026",
           "Août 2026"
         ],
-        "out_of_ordinary": true,
+        "out_of_ordinary": false,
+        "pct_of_budget": 49.0,
         "rent_neutral": false,
         "total_spent": 4510.0,
-        "unusual_months": [
-          {
-            "amount": 820.0,
-            "avg": 751.67,
-            "index": 5,
-            "message": "Dépense inhabituelle en Août 2026 : 820.00 € (+9% vs moyenne).",
-            "month_key": "2026-08",
-            "month_label": "Août 2026",
-            "pct_diff": 9
-          }
-        ]
+        "unusual_months": []
       },
       {
-        "anomaly_badge": "⚠️ Pic inhabituel (Mars 2026)",
+        "anomaly_badge": "16.4% du budget",
         "avg_monthly": 251.47,
+        "budget_share_pct": 16.4,
         "category": "Alimentation & Supermarchés",
         "color": "#10b981",
         "current_month": 258.8,
@@ -1036,24 +979,16 @@
           "Juillet 2026",
           "Août 2026"
         ],
-        "out_of_ordinary": true,
+        "out_of_ordinary": false,
+        "pct_of_budget": 16.4,
         "rent_neutral": false,
         "total_spent": 1508.8,
-        "unusual_months": [
-          {
-            "amount": 262.8,
-            "avg": 251.47,
-            "index": 0,
-            "message": "Dépense inhabituelle en Mars 2026 : 262.80 € (+5% vs moyenne).",
-            "month_key": "2026-03",
-            "month_label": "Mars 2026",
-            "pct_diff": 5
-          }
-        ]
+        "unusual_months": []
       },
       {
-        "anomaly_badge": null,
+        "anomaly_badge": "8.7% du budget",
         "avg_monthly": 134.2,
+        "budget_share_pct": 8.7,
         "category": "Restaurants & Sorties",
         "color": "#f59e0b",
         "current_month": 134.2,
@@ -1076,13 +1011,15 @@
           "Août 2026"
         ],
         "out_of_ordinary": false,
+        "pct_of_budget": 8.7,
         "rent_neutral": false,
         "total_spent": 805.2,
         "unusual_months": []
       },
       {
-        "anomaly_badge": null,
+        "anomaly_badge": "5.6% du budget",
         "avg_monthly": 86.4,
+        "budget_share_pct": 5.6,
         "category": "Transports & Péages",
         "color": "#06b6d4",
         "current_month": 86.4,
@@ -1105,13 +1042,15 @@
           "Août 2026"
         ],
         "out_of_ordinary": false,
+        "pct_of_budget": 5.6,
         "rent_neutral": false,
         "total_spent": 518.4,
         "unusual_months": []
       },
       {
-        "anomaly_badge": "⚠️ Pic inhabituel (Juin 2026)",
+        "anomaly_badge": "⚠️ Pic en Juin",
         "avg_monthly": 76.5,
+        "budget_share_pct": 5.0,
         "category": "High-Tech & Équipement",
         "color": "#0ea5e9",
         "current_month": 0.0,
@@ -1134,23 +1073,28 @@
           "Août 2026"
         ],
         "out_of_ordinary": true,
+        "pct_of_budget": 5.0,
         "rent_neutral": false,
         "total_spent": 459.0,
         "unusual_months": [
           {
             "amount": 459.0,
             "avg": 76.5,
+            "current": 459.0,
+            "delta_pct": 500,
             "index": 3,
-            "message": "Dépense inhabituelle en Juin 2026 : 459.00 € (+500% vs moyenne).",
+            "message": "Dépense ponctuelle en Juin 2026 : 459,00 € (+500% vs moyenne).",
             "month_key": "2026-06",
             "month_label": "Juin 2026",
-            "pct_diff": 500
+            "pct_diff": 500,
+            "previous": 0.0
           }
         ]
       },
       {
-        "anomaly_badge": "⚠️ Pic inhabituel (Juillet 2026)",
+        "anomaly_badge": "⚠️ Pic en Août",
         "avg_monthly": 70.42,
+        "budget_share_pct": 4.6,
         "category": "Voyages & Vacances",
         "color": "#94a3b8",
         "current_month": 280.0,
@@ -1173,32 +1117,28 @@
           "Août 2026"
         ],
         "out_of_ordinary": true,
+        "pct_of_budget": 4.6,
         "rent_neutral": false,
         "total_spent": 422.5,
         "unusual_months": [
           {
-            "amount": 142.5,
-            "avg": 70.42,
-            "index": 4,
-            "message": "Dépense inhabituelle en Juillet 2026 : 142.50 € (+102% vs moyenne).",
-            "month_key": "2026-07",
-            "month_label": "Juillet 2026",
-            "pct_diff": 102
-          },
-          {
             "amount": 280.0,
             "avg": 70.42,
+            "current": 280.0,
+            "delta_pct": 298,
             "index": 5,
-            "message": "Dépense inhabituelle en Août 2026 : 280.00 € (+298% vs moyenne).",
+            "message": "Dépense ponctuelle en Août 2026 : 280,00 € (+298% vs moyenne).",
             "month_key": "2026-08",
             "month_label": "Août 2026",
-            "pct_diff": 298
+            "pct_diff": 298,
+            "previous": 142.5
           }
         ]
       },
       {
-        "anomaly_badge": null,
+        "anomaly_badge": "2.9% du budget",
         "avg_monthly": 44.47,
+        "budget_share_pct": 2.9,
         "category": "Télécom, Forfaits & Abonnements",
         "color": "#94a3b8",
         "current_month": 44.47,
@@ -1221,13 +1161,15 @@
           "Août 2026"
         ],
         "out_of_ordinary": false,
+        "pct_of_budget": 2.9,
         "rent_neutral": false,
         "total_spent": 266.82,
         "unusual_months": []
       },
       {
-        "anomaly_badge": "⚠️ Pic inhabituel (Mars 2026)",
+        "anomaly_badge": "2.6% du budget",
         "avg_monthly": 39.95,
+        "budget_share_pct": 2.6,
         "category": "Shopping & Soins",
         "color": "#d946ef",
         "current_month": 0.0,
@@ -1249,42 +1191,16 @@
           "Juillet 2026",
           "Août 2026"
         ],
-        "out_of_ordinary": true,
+        "out_of_ordinary": false,
+        "pct_of_budget": 2.6,
         "rent_neutral": false,
         "total_spent": 239.7,
-        "unusual_months": [
-          {
-            "amount": 79.9,
-            "avg": 39.95,
-            "index": 0,
-            "message": "Dépense inhabituelle en Mars 2026 : 79.90 € (+100% vs moyenne).",
-            "month_key": "2026-03",
-            "month_label": "Mars 2026",
-            "pct_diff": 100
-          },
-          {
-            "amount": 79.9,
-            "avg": 39.95,
-            "index": 2,
-            "message": "Dépense inhabituelle en Mai 2026 : 79.90 € (+100% vs moyenne).",
-            "month_key": "2026-05",
-            "month_label": "Mai 2026",
-            "pct_diff": 100
-          },
-          {
-            "amount": 79.9,
-            "avg": 39.95,
-            "index": 4,
-            "message": "Dépense inhabituelle en Juillet 2026 : 79.90 € (+100% vs moyenne).",
-            "month_key": "2026-07",
-            "month_label": "Juillet 2026",
-            "pct_diff": 100
-          }
-        ]
+        "unusual_months": []
       },
       {
-        "anomaly_badge": null,
+        "anomaly_badge": "2.0% du budget",
         "avg_monthly": 29.99,
+        "budget_share_pct": 2.0,
         "category": "Sports & Fitness",
         "color": "#0284c7",
         "current_month": 29.99,
@@ -1307,13 +1223,15 @@
           "Août 2026"
         ],
         "out_of_ordinary": false,
+        "pct_of_budget": 2.0,
         "rent_neutral": false,
         "total_spent": 179.94,
         "unusual_months": []
       },
       {
-        "anomaly_badge": null,
+        "anomaly_badge": "1.6% du budget",
         "avg_monthly": 24.9,
+        "budget_share_pct": 1.6,
         "category": "Livres",
         "color": "#d97706",
         "current_month": 24.9,
@@ -1336,13 +1254,15 @@
           "Août 2026"
         ],
         "out_of_ordinary": false,
+        "pct_of_budget": 1.6,
         "rent_neutral": false,
         "total_spent": 149.4,
         "unusual_months": []
       },
       {
-        "anomaly_badge": null,
+        "anomaly_badge": "1.3% du budget",
         "avg_monthly": 19.4,
+        "budget_share_pct": 1.3,
         "category": "Santé & Prévoyance",
         "color": "#94a3b8",
         "current_month": 19.4,
@@ -1365,13 +1285,15 @@
           "Août 2026"
         ],
         "out_of_ordinary": false,
+        "pct_of_budget": 1.3,
         "rent_neutral": false,
         "total_spent": 116.4,
         "unusual_months": []
       },
       {
-        "anomaly_badge": null,
+        "anomaly_badge": "0.3% du budget",
         "avg_monthly": 4.5,
+        "budget_share_pct": 0.3,
         "category": "Frais Bancaires",
         "color": "#ef4444",
         "current_month": 4.5,
@@ -1394,11 +1316,32 @@
           "Août 2026"
         ],
         "out_of_ordinary": false,
+        "pct_of_budget": 0.3,
         "rent_neutral": false,
         "total_spent": 27.0,
         "unusual_months": []
       }
     ],
+    "investment_analysis": {
+      "avg_monthly_income": 3200.0,
+      "avg_monthly_invested": 825.0,
+      "avg_monthly_living": 1533.86,
+      "diagnosis": {
+        "advice": "Ces flux financiers augmentent directement votre valeur nette patrimoniale et ne constituent pas des dépenses consommées.",
+        "badge": "26% des revenus",
+        "badge_color": "purple",
+        "icon": "📈",
+        "status": "healthy",
+        "summary": "Vous investissez régulièrement 25.8% de vos revenus (825,00 €/mois en moyenne), totalisant 4.950,00 € de patrimoine constitué.",
+        "title": "Constitution de Patrimoine & Épargne"
+      },
+      "has_lumpy_investments": false,
+      "monthly_cash_margin": 1666.14,
+      "overall_savings_rate": 25.8,
+      "total_income": 19200.0,
+      "total_invested": 4950.0,
+      "total_living": 9203.16
+    },
     "monthly_data": [
       {
         "categories": {

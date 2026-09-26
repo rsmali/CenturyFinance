@@ -511,13 +511,13 @@
       // Update dynamic employer & salary labels across dashboard
       const empName = data.workspace?.profile?.salary_employer_name || 'Salaires';
       const kpiIncomeTitle = document.getElementById('kpi-income-title');
-      if (kpiIncomeTitle) kpiIncomeTitle.textContent = `Total Income (${empName})`;
+      if (kpiIncomeTitle) kpiIncomeTitle.textContent = `Revenus Totaux (${empName})`;
 
       const chartSub = document.getElementById('chart-spending-subtitle');
       if (chartSub) chartSub.textContent = `Revenus (${empName}) vs Dépenses de vie courante (total dépensé - investissements)`;
 
       const legendInc = document.getElementById('chart-legend-income-label');
-      if (legendInc) legendInc.textContent = `Income (${empName})`;
+      if (legendInc) legendInc.textContent = `Revenus (${empName})`;
 
       const simSalaryLabel = document.getElementById('sim-salary-label');
       if (simSalaryLabel) simSalaryLabel.textContent = `Salaire Net Mensuel (${empName})`;
@@ -526,7 +526,7 @@
       if (tmSub) tmSub.textContent = `Revenus (${empName}) vs Dépenses de vie courante (hors investissements)`;
 
       const tmLegendInc = document.getElementById('tm-legend-income-label');
-      if (tmLegendInc) tmLegendInc.textContent = `Income (${empName})`;
+      if (tmLegendInc) tmLegendInc.textContent = `Revenus (${empName})`;
 
       // Sync checkbox in overview and modal
       const toggleEl = document.getElementById('toggle-deduct-reimb');
@@ -949,6 +949,9 @@
       const summary = AppState.data.summary || {};
       const txs = AppState.data.transactions || [];
       const useNet = AppState.deductReimbursements;
+      const empName = AppState.data?.workspace?.profile?.salary_employer_name || 'Salaire';
+      const totDeb = Math.abs(summary.total_debits || 0);
+      const totRentReimb = Math.abs(summary.total_rent_reimbursements || 0);
 
       const modal = document.getElementById('kpi-audit-modal');
       const titleEl = document.getElementById('audit-modal-title');
@@ -1133,7 +1136,7 @@
       } else if (type === 'income') {
         iconBadge.className = 'w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-[#E8F0EC] text-[#2D5A3C]';
         iconBadge.textContent = '💰';
-        titleEl.textContent = 'Audit & Calcul : Total Income';
+        titleEl.textContent = 'Audit & Calcul : Revenus Totaux';
         subEl.textContent = `100% Revenus (${empName}) (hors virements de tiers et aides)`;
 
         modalTxs = txs.filter(t => t.type === 'Credit');
@@ -1174,7 +1177,7 @@
       } else if (type === 'savings') {
         iconBadge.className = 'w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-[#E8F0EC] text-[#2D5A3C]';
         iconBadge.textContent = '🌱';
-        titleEl.textContent = 'Audit : Net Savings (Capacité d\'Épargne)';
+        titleEl.textContent = 'Audit : Épargne Nette (Capacité d\'Épargne)';
         subEl.textContent = `Revenus (${empName}) − Dépenses de vie courante`;
 
         const totSal = summary.total_salary || 0;
@@ -1437,7 +1440,7 @@
               pointBackgroundColor: '#2D5A3C',
             },
             {
-              label: 'Spending (Vie courante)',
+              label: 'Dépenses (Vie courante)',
               data: spendingData,
               borderColor: '#6E2D38',
               backgroundColor: burgundyGradient,
@@ -1496,7 +1499,7 @@
       if (files.length === 0) {
         listContainer.innerHTML = `
           <div class="c-card p-8 text-center text-xs text-century-muted">
-            Aucun relevé PDF n'est actuellement chargé. Utilisez l'onglet Document Upload pour ajouter vos fichiers.
+            Aucun relevé PDF n'est actuellement chargé. Utilisez l'onglet Import de Relevés pour ajouter vos fichiers.
           </div>
         `;
         return;
@@ -1513,17 +1516,17 @@
             <div>
               <div class="flex items-center space-x-2.5 flex-wrap">
                 <span class="font-sans font-bold text-sm text-century-charcoal">${f.filename}</span>
-                <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#E8F0EC] text-[#2D5A3C]">✓ Completed</span>
+                <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#E8F0EC] text-[#2D5A3C]">✓ Traité</span>
               </div>
               <div class="text-xs text-century-muted mt-1 space-x-2">
-                <span>Size: ${f.size_formatted}</span>
+                <span>Taille : ${f.size_formatted}</span>
                 <span>•</span>
-                <span>Type: PDF</span>
+                <span>Type : PDF</span>
                 <span>•</span>
-                <span>Uploaded: ${f.uploaded_date}</span>
+                <span>Importé le : ${f.uploaded_date}</span>
               </div>
               <div class="text-xs text-[#555E58] mt-0.5 font-medium">
-                ${f.tx_count} transactions matched
+                ${f.tx_count} opération(s) extraite(s)
               </div>
             </div>
           </div>
@@ -1775,13 +1778,32 @@
         return;
       }
 
-      // Potential discretionary savings
-      const potAmt = data.summary?.potential_savings_monthly || (insights.potential_savings ? Math.round(insights.potential_savings / (trends.months?.length || 1)) : 60);
-      document.getElementById('optimization-potential-amount').textContent = `+${formatFR(potAmt)}/mois`;
-      
-      const currentAvgSavings = data.summary?.monthly_avg_savings || 1600;
-      let optText = `En réduisant de 35% les repas commandés (Uber Eats / livraisons) et sorties festives, vous pourriez dégager environ ${formatFR(potAmt)} d'épargne supplémentaire chaque mois (en complément de vos ${formatFR(currentAvgSavings)}/mois d'épargne moyenne actuelle).`;
-      document.getElementById('optimization-text').textContent = optText;
+      // Potential savings / optimization banner
+      const invAnalysis = trends.investment_analysis || {};
+      const invDiag = invAnalysis.diagnosis;
+      const optTagEl = document.getElementById('optimization-tag');
+      const optTitleEl = document.getElementById('optimization-title');
+      const optLabelEl = document.getElementById('optimization-label');
+      const optAmtEl = document.getElementById('optimization-potential-amount');
+      const optTextEl = document.getElementById('optimization-text');
+
+      if (invDiag && invDiag.status === 'under_investing') {
+        const idle = Math.max(0, (invAnalysis.monthly_cash_margin || 0) - (invAnalysis.avg_monthly_invested || 0));
+        if (optTagEl) optTagEl.textContent = "Constitution Patrimoniale";
+        if (optTitleEl) optTitleEl.textContent = "Capacité d'Investissement & Trésorerie Dormante";
+        if (optLabelEl) optLabelEl.textContent = "Capacité disponible";
+        if (optAmtEl) optAmtEl.textContent = `+${formatFR(idle)}/mois`;
+        if (optTextEl) optTextEl.textContent = `Capacité d'investissement sous-exploitée : Vous dégagez un excédent moyen de ${formatFR(invAnalysis.monthly_cash_margin)}/mois après dépenses courantes, mais n'en placez que ${formatFR(invAnalysis.avg_monthly_invested)}/mois. Placer automatiquement environ ${formatFR(idle)}/mois vers un Livret A ou PEA optimiserait votre patrimoine dormant.`;
+      } else {
+        const potAmt = data.summary?.potential_savings_monthly || (insights.potential_savings ? Math.round(insights.potential_savings / (trends.months?.length || 1)) : 60);
+        if (optTagEl) optTagEl.textContent = "Optimisation Budgétaire";
+        if (optTitleEl) optTitleEl.textContent = "Repas commandés, Restaurants & Abonnements superflus";
+        if (optLabelEl) optLabelEl.textContent = "Économies potentielles";
+        if (optAmtEl) optAmtEl.textContent = `+${formatFR(potAmt)}/mois`;
+        const currentAvgSavings = data.summary?.monthly_avg_savings || 1600;
+        let optText = `En réduisant de 35% les repas commandés (Uber Eats / livraisons) et sorties festives, vous pourriez dégager environ ${formatFR(potAmt)} d'épargne supplémentaire chaque mois (en complément de vos ${formatFR(currentAvgSavings)}/mois d'épargne moyenne actuelle).`;
+        if (optTextEl) optTextEl.textContent = optText;
+      }
 
       const grid = document.getElementById('categories-cards-grid');
       if (!grid) return;
@@ -1799,32 +1821,64 @@
       }
 
       catTrends.forEach((ct, idx) => {
+        const hasMajorSpike = ct.out_of_ordinary && ct.unusual_months && ct.unusual_months.length > 0;
         const card = document.createElement('div');
-        card.className = `c-card c-card-interactive p-5 space-y-3 flex flex-col justify-between cursor-pointer group ${ct.out_of_ordinary ? 'border-amber-300 shadow-sm' : ''}`;
+        card.className = `c-card c-card-interactive p-5 space-y-3 flex flex-col justify-between cursor-pointer group ${hasMajorSpike ? 'border-amber-300 shadow-sm' : ''}`;
         card.onclick = () => openCategoryDetail(ct.category);
         
         const canvasId = `catChart-${idx}`;
         const unusualSet = new Set((ct.unusual_months || []).map(u => u.index));
 
-        // Anomaly badge HTML
-        const anomalyBadgeHtml = ct.out_of_ordinary && ct.unusual_months && ct.unusual_months.length > 0
-          ? `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
-               ⚠️ Pic en ${ct.unusual_months[0].month_label.split(' ')[0]}
-             </span>`
-          : '';
+        // High-value, contextual badge HTML
+        let badgeHtml = '';
+        if (ct.rent_neutral) {
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">✅ 100% compensé</span>`;
+        } else if (hasMajorSpike) {
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">⚠️ Pic en ${ct.unusual_months[0].month_label.split(' ')[0]}</span>`;
+        } else if (ct.category === 'Investissements & Épargne') {
+          const invRate = trends.investment_analysis?.overall_savings_rate || 20;
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-800 border border-purple-200">${invRate}% des revenus</span>`;
+        } else if (ct.budget_share_pct > 0) {
+          const isLarge = ct.budget_share_pct >= 20;
+          const badgeClass = isLarge ? 'bg-[#FAF3EA] text-[#9A6B22] border-[#F6E1B5]' : 'bg-[#F0F2ED] text-[#4A5550] border-[#EAEAE5]';
+          badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium ${badgeClass} border">${ct.budget_share_pct}% du budget</span>`;
+        }
 
-        // Status or anomaly description message
+        // Status or insightful description message
         let statusMessageHtml = '';
-        if (ct.out_of_ordinary && ct.unusual_months) {
+        if (ct.rent_neutral) {
+          statusMessageHtml = `
+            <div class="mt-2 text-[11px] text-[#2D5A3C] font-medium">
+              ✅ Loyer 100% compensé par les virements reçus (reste 0,00 € net).
+            </div>
+          `;
+        } else if (ct.category === 'Investissements & Épargne') {
+          const isLumpy = trends.investment_analysis?.has_lumpy_investments;
+          const invRate = trends.investment_analysis?.overall_savings_rate || 20;
+          statusMessageHtml = `
+            <div class="mt-2 text-[11px] text-[#555E58] leading-relaxed">
+              ${isLumpy ? 'Versements ponctuels compensés par des apports plus forts (s\'équilibrent sur la durée)' : 'Flux régulier d\'accumulation patrimoniale'} (${invRate}% des revenus).
+            </div>
+          `;
+        } else if (hasMajorSpike) {
           statusMessageHtml = `
             <div class="mt-2 p-2.5 rounded-xl bg-[#FDF8EE] border border-[#F6E1B5] text-[#9A6B22] text-[11px] leading-relaxed">
-              <strong>Anomalie :</strong> ${ct.unusual_months.map(u => u.message).join(' ')}
+              <strong>Dépense ponctuelle :</strong> ${ct.unusual_months.map(u => u.message).join(' ')}
             </div>
           `;
         } else {
+          const share = ct.budget_share_pct || 0;
+          let contextDesc = 'Dépense maîtrisée et stable sur l\'ensemble de la période.';
+          if (share >= 25) {
+            contextDesc = `Poste principal : représente ${share}% de vos dépenses de vie (${formatFR(ct.avg_monthly)}/mois).`;
+          } else if (share >= 10) {
+            contextDesc = `Représente ${share}% de votre budget de vie (${formatFR(ct.avg_monthly)}/mois en moyenne).`;
+          } else if (share > 0) {
+            contextDesc = `Poste secondaire modéré (${share}% du budget, ${formatFR(ct.avg_monthly)}/mois).`;
+          }
           statusMessageHtml = `
-            <div class="mt-2 text-[11px] text-century-muted">
-              Trajectoire stable sur l'ensemble de la période.
+            <div class="mt-2 text-[11px] text-century-muted leading-relaxed">
+              ${contextDesc}
             </div>
           `;
         }
@@ -1837,7 +1891,7 @@
                 <span class="text-lg">${ct.icon || '📦'}</span>
                 <span class="font-sans font-bold text-sm text-century-charcoal group-hover:text-[#2D5A3C] transition">${ct.category}</span>
               </div>
-              ${anomalyBadgeHtml}
+              ${badgeHtml}
             </div>
 
             <!-- Amounts: Total & Average -->
@@ -1876,8 +1930,8 @@
           if (!cCanvas) return;
 
           const shortLabels = (ct.months || []).map(m => m.split(' ')[0]);
-          const pointColors = (ct.history || []).map((_, i) => unusualSet.has(i) ? '#EF4444' : (ct.color || '#2D5A3C'));
-          const pointRadii = (ct.history || []).map((_, i) => unusualSet.has(i) ? 6 : 3.5);
+          const pointColors = (ct.history || []).map((_, i) => (hasMajorSpike && unusualSet.has(i)) ? '#D97706' : (ct.color || '#2D5A3C'));
+          const pointRadii = (ct.history || []).map((_, i) => (hasMajorSpike && unusualSet.has(i)) ? 5 : 2.5);
 
           const cChart = new Chart(cCanvas, {
             type: 'line',
@@ -1948,6 +2002,7 @@
         color: '#2D5A3C',
         total_spent: 0,
         avg_monthly: 0,
+        budget_share_pct: 0,
         pct_of_budget: 0,
         months: [],
         history: []
@@ -1962,7 +2017,7 @@
       if (anomalyBadge) {
         if (ct.out_of_ordinary && ct.unusual_months && ct.unusual_months.length > 0) {
           anomalyBadge.classList.remove('hidden');
-          anomalyBadge.textContent = `⚠️ Pic inhabituel en ${ct.unusual_months[0].month_label || ''}`;
+          anomalyBadge.textContent = `⚠️ Pic ponctuel en ${ct.unusual_months[0].month_label || ''}`;
         } else {
           anomalyBadge.classList.add('hidden');
         }
@@ -2006,7 +2061,14 @@
       const kpiCount = document.getElementById('cat-detail-kpi-count');
       if (kpiTotal) kpiTotal.textContent = formatFR(displayTotal);
       if (kpiAvg) kpiAvg.textContent = `${formatFR(ct.avg_monthly)} / mois`;
-      if (kpiShare) kpiShare.textContent = `${ct.pct_of_budget || 0}%`;
+      if (kpiShare) {
+        if (ct.category === 'Investissements & Épargne') {
+          const invRate = AppState.data?.trends?.investment_analysis?.overall_savings_rate || 20;
+          kpiShare.textContent = `${invRate}% (Revenus)`;
+        } else {
+          kpiShare.textContent = `${ct.budget_share_pct || ct.pct_of_budget || 0}%`;
+        }
+      }
       if (kpiCount) kpiCount.textContent = txs.length;
 
       const chartMeta = document.getElementById('cat-detail-chart-meta');

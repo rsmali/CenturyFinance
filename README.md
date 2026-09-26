@@ -157,20 +157,20 @@ Ouvrez ensuite votre navigateur sur **[http://localhost:5001](http://localhost:5
 ## 📖 Guide d'Utilisation
 
 1. **Découverte immédiate** :
-   À la première ouverture, vous arrivez sur le **Compte Démo**. Vous pouvez explorer l'ensemble des écrans (Tableau de bord, Simulateur, Time Machine, Catégories, Révision) avec des données réalistes.
+   À la première ouverture, vous arrivez sur le **Compte Démo**. Vous pouvez explorer l'ensemble des écrans (Vue d'ensemble, Simulateur, Machine Temporelle, Catégories, Journal des Opérations) avec des données réalistes.
 
 2. **Créer votre espace personnel** :
    - Cliquez sur l'icône d'engrenage ⚙️ ou sur le sélecteur d'espace dans la barre latérale pour créer votre propre espace (ex: *Mon Compte Courant*).
-   - Déposez vos relevés bancaires au format PDF dans l'onglet **Document Upload** (glisser-déposer de plusieurs fichiers supporté).
+   - Déposez vos relevés bancaires au format PDF dans l'onglet **Import de Relevés** (glisser-déposer de plusieurs fichiers supporté).
 
 3. **Configurer votre profil financier** :
-   Dans l'onglet **Configuration** de votre espace, personnalisez vos paramètres :
+   Dans les **Paramètres & Profil** de votre espace, personnalisez vos paramètres :
    - Nom de votre employeur (pour isoler votre salaire).
    - Mots-clés de neutralisation du loyer.
    - Vos comptes d'épargne et de courtage (PEA, Livret A, LDDS, Crypto, etc.).
 
 4. **Ajuster vos catégories** :
-   Rendez-vous dans **Transaction Review** pour vérifier les libellés. Si une dépense doit changer de catégorie, sélectionnez la nouvelle catégorie : l'apprentissage est immédiat pour tous les relevés passés et futurs.
+   Rendez-vous dans le **Journal des Opérations** pour vérifier les libellés. Si une dépense doit changer de catégorie, sélectionnez la nouvelle catégorie : l'apprentissage est immédiat pour tous les relevés passés et futurs.
 
 ---
 
@@ -205,7 +205,10 @@ century-finance/
 ├── main.py                 # Interface en ligne de commande (CLI)
 ├── requirements.txt        # Dépendances Python (Flask, PyMuPDF, Pandas...)
 ├── templates/
-│   └── index.html          # Interface Single-Page Application (TailwindCSS + Chart.js)
+│   ├── index.html          # Structure principale de l'application
+│   ├── partials/           # En-tête, barre latérale & scripts JS
+│   ├── views/              # Vues modulaires (Vue d'ensemble, Budget, Machine Temporelle...)
+│   └── modals/             # Modales interactives (profil, création d'espace, audit...)
 ├── docs/
 │   └── screenshots/        # Captures d'écran de l'application
 ├── workspaces/

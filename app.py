@@ -337,31 +337,50 @@ def format_fr(val: float) -> str:
 
 def generate_financial_time_machine_patterns(all_txs: list, trends: dict, insights: dict) -> list:
     patterns = []
+    monthly_data = trends.get("monthly_data", [])
+    n_months = max(1, len(monthly_data))
+    total_living = sum(m.get("expenses_living", 0.0) for m in monthly_data)
     
-    # 1. Dining, Bars & Food Delivery
+    # 1. Dining, Bars & Food Delivery (Proportional budget share)
     delivery_total = insights.get("delivery_total", 0.0)
     restaurants_total = insights.get("restaurants_bars_total", 0.0)
     dining_sum = delivery_total + restaurants_total
     delivery_count = insights.get("delivery_count", 0)
     
     if dining_sum > 0:
+        dining_share_pct = round((dining_sum / total_living * 100), 1) if total_living > 0 else 0.0
+        avg_dining_mo = dining_sum / n_months
+        pot_save_mo = (dining_sum * 0.35) / n_months
         patterns.append({
             "id": "dining",
-            "type": "Seasonal",
-            "badge": "+35%",
+            "type": "Budget",
+            "badge": f"{dining_share_pct:.0f}% du budget" if dining_share_pct > 0 else "Alimentation",
             "badge_color": "rose",
             "icon": "🍽️",
             "title": "Restaurants, Bars & Livraisons de repas",
-            "description": f"Vos dépenses en restaurants et repas commandés totalisent {format_fr(dining_sum)} dont {format_fr(delivery_total)} en livraisons ({delivery_count} commandes).",
-            "details": f"Privilégier les repas faits maison et limiter les plateformes de livraison pourrait vous faire économiser environ {format_fr(dining_sum * 0.4)}/mois.",
+            "description": f"Vos dépenses en restaurants et repas commandés totalisent {format_fr(dining_sum)} ({format_fr(avg_dining_mo)}/mois), soit {dining_share_pct:.1f}% de vos dépenses de vie.",
+            "details": f"Privilégier la cuisine maison et réduire les plateformes de livraison ({delivery_count} commandes, {format_fr(delivery_total)}) dégagerait environ {format_fr(pot_save_mo)}/mois d'épargne supplémentaire.",
         })
 
-    # 2. Wealth & Savings
-    investments_total = insights.get("investments_total", 0.0)
-    if investments_total > 0:
+    # 2. Wealth & Savings (Multi-month smoothed capacity analysis)
+    inv_analysis = trends.get("investment_analysis", {})
+    inv_diag = inv_analysis.get("diagnosis")
+    if inv_diag:
         patterns.append({
             "id": "investments",
-            "type": "Trend",
+            "type": "Patrimoine",
+            "badge": inv_diag["badge"],
+            "badge_color": inv_diag["badge_color"],
+            "icon": inv_diag["icon"],
+            "title": inv_diag["title"],
+            "description": inv_diag["summary"],
+            "details": inv_diag["advice"]
+        })
+    elif insights.get("investments_total", 0.0) > 0:
+        investments_total = insights.get("investments_total", 0.0)
+        patterns.append({
+            "id": "investments",
+            "type": "Patrimoine",
             "badge": "Épargne",
             "badge_color": "purple",
             "icon": "📈",
@@ -370,57 +389,78 @@ def generate_financial_time_machine_patterns(all_txs: list, trends: dict, insigh
             "details": "Ces flux financiers augmentent directement votre valeur patrimoniale et ne constituent pas des dépenses consommées."
         })
 
-    # 3. Fixed Subscriptions
+    # 3. Fixed Subscriptions & Recurring Bills
     fixed_total = insights.get("fixed_total", 0.0)
     if fixed_total > 0:
+        fixed_monthly = fixed_total / n_months
+        fixed_share_pct = round((fixed_total / total_living * 100), 1) if total_living > 0 else 0.0
         patterns.append({
             "id": "recurring",
-            "type": "Recurring",
-            "badge": "Charges Fixes",
+            "type": "Charges Fixes",
+            "badge": f"{fixed_share_pct:.0f}% des charges" if fixed_share_pct > 0 else "Récurrent",
             "badge_color": "amber",
             "icon": "🔄",
             "title": "Abonnements et Charges Fixes",
-            "description": f"Vos prélèvements récurrents mensuels s'élèvent à environ {format_fr(fixed_total)} (abonnements, forfaits, assurances).",
+            "description": f"Vos prélèvements récurrents s'élèvent à environ {format_fr(fixed_monthly)}/mois ({format_fr(fixed_total)} au total pour abonnements, forfaits, assurances).",
             "details": "Charges fixes régulières identifiées sur l'ensemble de vos relevés bancaires."
         })
 
     # 4. Sports & Fitness
     sports_total = insights.get("sports_total", 0.0)
     if sports_total > 0:
+        sports_monthly = sports_total / n_months
         patterns.append({
             "id": "lifestyle",
-            "type": "Lifestyle",
-            "badge": "Santé",
+            "type": "Santé",
+            "badge": "Discipline",
             "badge_color": "pink",
             "icon": "⚡",
             "title": "Discipline Sport & Bien-être",
-            "description": f"Abonnement constant dédié à la santé et aux activités sportives ({format_fr(sports_total)}/mois).",
+            "description": f"Abonnement constant dédié à la santé et aux activités sportives ({format_fr(sports_monthly)}/mois).",
             "details": "Dépense saine et régulière identifiée sur l'ensemble des relevés analysés."
         })
 
-    # 5. Anomalies or Monthly Fluctuations
-    anomalies = trends.get("anomalies", [])
-    if anomalies:
-        for a in anomalies[:2]:
+    # 5. Anomalies or Genuine Out-of-Ordinary Spikes
+    raw_anomalies = trends.get("anomalies", [])
+    valid_anomalies = [
+        a for a in raw_anomalies
+        if a.get("amount", 0.0) >= 150.0 
+        and a.get("pct_diff", 0) >= 50 
+        and (a.get("amount", 0.0) - a.get("avg", 0.0)) >= 100.0
+        and a.get("current", 0.0) > 0
+    ]
+
+    if valid_anomalies:
+        for a in valid_anomalies[:2]:
+            curr = a.get("current", a.get("amount", 0.0))
+            prev = a.get("previous", 0.0)
+            avg = a.get("avg", 0.0)
+            pct = a.get("pct_diff", a.get("delta_pct", 0))
+
+            if prev > 0:
+                details_str = f"Dépense passée de {format_fr(prev)} le mois précédent à {format_fr(curr)} en {a.get('month', '')}."
+            else:
+                details_str = f"Dépense ponctuelle de {format_fr(curr)} dépassant votre moyenne habituelle ({format_fr(avg)}/mois) de {format_fr(curr - avg)}."
+
             patterns.append({
                 "id": f"anomaly_{a.get('category')}",
-                "type": "Anomaly",
-                "badge": f"+{a.get('delta_pct', 0):.0f}%",
+                "type": "Alerte",
+                "badge": f"+{pct:.0f}%",
                 "badge_color": "amber",
                 "icon": "⚠️",
                 "title": f"Variation notable : {a.get('category')}",
                 "description": a.get("message"),
-                "details": f"Dépense passée de {format_fr(a.get('previous', 0))} à {format_fr(a.get('current', 0))}."
+                "details": details_str
             })
     else:
         patterns.append({
             "id": "regularity",
-            "type": "Trend",
-            "badge": "Stabilité",
+            "type": "Stabilité",
+            "badge": "Maîtrisé",
             "badge_color": "emerald",
             "icon": "🛡️",
-            "title": "Régularité des flux financiers",
-            "description": "Les flux de revenus et dépenses de vie courante présentent une trajectoire stable sans dérapage imprévu.",
+            "title": "Trajectoire Budgétaire Maîtrisée",
+            "description": "Les flux de revenus et dépenses de vie courante restent stables et cohérents sur toute la période, sans pic anormal imprévu.",
             "details": "Excellente prévisibilité budgétaire constatée sur les relevés bancaires."
         })
 

@@ -2,7 +2,7 @@
       
       <!-- Top Title & Time Filters Row -->
       <div>
-        <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Financial Overview</h2>
+        <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Vue d'ensemble Financière</h2>
         <p id="overview-subtitle" class="text-sm text-century-muted mt-1">
           Opérations analysées
         </p>
@@ -52,7 +52,7 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
             </div>
             <div>
-              <span class="text-xs font-medium text-century-muted block">Total Transactions</span>
+              <span class="text-xs font-medium text-century-muted block">Total des Opérations</span>
               <span id="kpi-total-tx" class="text-2xl font-bold font-sans text-century-charcoal">0</span>
             </div>
           </div>
@@ -69,7 +69,7 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
             </div>
             <div>
-              <span id="kpi-income-title" class="text-xs font-medium text-century-muted block">Total Income (Salaires)</span>
+              <span id="kpi-income-title" class="text-xs font-medium text-century-muted block">Revenus Totaux (Salaires)</span>
               <span id="kpi-total-income" class="text-2xl font-bold font-sans text-[#2D5A3C]">0,00 €</span>
             </div>
           </div>
@@ -93,7 +93,7 @@
             </div>
           </div>
           <div class="mt-3 pt-2 border-t border-[#EAEAE5]/60 flex items-center justify-between text-[11px]">
-            <span id="kpi-expenses-sub" class="text-century-muted truncate max-w-[150px]">Gross : 0,00 €</span>
+            <span id="kpi-expenses-sub" class="text-century-muted truncate max-w-[150px]">Brut : 0,00 €</span>
             <button onclick="openKpiAuditModal('expenses')" class="text-[#6E2D38] font-semibold hover:underline flex items-center space-x-0.5 shrink-0">
               <span>Détail calcul</span><span>→</span>
             </button>
@@ -107,7 +107,7 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <div>
-              <span class="text-xs font-medium text-century-muted block">Net Savings (Épargne Réelle)</span>
+              <span class="text-xs font-medium text-century-muted block">Épargne Nette Réelle</span>
               <span id="kpi-net-savings" class="text-2xl font-bold font-sans text-[#2D5A3C]">0,00 €</span>
             </div>
           </div>
@@ -127,7 +127,7 @@
           <div>
             <div class="flex items-center space-x-2 text-century-charcoal">
               <svg class="w-4 h-4 text-century-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Monthly Spending Trend</h3>
+              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Évolution Mensuelle des Dépenses</h3>
             </div>
             <p id="chart-spending-subtitle" class="text-xs text-century-muted mt-1">Revenus vs Dépenses de vie courante (total dépensé - investissements)</p>
           </div>
@@ -145,7 +145,7 @@
         <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs text-[#555E58]">
           <div class="flex items-center space-x-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#2D5A3C]"></span>
-            <span id="chart-legend-income-label" class="font-medium">Income (Salaires)</span>
+            <span id="chart-legend-income-label" class="font-medium">Revenus (Salaires)</span>
           </div>
           <div class="flex items-center space-x-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#6E2D38]"></span>
@@ -160,7 +160,7 @@
           <div>
             <div class="flex items-center space-x-2 text-century-charcoal">
               <span class="text-xl">📈</span>
-              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Investments & Wealth Accumulation</h3>
+              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Patrimoine & Investissements</h3>
             </div>
             <p class="text-xs text-century-muted mt-1">Suivi comparatif des versements mensuels d'épargne et d'investissement. Cliquez sur un indicateur pour auditer les flux.</p>
           </div>
@@ -188,7 +188,7 @@
           <div>
             <div class="flex items-center space-x-2 text-century-charcoal">
               <span class="text-xl">💻</span>
-              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Major & One-Off Expenditures</h3>
+              <h3 class="font-serif-title text-xl font-normal text-century-charcoal">Dépenses Majeures & Ponctuelles</h3>
             </div>
             <p class="text-xs text-century-muted mt-1">Dépenses exceptionnelles, matériel informatique & high-tech (> 300 €) isolés des charges régulières</p>
           </div>

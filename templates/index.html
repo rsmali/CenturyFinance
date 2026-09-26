@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr" class="h-full">
+
 <head>
   {% include 'partials/head.html' %}
 </head>
+
 <body class="h-full flex flex-col md:flex-row antialiased">
 
   <!-- ======================================================== -->
@@ -17,25 +19,25 @@
     <!-- VIEW 1: FINANCIAL OVERVIEW -->
     {% include 'views/overview.html' %}
 
-    <!-- VIEW 8: BUDGET & SCENARIO SIMULATOR -->
+    <!-- VIEW 2: BUDGET & SCENARIO SIMULATOR -->
     {% include 'views/budget.html' %}
 
-    <!-- VIEW 2: FINANCIAL TIME MACHINE -->
+    <!-- VIEW 3: FINANCIAL TIME MACHINE -->
     {% include 'views/timemachine.html' %}
 
-    <!-- VIEW 3: FILE MANAGEMENT -->
-    {% include 'views/files.html' %}
-
-    <!-- VIEW 4: DOCUMENT UPLOAD -->
-    {% include 'views/upload.html' %}
-
-    <!-- VIEW 5: TRANSACTION REVIEW -->
-    {% include 'views/transactions.html' %}
-
-    <!-- VIEW 6: CATEGORY ANALYSIS -->
+    <!-- VIEW 4: CATEGORY ANALYSIS -->
     {% include 'views/categories.html' %}
 
-    <!-- VIEW 7: RULES & KEYWORDS -->
+    <!-- VIEW 5: FILE MANAGEMENT -->
+    {% include 'views/files.html' %}
+
+    <!-- VIEW 6: DOCUMENT UPLOAD -->
+    {% include 'views/upload.html' %}
+
+    <!-- VIEW 7: TRANSACTION REVIEW -->
+    {% include 'views/transactions.html' %}
+
+    <!-- VIEW 8: RULES & KEYWORDS -->
     {% include 'views/rules.html' %}
   </main>
 
@@ -53,4 +55,5 @@
   {% include 'partials/scripts.html' %}
 
 </body>
+
 </html>
