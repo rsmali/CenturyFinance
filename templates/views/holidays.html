@@ -3,10 +3,7 @@
       <!-- Top Title & Add Holiday Trip Action -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div class="flex items-center space-x-2.5">
-            <span class="text-3xl">🏖️</span>
-            <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Séjours & Dépenses de Vacances</h2>
-          </div>
+          <h2 class="font-serif-title text-3xl md:text-4xl font-normal text-century-charcoal tracking-tight">Séjours & Dépenses de Vacances</h2>
           <p class="text-sm text-century-muted mt-1">
             Regroupez et distinguez vos dépenses par voyage : billets, hébergements, restaurants et loisirs.
           </p>
@@ -79,8 +76,11 @@
 
         <!-- Empty State (shown when no trips exist) -->
         <div id="holiday-trips-empty-state" class="hidden c-card p-12 text-center space-y-4 max-w-xl mx-auto border-2 border-dashed border-[#D2D4CA] bg-white/70">
-          <div class="w-16 h-16 mx-auto rounded-2xl bg-[#E0F2FE] text-[#0369A1] flex items-center justify-center text-3xl">
-            🏖️
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-[#E0F2FE] text-[#0369A1] flex items-center justify-center">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                d="M12 2v2m0 0a9 9 0 019 9H3a9 9 0 019-9zm0 0c-2.5 2.5-3.5 5.5-3.5 9m3.5-9c2.5 2.5 3.5 5.5 3.5 9m-3.5 0v8m-4 0h8" />
+            </svg>
           </div>
           <div>
             <h3 class="font-serif-title text-xl text-century-charcoal">Aucun séjour ou voyage créé pour l'instant</h3>
